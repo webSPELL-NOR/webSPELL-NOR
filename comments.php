@@ -161,7 +161,7 @@ if (isset($_POST[ 'savevisitorcomment' ])) {
 		
 //neu IM bei neuen comments von einem Gast ///////////////////////////////////////
 
-//$dt = safe_query("SELECT userID FROM " . PREFIX . "user WHERE pmoncomment='1'");
+//$dt = safe_query("SELECT userID FROM " . PREFIX . "user WHERE pmoncomment='1'"); war angedacht für an/aus klicken im Profil
 
 $dt = safe_query("SELECT userID FROM " . PREFIX . "user_groups WHERE page='1'");
  
@@ -260,7 +260,7 @@ sendmessage($id,'Neuer Kommentar ' . $_message_from . '',$message);
 	
 //neu IM bei neuen comments von reg.member ///////////////////////////////////////
 
-//$dt = safe_query("SELECT userID FROM " . PREFIX . "user WHERE pmoncomment='1'");
+//$dt = safe_query("SELECT userID FROM " . PREFIX . "user WHERE pmoncomment='1'"); war angedacht für an/aus klicken im Profil
 
 $dt = safe_query("SELECT userID FROM " . PREFIX . "user_groups WHERE page='1'");
  
