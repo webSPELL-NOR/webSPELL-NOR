@@ -1,0 +1,14 @@
+# DE - German#
+Clan Regeln by T-Seven http://www.designperformance.de Kontakt: info@designperformance.de
+-----------------------------------------------------------------------------------------------
+
+Mit diesem Plugin könnt ihr eure Clan Regeln anzeigen lassen.
+
+
+Installation:
+     
+Lade den Ordner "clan_rules" auf dem Webspace in den Ordner "_plugins". 
+Die install.php muss in das webSPELL NOR Hauptverzeichnis und 
+wird wie folgt aufgerufen index.php?site=install-clan_rules
+
+-----------------------------------------------------------------------------------------------
