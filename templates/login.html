@@ -1,0 +1,21 @@
+<form method="post" name="login" action="checklogin.php">
+    <div id="ws-login-alert" class="alert hidden"></div>
+   
+<div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+      <input name="ws_user" type="text" placeholder="Username" class="form-control" required>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+      <input name="password" type="password" placeholder="Password" class="form-control" required>
+    </div>
+</div>
+    <div class="form-group">
+        <input type="submit" name="submit" value="%login%" class="btn btn-primary col-xs-12"><br />        
+        <p class="text-center"><small><a href="index.php?site=register">%register_now%</a> - <a href="index.php?site=lostpassword">%lost_password%</a></small></p>
+    </div>
+</form>

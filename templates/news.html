@@ -1,0 +1,30 @@
+<article>
+    <header class="page-header">
+        <h3>
+            <a href="index.php?site=news_comments&amp;newsID=$newsID">$headline</a>
+            <a href="index.php?site=news&amp;show=$rubrikname">
+                $langs <small>$rubrikname</small>
+            </a>
+        </h3>
+    </header>
+
+    <section>
+       $rubric_pic
+        <div>
+            <p>
+                <small>$isintern</small>
+                $content<br>$adminaction
+            </p>
+        </div>
+    </section>
+
+    <footer>
+			$related
+			<br /><br />	
+        <p>
+            <i class="fa fa-user"></i> by $poster
+            | <i class="fa fa-calendar"></i> $date
+            | <i class="fa fa-comment"></i> $comments </p>
+    </footer>
+</article>
+<hr>

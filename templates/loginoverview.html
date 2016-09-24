@@ -1,0 +1,113 @@
+<h3>%userinformations%</h3>
+<table class="table table-hover table-bordered">
+    <tr>
+        <td>%user%:</td>
+        <td>$username</td>
+    </tr>
+    <tr>
+        <td>%last_login%:</td>
+        <td>$lastlogin</td>
+    </tr>
+    <tr>
+        <td>%registered%:</td>
+        <td>$registerdate</td>
+    </tr>
+</table>
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <td>%messenger%:</td>
+        <td><a href="index.php?site=messenger">$newmessages</a></td>
+    </tr>
+    <tr>
+        <td>%new_topics%:</td>
+        <td>$new_topics</td>
+    </tr>
+    <tr>
+        <td>%new_posts%:</td>
+        <td>$new_posts</td>
+    </tr>
+</table>$referer_uri
+
+<h3>%upcoming%</h3>$clanwars
+
+<h4>%upcoming_events%</h4>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>%name%:</th>
+        <th>%from%:</th>
+        <th>%until%:</th>
+        <th>%location%:</th>
+        <th>%info%:</th>
+    </tr>
+    </thead>
+    <tbody>
+    $events
+    </tbody>
+</table>
+
+<h4>%usermenu%</h4>
+<ul class="list-inline">
+    <li>$cashboxpic</li>
+    <li>
+        <a class="thumbnail text-center" href="index.php?site=buddies">
+            <i class="fa fa-users fa-4x" alt="buddies"></i><br>
+            %buddy_list%
+        </a>
+    </li>
+    <li>
+        <a class="thumbnail text-center" href="index.php?site=messenger">
+            <i class="fa fa-envelope fa-4x" alt="messenger"></i><br>
+            %messenger%
+        </a>
+    </li>
+    <li>$admincenterpic</li>
+    <li>
+        <a class="thumbnail text-center" href="index.php?site=myprofile">
+            <i class="fa fa-user fa-4x"></i><i class="fa fa-pencil fa-4x"></i><br>
+            %edit_account%
+        </a>
+    </li>
+    <li>
+        <a class="thumbnail text-center" href="logout.php">
+            <i class="fa fa-sign-out fa-4x" alt="logout"></i><br>
+            %logout%
+        </a>
+    </li>
+</ul>
+
+<h4 class="hidden">%new_in_forum%</h4>
+<div class="row hidden">
+    <div class="col-md-6">
+        <img src="images/icons/latest_topics.gif" alt="Latest Topics">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Date:</th>
+                <th>Title:</th>
+                <th>Views:</th>
+                <th>Replies:</th>
+            </tr>
+            </thead>
+            <tbody>
+            $topiclist
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <img src="images/icons/latest_posts.gif" alt="Latest Posts">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Topic:</th>
+                <th>Date:</th>
+                <th>Content:</th>
+            </tr>
+            </thead>
+            <tbody>
+            $postlist
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+{
+  "name": "webspell",
+  "version": "4.3.0",
+  "homepage": "http://www.webspell.org",
+  "authors": [
+    "webSPELL e.V. <root@webspell.org>"
+  ],
+  "description": "webSPELL is a free Content Management System which was especially developed for the needs of esport related communities.",
+  "license": "GNU GPL",
+  "keywords ": [
+    "webSPELL",
+    "eSports",
+    "CMS",
+    "Gaming",
+    "Content Management System"
+  ],
+  "dependencies": {
+    "PHPMailer": "PHPMailer/PHPMailer#~5.2.9",
+    "bootstrap": "~3.3.6",
+    "jquery": ">=2.1.4",
+    "webshim": "~1.15.10"
+  },
+  "main": "index.php",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "vendor",
+    "test",
+    "tests"
+  ]
+}

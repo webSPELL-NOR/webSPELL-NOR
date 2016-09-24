@@ -1,0 +1,222 @@
+<div class="row">
+	<div class="col-xs-12 text-center">
+        <div class="profile hovercard">
+            <div class="profile-background">
+                $profile_bg
+            </div>
+            <div class="useravatar">
+                $userpic
+                <h3>$nickname</h3>
+            </div>
+            <div class="profile-info">
+                $pm $buddy
+            </div>
+        </div>
+	</div>
+    
+	<div class="col-xs-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">%about%</div>
+			<div class="panel-body">
+				$about
+			</div>
+		</div>
+	</div>
+    
+	<div class="col-xs-4">
+		<ul class="list-group">
+        	<li class="list-group-item text-muted">Quick Links</li>
+        	<li class="list-group-item active"><i class="fa fa-user fa-mgn"></i> %profile%</li>
+            <li class="list-group-item"><a href="index.php?site=profile&amp;id=$id&amp;action=galleries"><i class="fa fa-camera fa-mgn"></i> %galleries%</a></li>
+            <li class="list-group-item"><a href="index.php?site=profile&amp;id=$id&amp;action=buddies"><i class="fa fa-users fa-mgn"></i> %buddys%</a></li>
+            <li class="list-group-item"><a href="index.php?site=profile&amp;id=$id&amp;action=lastposts"><i class="fa fa-comments fa-mgn"></i> %last% $profilelast %posts%</a></li>
+            <li class="list-group-item"><a href="index.php?site=profile&amp;id=$id&amp;action=guestbook"><i class="fa fa-book fa-mgn"></i> %guestbook%</a></li>
+        </ul>
+	</div>
+    
+	<div class="col-xs-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">%personal_info%</div>
+                <table class="table table-hover">
+                    <tr>
+                        <th>%real_name%:</th>
+                        <td>$firstname $lastname</td>
+                    </tr>
+                    <tr>
+                        <th>%nickname%:</th>
+                        <td>$nickname $member</td>
+                    </tr>
+                    <tr>
+                        <th>%age%:</th>
+                        <td>$birthday</td>
+                    </tr>
+                    <tr>
+                        <th>%sexuality%:</th>
+                        <td>$sex</td>
+                    </tr>
+                    <tr>
+                        <th>%location%:</th>
+                        <td>$profilecountry $town</td>
+                    </tr>
+				</table>
+		</div>
+	</div>
+    
+	<div class="col-xs-4">
+		<ul class="list-group">
+        	<li class="list-group-item text-muted">Account Informations</li>
+            <li class="list-group-item text-right">
+            	<span class="pull-left">
+                    <strong>%status%: </strong>
+                </span>
+               $status
+            </li>
+            <li class="list-group-item text-right">
+            	<span class="pull-left">
+                    <strong>%last_login%: </strong>
+                </span>
+               $lastlogin
+            </li>
+            <li class="list-group-item text-right">
+            	<span class="pull-left">
+                    <strong>%usertitle%: </strong>
+                </span>
+               $usertype $rang $specialrank
+            </li>
+            <li class="list-group-item text-right">
+            	<span class="pull-left">
+                    <strong>%homepage%: </strong>
+                </span>
+               $homepage
+            </li>
+            <li class="list-group-item text-right">
+            	<span class="pull-left">
+                    <strong>%contact%: </strong>
+                </span>
+               $email $icq
+            </li>
+        </ul>
+	</div>
+    
+	<div class="col-xs-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">%clan_equipment%</div>
+                <table class="table table-hover">
+                    <tr>
+                        <th>%clan%:</th>
+                        <td>$clanname $clantag<br>(%hp%: $clanhp)</td>
+                    </tr>
+                    <tr>
+                        <th>%irc_channel%:</th>
+                        <td>$clanirc</td>
+                    </tr>
+                    <tr>
+                        <th>%clan_history%:</th>
+                        <td>$clanhistory</td>
+                    </tr>
+                    <tr>
+                        <th>%cpu%:</th>
+                        <td>$cpu</td>
+                    </tr>
+                    <tr>
+                        <th>%mainboard%:</th>
+                        <td>$mainboard</td>
+                    </tr>
+                    <tr>
+                        <th>%ram%:</th>
+                        <td>$ram</td>
+                    </tr>
+                    <tr>
+					 	<th>%hdd%:</th>
+					 	<td>$hdd</td>
+					</tr>
+                    <tr>
+                        <th>%monitor%:</th>
+                        <td>$monitor</td>
+                    </tr>
+                    <tr>
+                        <th>%graphiccard%:</th>
+                        <td>$graphiccard</td>
+                    </tr>
+                    <tr>
+                        <th>%soundcard%:</th>
+                        <td>$soundcard</td>
+                    </tr>
+                    <tr>
+                        <th>%headset%:</th>
+                        <td>$headset</td>
+                    </tr>
+                    <tr>
+                        <th>%i_connection%:</th>
+                        <td>$connection</td>
+                    </tr>
+                    <tr>
+                        <th>%keyboard%:</th>
+                        <td>$keyboard</td>
+                    </tr>
+                    <tr>
+                        <th>%mouse%:</th>
+                        <td>$mouse</td>
+                    </tr>
+                    <tr>
+                        <th>%mousepad%:</th>
+                        <td>$mousepad</td>
+                    </tr>
+				</table>
+		</div>
+	</div>
+    
+	<div class="col-xs-4">
+		<div class="panel panel-default">
+        	<div class="panel-heading">%statistics%</div>
+            <table class="table">
+                <tr>
+                    <th>%forumtopics%:</th>
+                    <td>$anzforumtopics</td>
+                </tr>
+                <tr>
+                    <th>%newsposts%:</th>
+                    <td>$anznewsposts</td>
+                </tr>
+                <tr>
+                    <th>%newscomments%:</th>
+                    <td>$news_comments</td>
+                </tr>
+                <tr>
+                    <th>%forumposts%:</th>
+                    <td>$anzforumposts</td>
+                </tr>
+                <tr>
+                    <th>%clanwarcomments%:</th>
+                    <td>$clanwar_comments</td>
+                </tr>
+                <tr>
+                    <th>%articlecomments%:</th>
+                    <td>$articles_comments</td>
+                </tr>
+                <tr>
+                    <th>%democomments%:</th>
+                    <td>$demo_comments</td>
+                </tr>
+                <tr>
+                    <th>%messenger% (%incoming%):</th>
+                    <td>$pmgot</td>
+                </tr>
+                <tr>
+                    <th>%messenger% (%outgoing%):</th>
+                    <td>$pmsent</td>
+                </tr>
+            </table>
+        </div>
+	</div>
+    
+	<div class="col-xs-4">
+		<div class="panel panel-default">
+        	<div class="panel-heading">%latest_visitors% <span class="pull-right"><small>($anzvisits)</small></span></div>
+            <table class="table">
+    			$lastvisits  
+			</table>
+        </div>
+	</div>
+    
+</div><br /> <!-- row end -->

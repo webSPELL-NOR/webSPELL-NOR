@@ -1,0 +1,12 @@
+{
+    "name": "webspell/webspell",
+    "description": "webSPELL CMS",
+    "keywords": ["cms", "gaming"],
+    "license": "GPL-3.0",
+    "type": "project",
+    "require": {
+        "squizlabs/php_codesniffer": "2.5.0",
+        "codeclimate/php-test-reporter": "dev-master",
+        "phpunit/phpunit": "4.8.21"
+    }
+}

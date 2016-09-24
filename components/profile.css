@@ -1,0 +1,92 @@
+/* USER PROFILE PAGE */
+ .profile {
+	margin-bottom: 20px;
+	padding: 30px;
+	background-color: rgba(214, 224, 226, 0.2);
+	border-radius: 5px;
+	border: 1px solid #EFEFEF;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.profile.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+}
+.profile.hovercard .profile-background {
+    height: 150px;
+}
+.profile-background img {
+    -webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+}
+.profile.hovercard .useravatar {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+}
+.profile.hovercard .useravatar h3 {
+	color: #FFF;
+	font-size: 20px;
+	text-transform: none;
+	letter-spacing: 1px;
+    position: absolute;
+    top: -42px;
+    left: 0;
+    right: 0;
+}
+.profile.hovercard .useravatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+}
+.profile.hovercard .profile-info {
+    position: relative;
+    left: 0;
+    right: 0;
+}
+.profile.hovercard .profile-info .profile-title {
+    padding: 10px;
+    font-size: 20px;
+    line-height: 1;
+    color: #FFF;
+}
+.profile.hovercard .profile-info {
+    overflow: hidden;
+    font-size: 12px;
+    text-overflow: ellipsis;
+}
+.list-group-item.active {
+    background-color: #4eb0cd;
+    border: 1px solid #4eb0cd;
+
+}
+.list-group-item.active:hover {
+    background-color: #4eb0cd;
+    border: 1px solid #4eb0cd;
+}
+.userpic-wh {
+	width: 25%;
+	height: 25%;
+	margin: 10px;
+	border: 5px solid #EFEFEF;
+}
+.fa-mgn {
+	margin-right: 8px;
+}

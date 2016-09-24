@@ -1,0 +1,70 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">%registration%</h3>
+    </div>
+    <div class="panel-body">
+        <form action="index.php?site=register" method="post" name="post" role="form" class="form-horizontal">
+
+            <!-- Error Box -->
+            $showerror
+
+            <!-- Nickname -->
+            <div class="form-group">
+                <label for="input-nickname" class="col-xs-12 col-md-3 control-label">%nickname%:</label>
+
+                <div class="col-xs-12 col-md-9">
+                    <input type="text" name="nickname" class="form-control" id="input-nickname">
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="form-group">
+                <label for="input-username" class="col-xs-12 col-md-3 control-label">%username%:</label>
+
+                <div class="col-xs-12 col-md-9">
+                    <input type="text" name="username" class="form-control" id="input-username">
+                    <p class="help-block">%for_login%</p>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="input-password" class="col-xs-12 col-md-3 control-label">%password%:</label>
+
+                <div class="col-xs-12 col-md-9">
+                    <input type="password" name="password" class="form-control" id="input-password" value="$password">
+                </div>
+            </div>
+
+            <!-- E-Mail -->
+            <div class="form-group">
+                <label for="input-mail" class="col-xs-12 col-md-3 control-label">%mail%:</label>
+
+                <div class="col-xs-12 col-md-9">
+                    <input type="email" name="mail" class="form-control" id="input-mail" value="$mail" autocomplete="email">
+                </div>
+            </div>
+
+            <!-- Security code -->
+            <div class="form-group">
+                <label for="input-security-code" class="col-xs-12 col-md-3 control-label">%security_code%:</label>
+
+                <div class="col-xs-12 col-md-9">
+                    <div class="input-group">
+                        <span class="input-group-addon captcha-img">$captcha</span>
+                        <input type="number" name="captcha" class="form-control" id="input-security-code">
+                        <input name="captcha_hash" type="hidden" value="$hash">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="form-group">
+                <div class="col-xs-12 text-right">
+                    <button type="submit" name="save" class="btn btn-primary">%register_now%</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

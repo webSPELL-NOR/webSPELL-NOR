@@ -1,0 +1,62 @@
+<html>
+<head>
+<script language="JavaScript" src="calendar_eu.js"></script>
+<link rel="stylesheet" href="calendar.css">
+</head>
+<center>
+ <form name="form1" action="index.php?site=awaylist" method="post">
+     <input type="hidden" name="action" value="send"> 
+ <table width="400px" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+     <td width="150" align="left">
+  %awayfrom%
+	<!-- calendar attaches to existing form element --></td>
+     <td width="250"  align="left"><input type="text" name="awayfrom" />
+	<script language="JavaScript">
+	new tcal ({
+		// form name
+		'formname': 'form1',
+		// input name
+		'controlname': 'awayfrom'
+	});
+
+	</script></td>
+   </tr>
+   <tr>
+     <td width="150" align="left">&nbsp;</td>
+     <td width="250" align="left">&nbsp;</td>
+   </tr>
+   <tr>
+     <td width="150" align="left">%awayto%
+	<!-- calendar attaches to existing form element --></td>
+     <td width="250" align="left"><input type="text" name="awayto" />
+	<script language="JavaScript">
+	new tcal ({
+		// form name
+		'formname': 'form1',
+		// input name
+		'controlname': 'awayto'
+	});
+
+	</script></td>
+   </tr>
+   <tr>
+     <td width="150" align="left">&nbsp;</td>
+     <td width="250" align="left">&nbsp;</td>
+   </tr>
+   <tr>
+     <td width="150" align="left">%reason%</td>
+     <td width="250" align="left"><textarea name="reason" id="reason" cols="45" rows="5"></textarea></td>
+   </tr>
+   <tr>
+     <td align="left">&nbsp;</td>
+     <td align="left">&nbsp;</td>
+   </tr>
+   <tr>
+     <td align="left">&nbsp;</td>
+     <td align="left"><input type="submit" value="%send%"></td>
+   </tr>
+ </table>
+  </form>    
+</center>
+</html>
