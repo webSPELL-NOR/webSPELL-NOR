@@ -27,7 +27,10 @@ html {
 
 .carousel-inner img {
     width: 100%;
-    max-height: 460px
+    max-height: 460px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
 }
 
 .carousel-fade {
@@ -86,6 +89,76 @@ html {
 .carousel-fade .carousel-control {
   z-index: 2;
 }
+
+/* Galley ================ */
+
+.carousel-inner_gal img {
+    width: auto; 
+    height: 100%;
+    
+
+}
+.carousel_gal {
+    
+    background-color: #2980b9;
+
+}
+
+.carousel-fade {
+    .carousel-inner_gal {
+        .item {
+            transition-property: opacity;
+        }
+        
+        .item,
+        .active.left,
+        .active.right {
+            opacity: 0;
+        }
+
+        .active,
+        .next.left,
+        .prev.right {
+            opacity: 1;
+        }
+
+        .next,
+        .prev,
+        .active.left,
+        .active.right {
+            left: 0;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    .carousel-control {
+        z-index: 2;
+    }
+}
+
+.carousel-fade .carousel-inner_gal .item {
+  opacity: 0;
+  transition-property: opacity;
+}
+
+.carousel-fade .carousel-inner_gal .active {
+  opacity: 1;
+}
+
+.carousel-fade .carousel-inner_gal .active.left,
+.carousel-fade .carousel-inner_gal .active.right {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+.carousel-fade .carousel-inner_gal .next.left,
+.carousel-fade .carousel-inner_gal .prev.right {
+  opacity: 1;
+}
+
+
+
 /* Fade transition for carousel items */
 .carousel .item {
     left: 0 !important;
