@@ -381,7 +381,7 @@ $ds =
                 <!-- /.sidebar-collapse -->
         <!-- Copy -->
         <div class="copy">
-        <em>&nbsp;&copy; 2016 webspell-nor.de&nbsp;Admin Template by <a href="http://designperformance.de/" target="_blank">T-Seven</a></em>
+        <em>&nbsp;&copy; 2016 webspell-nor.de&nbsp;Admin Template by <a href="http://www.designperformance.de/" target="_blank">T-Seven</a></em>
         </div>
             </div>
             <!-- /.navbar-static-side -->
