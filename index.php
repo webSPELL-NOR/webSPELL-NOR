@@ -46,6 +46,26 @@ else {
     $hide1 = array();
 }
 
+$sql = safe_query("SELECT module, re_activated FROM ".PREFIX."moduls WHERE re_activated = '1'");
+if(mysqli_num_rows($sql)) {
+    while($row = mysqli_fetch_array($sql)) {
+        $hide2[] = $row['module'];
+    }
+}
+else {
+    $hide2 = array();
+}
+
+$sql = safe_query("SELECT module, activated FROM ".PREFIX."moduls WHERE activated = '1'");
+if(mysqli_num_rows($sql)) {
+    while($row = mysqli_fetch_array($sql)) {
+        $hide3[] = $row['module'];
+    }
+}
+else {
+    $hide3 = array();
+}
+
 
 header('X-UA-Compatible: IE=edge,chrome=1');
 ?>
@@ -66,9 +86,9 @@ header('X-UA-Compatible: IE=edge,chrome=1');
     ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="description" content="Clanpage using webSPELL 4 CMS">
-    <meta name="author" content="webspell.org">
-    <meta name="generator" content="webSPELL">
+    <meta name="description" content="Clanpage using webSPELL-NOR CMS">
+    <meta name="author" content="webspell-nor.de">
+    <meta name="generator" content="webSPELL-NOR">
 
     <!-- Head & Title include -->
     <title><?php echo PAGETITLE; ?></title>
@@ -83,6 +103,7 @@ header('X-UA-Compatible: IE=edge,chrome=1');
     <link href="css/scrolling-nav.css" rel="stylesheet">
     <link href="css/styles.css.php" rel="styleSheet" type="text/css">
     <link href="css/button.css.php" rel="styleSheet" type="text/css">
+    <link href="css/bootstrap-switch.css" rel="stylesheet">
 
     <link href="_stylesheet.css" rel="stylesheet">
 
@@ -133,6 +154,9 @@ header('X-UA-Compatible: IE=edge,chrome=1');
     <div class="container">
     
     	<div class="row">
+        <?php // show left column
+            if (!in_array($site, $hide3)) {
+?>
             <?php // show left column
             if (!in_array($site, $hide1)) {
 ?>
@@ -199,11 +223,20 @@ header('X-UA-Compatible: IE=edge,chrome=1');
             <?php
             // end of show left column
             } ?>
+            <?php
+            // end of show right column
+            } ?>
             <!-- main content area -->
             <div id="maincol" class="
             <?php
             if (in_array($site, $hide1)) {
                 echo "col-lg-9 col-sm-9 col-xs-12";
+            }
+            elseif (in_array($site, $hide2)) {
+                echo "col-lg-9 col-sm-9 col-xs-12";
+            }
+            elseif (in_array($site, $hide3)) {
+                echo "col-lg-12 col-sm-12 col-xs-12";
             } else {
                 echo "col-lg-6 col-sm-9 col-xs-12";
             }
@@ -235,7 +268,12 @@ header('X-UA-Compatible: IE=edge,chrome=1');
 				}
 				?>
 			</div>
-
+            <?php // show right column
+            if (!in_array($site, $hide3)) {
+?>
+<?php // show right column
+            if (!in_array($site, $hide2)) {
+?>
             <!-- right column -->
             <div id="rightcol" class="col-md-3 col-sm-3 hidden-xs"><br>
                 <!-- login include -->
@@ -314,6 +352,12 @@ header('X-UA-Compatible: IE=edge,chrome=1');
                     <!-- end statistics include -->
                 </div>
             </div>
+            <?php
+            // end of show right column
+            } ?>
+            <?php
+            // end of show right column
+            } ?>
         </div> <!-- row-end -->
     </div> <!-- container-content-end -->
     
@@ -375,6 +419,8 @@ header('X-UA-Compatible: IE=edge,chrome=1');
 <!-- Scrolling Nav JavaScript -->
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/scrolling-nav.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+<script src="js/index.js"></script>
 
 </body>
 </html>

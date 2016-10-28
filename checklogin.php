@@ -54,7 +54,7 @@ $reenter = false;
 
 $get = safe_query("SELECT * FROM " . PREFIX . "banned_ips WHERE ip='" . $GLOBALS[ 'ip' ] . "'");
 if (mysqli_num_rows($get) == 0) {
-	$ws_user = $_POST[ 'ws_user' ];
+    $ws_user = $_POST[ 'ws_user' ];
 
     $check = safe_query("SELECT * FROM " . PREFIX . "user WHERE username='" . $ws_user . "'");
     $anz = mysqli_num_rows($check);
@@ -68,15 +68,15 @@ if (mysqli_num_rows($get) == 0) {
             if (mysqli_num_rows($check)) {
                 $ds = mysqli_fetch_array($check);
                 $login = 0;
-						
-			// /!\ check (old) password																		
-			$ws_pwd = generatePasswordHash(stripslashes($_POST[ 'password' ]));
-			if(!empty($ds['password']) AND !empty($_POST[ 'password' ])) {
-				if (hash_equals($ws_pwd, $ds[ 'password' ])) {
-					$new_pepper = Gen_PasswordPepper();
-					Set_PasswordPepper($new_pepper, $ds['userID']);
-					$pass = Gen_PasswordHash($_POST['password'], $ds['userID']);
-					safe_query("UPDATE " . PREFIX . "user SET password='', password_hash='" . $pass . "' WHERE userID='" . intval($ds['userID']) . "' LIMIT 1");
+                        
+            // /!\ check (old) password                                                                     
+            $ws_pwd = generatePasswordHash(stripslashes($_POST[ 'password' ]));
+            if(!empty($ds['password']) AND !empty($_POST[ 'password' ])) {
+                if (hash_equals($ws_pwd, $ds[ 'password' ])) {
+                    $new_pepper = Gen_PasswordPepper();
+                    Set_PasswordPepper($new_pepper, $ds['userID']);
+                    $pass = Gen_PasswordHash($_POST['password'], $ds['userID']);
+                    safe_query("UPDATE " . PREFIX . "user SET password='', password_hash='" . $pass . "' WHERE userID='" . intval($ds['userID']) . "' LIMIT 1");
                 } else {
                     if ($sleep) {
                         sleep(3);
@@ -146,13 +146,13 @@ if (mysqli_num_rows($get) == 0) {
                     $return->message = $_language->module[ 'invalid_password' ];
                     $return->code = 'invalid_password';
                 }
-			}	// END OF OLD PASSWORD																	# <<
-				
-				
-				// check new password
-				$ws_pwd = stripslashes($_POST[ 'password' ]).$ds['password_pepper'];
-				$valid = password_verify($ws_pwd,$ds['password_hash']);
-                if ($valid==1) {											
+            }   // END OF OLD PASSWORD                                                                  # <<
+                
+                
+                // check new password
+                $ws_pwd = stripslashes($_POST[ 'password' ]).$ds['password_pepper'];
+                $valid = password_verify($ws_pwd,$ds['password_hash']);
+                if ($valid==1) {                                            
                     //session
                     $_SESSION[ 'referer' ] = $_SERVER[ 'HTTP_REFERER' ];
                     //remove sessiontest variable
@@ -168,7 +168,7 @@ if (mysqli_num_rows($get) == 0) {
                     safe_query("DELETE FROM " . PREFIX . "failed_login_attempts WHERE ip = '" . $GLOBALS[ 'ip' ] . "'");
                     $return->state = "success";
                     $return->message = $_language->module[ 'login_successful' ];
-				} else {
+                } else {
                     if ($sleep) {
                         sleep(3);
                     }
@@ -237,7 +237,7 @@ if (mysqli_num_rows($get) == 0) {
                     $return->message = $_language->module[ 'invalid_password' ];
                     $return->code = 'invalid_password';
                 }
-		
+        
             } else {
                 $return->message = $_language->module[ 'not_activated' ];
                 $return->code = 'not_activated';
@@ -285,11 +285,9 @@ if ($ajax === true) {
         <table class="table">
             <tr>
                 <td height="500" class="text-center">
-                    <table width="350" border="0" cellpadding="10" cellspacing="0" style="border:1px solid 
-                    <!-- <?php  echo BORDER; ?>
-                    " bgcolor="
-                    <?php echo BG_1; ?> -->
-                    ">
+                    <table width="350" border="0" cellpadding="10" cellspacing="0" style="border:1px solid <?php
+                        echo BORDER; ?>" bgcolor="<?php
+                            echo BG_1; ?>">
                         <tr>
                             <td class="text-center"><?php echo $message; ?></td>
                         </tr>

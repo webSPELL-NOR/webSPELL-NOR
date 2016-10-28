@@ -147,7 +147,7 @@ $ds =
     <!-- Style CSS -->
     <link href="./css/style.css" rel="stylesheet">
 
-    
+    <link href="../css/bootstrap-switch.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -381,7 +381,7 @@ $ds =
                 <!-- /.sidebar-collapse -->
         <!-- Copy -->
         <div class="copy">
-        <em>&nbsp;&copy; 2016 webspell-nor.de&nbsp;Admin Template by <a href="http://www.designperformance.de/" target="_blank">T-Seven</a></em>
+        <em>&nbsp;&copy; 2016 webspell-nor.de&nbsp;Admin Template by <a href="http://designperformance.de/" target="_blank">T-Seven</a></em>
         </div>
             </div>
             <!-- /.navbar-static-side -->
@@ -430,7 +430,9 @@ $ds =
     <!-- Custom Theme JavaScript -->
     <script src="./js/page.js"></script>
 
-
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-switch.js"></script>
+<script src="../js/index.js"></script>
 
 </body>
 </html>

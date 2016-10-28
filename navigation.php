@@ -105,7 +105,12 @@ try {
 				while($rox=mysqli_fetch_array($rex)) {
 					if($rox['indropdown'] == 1) {
 						$sub_array = array();
-						$sub_array['$link'] = $rox['link'];
+						if (strpos($rox['link'], 'http://') !== false) {
+ 							$sub_array['$link'] = $rox['link'].'" target="_blank';
+ 						} else {
+ 							$sub_array['$link'] = $rox['link'];
+						}
+						
 						if(isset($_language->module[strtolower($rox['name'])])) { 
 							$sub_array['$name'] = $_language->module[strtolower($rox['name'])]; 
 						} else { 

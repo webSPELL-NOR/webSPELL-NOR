@@ -38,6 +38,7 @@ $language_array = Array(
   'edit_modul'=>'Modul ändern',
   'left_is_activated'=>'Links deaktiviert?',
   'right_is_activated'=>'Rechts deaktiviert?',
+  'activated'=>'Links & Rechts deaktiviert?',
   'new_modul'=>'neues Modul',
   'no'=>'Nein',
   'modul_name'=>'Modul Name',

@@ -52,6 +52,9 @@ if (isset($_POST['save'])) {
     if (!$loggedin) {
         $username = mb_substr(trim($_POST['username']), 0, 30);
         $nickname = htmlspecialchars(mb_substr(trim($_POST['nickname']), 0, 30));
+        if (strpos($nickname, "'") !== false) {
+            $nickname = "";     // contains a ' char the nickname will reset (handle as not entered)
+        } 
         $password = $_POST['password'];
 
         $mail = $_POST['mail'];

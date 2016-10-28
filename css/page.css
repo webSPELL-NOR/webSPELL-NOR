@@ -318,3 +318,7 @@ html {
   border-bottom: 0px;
 }
 
+.sponsor-border {
+    border-left: 1px solid #7d7d7d;
+    padding: 25px 10px 25px 10px;
+ }

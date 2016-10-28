@@ -26,7 +26,7 @@
 ##########################################################################
 */
 
-$_language->readModule('moduls', false, true);
+#$_language->readModule('moduls', false, true);
 
 if (!ispageadmin($userID) || mb_substr(basename($_SERVER[ 'REQUEST_URI' ]), 0, 15) != "admincenter.php") {
     die($_language->module[ 'access_denied' ]);
@@ -56,24 +56,56 @@ if (isset($_GET[ 'delete' ])) {
     $CAPCLASS = new \webspell\Captcha;
     if ($CAPCLASS->checkCaptcha(0, $_POST[ 'captcha_hash' ])) {
         $module = $_POST[ 'module' ];
-        
+		
+		
+		if($_POST['radio1']=="le_activated") {
+			  $le_activated = 1;
+			  $re_activated = 0;
+			  $activated = 0;
+		} elseif($_POST['radio1']=="re_activated") {
+			  $le_activated = 0;
+			  $re_activated = 1;
+			  $activated = 0;
+		} else {
+			  $le_activated = 0;
+			  $re_activated = 0;
+			  $activated = 1;
+		}
+		
+		/*		
         if (isset($_POST[ "le_activated" ])) {
             $le_activated = 1;
         } else {
             $le_activated = 0;
         }
 
+        if (isset($_POST[ "re_activated" ])) {
+            $re_activated = 1;
+        } else {
+            $re_activated = 0;
+        }
+
+        if (isset($_POST[ "activated" ])) {
+            $activated = 1;
+        } else {
+            $activated = 0;
+        }
+		*/
         
         safe_query(
             "INSERT INTO
                 `" . PREFIX . "moduls` (
                     `module`,
                     `le_activated`,
+                    `re_activated`,
+                    `activated`,
                     `sort`
                 )
                 VALUES (
                     '$module',
                     '" . $le_activated . "',
+                    '" . $re_activated . "',
+                    '" . $activated . "',
                     '1'
                 )"
         );
@@ -87,14 +119,41 @@ if (isset($_GET[ 'delete' ])) {
     $CAPCLASS = new \webspell\Captcha;
     if ($CAPCLASS->checkCaptcha(0, $_POST[ 'captcha_hash' ])) {
         $module = $_POST[ 'module' ];
+
+        if($_POST['radio1']=="le_activated") {
+        $le_activated = 1;
+        $re_activated = 0;
+        $activated = 0;
+    } elseif($_POST['radio1']=="re_activated") {
+        $le_activated = 0;
+        $re_activated = 1;
+        $activated = 0;
+    } else {
+        $le_activated = 0;
+        $re_activated = 0;
+        $activated = 1;
+    }
         
-        if (isset($_POST[ "le_activated" ])) {
+      /*  if($_Post['radio']=="le_activate") {
             $le_activated = 1;
         } else {
             $le_activated = 0;
         }
 
+        elseif($_Post['radio']=="re_activate") {
+            $re_activated = 1;
+        } else {
+            $re_activated = 0;
+        }
+
+        elseif($_Post['radio']=="activated" ]) {
+            $activated = 1;
+        } else {
+            $activated = 0;
+        } */
+
         
+
         $modulID = (int)$_POST[ 'modulID' ];
         $id = $modulID;
 
@@ -103,7 +162,9 @@ if (isset($_GET[ 'delete' ])) {
                 `" . PREFIX . "moduls`
             SET
                 `module` = '" . $module . "',
-                `le_activated` = '" . $le_activated . "'
+                `le_activated` = '" . $le_activated . "',
+                `re_activated` = '" . $re_activated . "',
+                `activated` = '" . $activated . "'
             WHERE
                 `modulID` = '" . $modulID . "'"
         );
@@ -141,7 +202,7 @@ if ($action == "add") {
     <li role="presentation"><a href="/admin/admincenter.php?site=css">.css</a></li>
 </ul>
 <ol class="breadcrumb-primary"> </ol>
-	<a href="admincenter.php?site=moduls" class="white">'.$_language->module['module'].'</a> &raquo; '.$_language->module['add_modul'].'<br><br>';
+	&nbsp;&nbsp;<a href="admincenter.php?site=moduls" class="white">'.$_language->module['module'].'</a> &raquo; '.$_language->module['add_modul'].'<br><br>';
 
 	echo'<form class="form-horizontal" method="post" action="admincenter.php?site=moduls" enctype="multipart/form-data">
 
@@ -156,18 +217,31 @@ if ($action == "add") {
     </div>
   </div>
 
-  <div class="form-group">
-    <label class="col-sm-2 control-label">'.$_language->module['left_is_activated'].':</label>
+
+
+<div class="form-group">
+<label class="col-sm-2 control-label"></label>
     <div class="col-sm-8"><span class="text-muted small"><em>
-      <input type="checkbox" name="le_activated" value="1" checked="checked" /></em></span>
+  <label for="le_activated">'.$_language->module['left_is_activated'].'</label>
+  <input id="le_activated" type="radio" name="radio1" value="le_activated">
+  <label for="re_activated">'.$_language->module['right_is_activated'].'</label>
+  <input id="re_activated" type="radio" name="radio1" value="re_activated">
+  <label for="activated">'.$_language->module['activated'].'</label>
+  <input id="activated" type="radio" name="radio1" value="activated">
+  </em></span>
     </div>
   </div>
+
+
+
+
 
   
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
 		<input type="hidden" name="captcha_hash" value="'.$hash.'" />
 		<button class="btn btn-success btn-xs" type="submit" name="save"  />'.$_language->module['add_modul'].'</button>
+    <br><br>
     </div>
   </div>
 
@@ -195,16 +269,28 @@ if ($action == "add") {
     <li role="presentation"><a href="/admin/admincenter.php?site=css">.css</a></li>
 </ul>
 <ol class="breadcrumb-primary"> </ol>
-  <a href="admincenter.php?site=moduls" class="white">'.$_language->module['module'].'</a> &raquo; '.$_language->module['edit_modul'].'<br><br>';
+  &nbsp;&nbsp;<a href="admincenter.php?site=moduls" class="white">'.$_language->module['module'].'</a> &raquo; '.$_language->module['edit_modul'].'<br><br>';
   
   $modulID = $_GET[ 'modulID' ];
     $ergebnis = safe_query("SELECT * FROM " . PREFIX . "moduls WHERE modulID='$modulID'");
     $ds = mysqli_fetch_array($ergebnis);
 
     if ($ds[ 'le_activated' ] == '1') {
-        $le_activated = '<input type="checkbox" name="le_activated" value="1" checked="checked" />';
+        $le_activated = '<input id="le_activated" type="radio" name="radio1" value="le_activated" checked="checked" />';
     } else {
-        $le_activated = '<input type="checkbox" name="le_activated" value="1" />';
+        $le_activated = '<input id="le_activated" type="radio" name="radio1" value="le_activated">';
+    }
+
+    if ($ds[ 're_activated' ] == '1') {
+        $re_activated = '<input id="re_activated" type="radio" name="radio1" value="re_activated" checked="checked" />';
+    } else {
+        $re_activated = '<input id="re_activated" type="radio" name="radio1" value="re_activated">';
+    }
+
+    if ($ds[ 'activated' ] == '1') {
+        $activated = '<input id="activated" type="radio" name="radio1" value="activated" checked="checked" />';
+    } else {
+        $activated = '<input id="activated" type="radio" name="radio1" value="activated">';
     }
 
     echo'<form class="form-horizontal" method="post" action="admincenter.php?site=moduls" enctype="multipart/form-data">
@@ -222,10 +308,18 @@ if ($action == "add") {
     </div>
   </div>
 
+  
+
   <div class="form-group">
-    <label class="col-sm-2 control-label">'.$_language->module['left_is_activated'].':</label>
+<label class="col-sm-2 control-label"></label>
     <div class="col-sm-8"><span class="text-muted small"><em>
-     '.$le_activated.'</em></span>
+  <label for="le_activated">'.$_language->module['left_is_activated'].'</label>
+  '.$le_activated.'
+  <label for="re_activated">'.$_language->module['right_is_activated'].'</label>
+  '.$re_activated.'
+  <label for="activated">'.$_language->module['activated'].'</label>
+  '.$activated.'
+  </em></span>
     </div>
   </div>
   
@@ -269,6 +363,8 @@ else {
       <th><b>'.$_language->module['module'].'</b></th>
       
       <th class="hidden-sm hidden-xs"><b>'.$_language->module['left_is_activated'].'</b></th>
+      <th class="hidden-sm hidden-xs"><b>'.$_language->module['right_is_activated'].'</b></th>
+      <th class="hidden-sm hidden-xs"><b>'.$_language->module['activated'].'</b></th>
       <th><b>'.$_language->module['actions'].'</b></th>
       <th><b>'.$_language->module['sort'].'</b></th>
     </thead>';
@@ -293,6 +389,10 @@ else {
 
         $db[ 'le_activated' ] == 1 ? $le_activated = '<font color="green"><b>' . $_language->module[ 'yes' ] . '</b></font>' :
             $le_activated = '<font color="red"><b>' . $_language->module[ 'no' ] . '</b></font>';
+         $db[ 're_activated' ] == 1 ? $re_activated = '<font color="green"><b>' . $_language->module[ 'yes' ] . '</b></font>' :
+            $re_activated = '<font color="red"><b>' . $_language->module[ 'no' ] . '</b></font>';
+         $db[ 'activated' ] == 1 ? $activated = '<font color="green"><b>' . $_language->module[ 'yes' ] . '</b></font>' :
+            $activated = '<font color="red"><b>' . $_language->module[ 'no' ] . '</b></font>';        
         
 
         
@@ -301,6 +401,8 @@ else {
       <td>'.getinput($db['module']).'</td>
       
       <td>'.$le_activated.'</td>
+      <td>'.$re_activated.'</td>
+      <td>'.$activated.'</td>
       
       <td><a href="admincenter.php?site=moduls&amp;action=edit&amp;modulID='.$db['modulID'].'" class="hidden-xs hidden-sm btn btn-warning btn-xs" type="button">' . $_language->module[ 'edit' ] . '</a>
 

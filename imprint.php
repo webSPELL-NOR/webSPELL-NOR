@@ -107,7 +107,7 @@ if ($imprint_type) {
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">' . $_language->module[ 'webmaster' ] . '</label>
+            <label class="col-sm-3 control-label">' . $_language->module[ 'mods' ] . '</label>
             <div class="col-sm-9">
                 <p class="form-control-static">' . $moderators . '</p>
             </div>

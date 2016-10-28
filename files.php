@@ -172,7 +172,10 @@ if ($action == "save") {
                             `file`,
                             `mirrors`,
                             `downloads`,
-                            `accesslevel`
+                           `accesslevel`,
+                            `votes`,
+                            `points`,
+                            `rating`
                         )
                         VALUES (
                             '" . $filecat . "',
@@ -184,7 +187,10 @@ if ($action == "save") {
                             '" . $file . "',
                             '" . $mirrors . "',
                             '0',
-                            '" . $accesslevel . "'
+                             '" . $accesslevel . "',
+                            '0',
+                            '0',
+                            '0'
                         )"
                 )
             ) {
@@ -970,8 +976,8 @@ if ($action == "save") {
                     )
                 );
             $filename = $filedata[ 'filename' ];
-            if (mb_strlen($filename) > 12) {
-                $filename = mb_substr($filename, 0, 12);
+            if (mb_strlen($filename) > 40) {
+                $filename = mb_substr($filename, 0, 40);
                 $filename .= '...';
             }
             $lastfile = '<a href="index.php?site=files&amp;file=' . $filedata[ 'fileID' ] . '" title="' .
@@ -1000,8 +1006,8 @@ if ($action == "save") {
 		if(!isset($n)) { $n=0; }
         while ($file = mysqli_fetch_array($top5qry)) {
             $filename = $file[ 'filename' ];
-            if (mb_strlen($filename) > 12) {
-                $filename = mb_substr($filename, 0, 12);
+            if (mb_strlen($filename) > 40) {
+                $filename = mb_substr($filename, 0, 40);
                 $filename .= '...';
             }
             $filename =
@@ -1100,8 +1106,8 @@ if ($action == "save") {
                             )
                         );
                     $filename = $filedata[ 'filename' ];
-                    if (mb_strlen($filename) > 12) {
-                        $filename = mb_substr($filename, 0, 12);
+                    if (mb_strlen($filename) > 20) {
+                        $filename = mb_substr($filename, 0, 20);
                         $filename .= '...';
                     }
                     $lastfile_cat = '<a href="index.php?site=files&amp;file=' . $filedata[ 'fileID' ] . '" title="' .

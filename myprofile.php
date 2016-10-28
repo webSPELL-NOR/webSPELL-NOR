@@ -36,6 +36,9 @@ if (!$userID) {
 
     if (isset($_POST['submit'])) {
         $nickname = htmlspecialchars(mb_substr(trim($_POST['nickname']), 0, 30));
+        if (strpos($nickname, "'") !== false) {
+            $nickname = "";     // contains a ' char the nickname will reset (handle as not entered)
+        }
         if (isset($_POST['mail'])) {
             $mail = $_POST['mail'];
         } else {
