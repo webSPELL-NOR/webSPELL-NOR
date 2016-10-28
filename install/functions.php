@@ -704,11 +704,12 @@ function update_base_11($_database)
 ) PACK_KEYS=0 AUTO_INCREMENT=2
   DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
 
-    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (1, 'webSPELL 4', 'http://www.webspell.org', '1.gif', 1)");
-    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (2, 'WebSPELL | NOR', 'http://www.webspell-nor.de', '2.png', 2)");
-    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (3, 'ZENITH.Developments', 'http://www.ZENITH-Developments.de', '3.png', 3)");
-    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (4, 'myFarynet', 'http://www.myfarynet.eu', '4.png', 4)");
-    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (5, '2One Designs', 'http://www.2one-designs.de', '5.png', 5)");
+    
+    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (1, 'WebSPELL | NOR', 'http://www.webspell-nor.de', '1.png', 1)");
+    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (2, 'ZENITH.Developments', 'http://www.ZENITH-Developments.de', '2.png', 2)");
+    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (3, 'myFarynet', 'http://www.myfarynet.eu', '3.png', 3)");
+    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (4, '2One Designs', 'http://www.2one-designs.de', '4.png', 4)");
+    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (5, 'Design Performance', 'http://www.designperformance.de', '5.jpg', 5)");
 
     $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "poll`");
     $transaction->addQuery("CREATE TABLE `" . PREFIX . "poll` (
