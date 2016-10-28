@@ -25,380 +25,658 @@
 ##########################################################################
 */
 
-$_language->readModule('members');
+$_language->readModule('members', false, true);
+$_language->readModule('rank_special', true, true);
 
-$title_members = $GLOBALS["_template"]->replaceTemplate("title_members", array());
-echo $title_members;
-
-if (isset($_GET[ 'action' ])) {
-    $action = $_GET[ 'action' ];
-} else {
-    $action = '';
+if (!isuseradmin($userID) || mb_substr(basename($_SERVER[ 'REQUEST_URI' ]), 0, 15) != "admincenter.php") {
+    die($_language->module[ 'access_denied' ]);
 }
 
-if ($action == "show") {
-    if (isset($_GET[ 'squadID' ])) {
-        $getsquad = 'WHERE squadID="' . (int)$_GET[ 'squadID' ] . '"';
+if (isset($_POST[ 'sortieren' ])) {
+    $CAPCLASS = new \webspell\Captcha;
+    if ($CAPCLASS->checkCaptcha(0, $_POST[ 'captcha_hash' ])) {
+        if (isset($_POST[ 'sort' ])) {
+            $sort = $_POST[ 'sort' ];
+            if (is_array($sort)) {
+                foreach ($sort as $sortstring) {
+                    $sorter = explode("-", $sortstring);
+                    safe_query("UPDATE " . PREFIX . "squads_members SET sort='$sorter[1]' WHERE sqmID='$sorter[0]' ");
+                }
+            }
+        }
     } else {
-        $getsquad = '';
+        echo $_language->module[ 'transaction_invalid' ];
+    }
+}
+
+if (isset($_GET[ 'delete' ])) {
+    $CAPCLASS = new \webspell\Captcha;
+    if ($CAPCLASS->checkCaptcha(0, $_GET[ 'captcha_hash' ])) {
+        $id = $_GET[ 'id' ];
+        $squadID = $_GET[ 'squadID' ];
+        $squads = mysqli_num_rows(safe_query("SELECT userID FROM " . PREFIX . "squads_members WHERE userID='$id'"));
+        if ($squads < 2 && !issuperadmin($id)) {
+            safe_query("DELETE FROM " . PREFIX . "user_groups WHERE userID='$id'");
+        }
+
+        safe_query("DELETE FROM " . PREFIX . "squads_members WHERE userID='$id' AND squadID='$squadID'");
+    } else {
+        echo $_language->module[ 'transaction_invalid' ];
+    }
+}
+
+if (isset($_POST[ 'saveedit' ])) {
+    $CAPCLASS = new \webspell\Captcha;
+    if ($CAPCLASS->checkCaptcha(0, $_POST[ 'captcha_hash' ])) {
+        $id = $_POST[ 'id' ];
+        $newswriter = isset($_POST[ 'newswriter' ]);
+        $newsadmin = isset($_POST[ 'newsadmin' ]);
+        $pollsadmin = isset($_POST[ 'pollsadmin' ]);
+        $feedbackadmin = isset($_POST[ 'feedbackadmin' ]);
+        $useradmin = isset($_POST[ 'useradmin' ]);
+        $specialrank = $_POST[ 'special_rank' ];
+        $cwadmin = isset($_POST[ 'cwadmin' ]);
+        $boardadmin = isset($_POST[ 'boardadmin' ]);
+        $moderator = isset($_POST[ 'moderator' ]);
+        $pageadmin = isset($_POST[ 'pageadmin' ]);
+        $fileadmin = isset($_POST[ 'fileadmin' ]);
+        $cashadmin = isset($_POST[ 'cashadmin' ]);
+        if (isset($_POST[ 'position' ])) {
+            $position = $_POST[ 'position' ];
+        } else {
+            $position = array();
+        }
+        if (isset($_POST[ 'message' ])) {
+            $userdescription = $_POST[ 'message' ];
+        } else {
+            $userdescription = '';
+        }
+        if (isset($_POST[ 'activity' ])) {
+            $activity = $_POST[ 'activity' ];
+        } else {
+            $activity = array();
+        }
+        if (isset($_POST[ 'join' ])) {
+            $join = $_POST[ 'join' ];
+        } else {
+            $join = array();
+        }
+        if (isset($_POST[ 'war' ])) {
+            $war = $_POST[ 'war' ];
+        } else {
+            $war = array();
+        }
+        $gallery = isset($_POST[ 'galleryadmin' ]);
+
+        if ($userID != $id || issuperadmin($userID)) {
+            $ergebnis = safe_query("SELECT * FROM " . PREFIX . "user_groups WHERE userID='" . $id . "'");
+            if (!mysqli_num_rows($ergebnis)) {
+                safe_query("INSERT INTO " . PREFIX . "user_groups (userID) values ('" . $id . "')");
+            }
+            safe_query(
+                "UPDATE
+                    " . PREFIX . "user_groups
+                SET
+                    news='$newsadmin',
+                    news_writer='" . $newswriter . "',
+                    polls='$pollsadmin',
+                    feedback='$feedbackadmin',
+                    user='$useradmin',
+                    clanwars='$cwadmin',
+                    forum='$boardadmin',
+                    moderator='$moderator',
+                    page='$pageadmin',
+                    gallery='$gallery',
+                    files='$fileadmin',
+                    cash='$cashadmin'
+                WHERE
+                    userID='" . $id . "'"
+            );
+            //remove from mods
+            if ($moderator === false) {
+                safe_query("DELETE FROM " . PREFIX . "forum_moderators WHERE userID='" . $id . "'");
+            }
+
+            $sql = safe_query("SELECT * FROM " . PREFIX . "forum_groups");
+            while ($dc = mysqli_fetch_array($sql)) {
+                $name = $dc[ 'name' ];
+                $fgrID = $dc[ 'fgrID' ];
+                $abc = safe_query(
+                    "SELECT COUNT(*) as anz FROM " . PREFIX . "user_forum_groups WHERE userID='" . $id . "'"
+                );
+                $row = mysqli_fetch_array($abc);
+                if ($row[ 'anz' ] == 1) {
+                    safe_query(
+                        "UPDATE " . PREFIX . "user_forum_groups
+                        SET `" . $fgrID . "`='" . isset($_POST[ $fgrID ]) . "'
+                        WHERE userID='" . $id . "'"
+                    );
+                } else {
+                    safe_query(
+                        "INSERT INTO
+                            " . PREFIX . "user_forum_groups (
+                                userID ,
+                                `" . $fgrID . "`
+                            )
+                            VALUES (
+                                '" . $id . "',
+                                '" . isset($_POST[ $fgrID ]) . "'
+                            );"
+                    );
+                }
+            }
+
+            safe_query(
+                "UPDATE "
+                . PREFIX . "user
+                SET
+                    userdescription='" . $userdescription . "',
+                    special_rank = '" . $specialrank . "'
+                WHERE
+                    userID='" . $id . "'"
+            );
+
+            foreach ($position as $sqmID => $pos) {
+                safe_query("UPDATE " . PREFIX . "squads_members SET position='$pos' WHERE sqmID='$sqmID'");
+            }
+            foreach ($activity as $sqmID => $act) {
+                safe_query("UPDATE " . PREFIX . "squads_members SET activity='$act' WHERE sqmID='$sqmID'");
+            }
+            foreach ($join as $sqmID => $joi) {
+                safe_query("UPDATE " . PREFIX . "squads_members SET joinmember='$joi' WHERE sqmID='$sqmID'");
+            }
+            foreach ($war as $sqmID => $wara) {
+                safe_query("UPDATE " . PREFIX . "squads_members SET warmember='$wara' WHERE sqmID='$sqmID'");
+            }
+            if (issuperadmin($userID)) {
+                safe_query(
+                    "UPDATE " . PREFIX . "user_groups
+                    SET super='" . isset($_POST[ 'superadmin' ]) . "'
+                    WHERE userID='$id'"
+                );
+            }
+        } else {
+            redirect('admincenter.php?site=members', $_language->module[ 'error_own_rights' ], 3);
+        }
+    } else {
+        echo $_language->module[ 'transaction_invalid' ];
+    }
+}
+
+if (isset($_GET[ 'action' ]) && $_GET[ 'action' ] == "edit") {
+    echo '<div class="panel panel-default">
+    <div class="panel-heading">
+                            <i class="fa fa-users"></i> '.$_language->module['members'].'
+                        </div>
+                        <div class="panel-body">
+  <a href="admincenter.php?site=members" class="white">' . $_language->module[ 'members' ] .
+        '</a> &raquo; ' . $_language->module[ 'edit_member' ] . '<br><br>';
+
+
+    $CAPCLASS = new \webspell\Captcha;
+    $CAPCLASS->createTransaction();
+    $hash = $CAPCLASS->getHash();
+
+    $_language->readModule('bbcode', true, true);
+
+    $addbbcode = $GLOBALS["_template"]->replaceTemplate("addbbcode", array());
+    $addflags = $GLOBALS["_template"]->replaceTemplate("flags_admin", array());
+
+    $id = $_GET[ 'id' ];
+    $squads = '';
+    $ergebnis =
+        safe_query("SELECT * FROM " . PREFIX . "squads_members WHERE userID='$id' AND squadID!='0' GROUP BY squadID");
+    $anz = mysqli_num_rows($ergebnis);
+    if ($anz) {
+        while ($ds = mysqli_fetch_array($ergebnis)) {
+            if ($ds[ 'activity' ]) {
+                $activity = ' <select name="activity[' . $ds[ 'sqmID' ] . ']"><option value="1" selected="selected">' .
+                    $_language->module[ 'active' ] . '</option><option value="0">' . $_language->module[ 'inactive' ] .
+                    '</option></select>';
+            } else {
+                $activity = ' <select name="activity[' . $ds[ 'sqmID' ] . ']"><option value="1">' .
+                    $_language->module[ 'active' ] . '</option><option value="0" selected="selected">' .
+                    $_language->module[ 'inactive' ] . '</option></select>';
+            }
+            if ($ds[ 'joinmember' ]) {
+                $join = '<select name="join[' . $ds[ 'sqmID' ] . ']"><option value="1" selected="selected">' .
+                    $_language->module[ 'yes' ] . '</option><option value="0">' . $_language->module[ 'no' ] .
+                    '</option></select>';
+            } else {
+                $join = '<select name="join[' . $ds[ 'sqmID' ] . ']"><option value="1">' . $_language->module[ 'yes' ] .
+                    '</option><option value="0" selected="selected">' . $_language->module[ 'no' ] .
+                    '</option></select>';
+            }
+            if ($ds[ 'warmember' ]) {
+                $fight = '<select name="war[' . $ds[ 'sqmID' ] . ']"><option value="1" selected="selected">' .
+                    $_language->module[ 'yes' ] . '</option><option value="0">' . $_language->module[ 'no' ] .
+                    '</option></select>';
+            } else {
+                $fight = '<select name="war[' . $ds[ 'sqmID' ] . ']"><option value="1">' . $_language->module[ 'yes' ] .
+                    '</option><option value="0" selected="selected">' . $_language->module[ 'no' ] .
+                    '</option></select>';
+            }
+
+            $squads .= '<div class="row bt"><div class="col-md-6">' . $_language->module[ 'squad' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . getsquadname($ds[ 'squadID' ]) . '</em></span></div></div>
+
+    </div>
+<div class="col-md-6">
+
+    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'position' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em><input type="text" name="position[' . $ds[ 'sqmID' ] . ']" value="' . getinput($ds[ 'position' ]) . '" size="20" />' . $activity . '</em></span></div></div>
+
+    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'joinus_admin' ] . ': ' . $join . '</em></span></div></div>
+    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' .
+                $_language->module[ 'fightus_admin' ] . ': ' . $fight . '</em></span></div></div>
+
+</div>
+';
+        }
     }
 
-    $ergebnis = safe_query("SELECT * FROM " . PREFIX . "squads " . $getsquad . " ORDER BY sort");
+    if (isnewsadmin($id)) {
+        $news =
+            '<input type="checkbox" name="newsadmin" value="1" onmouseover="showWMTT(\'id1\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $news =
+            '<input type="checkbox" name="newsadmin" value="1" onmouseover="showWMTT(\'id1\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (isnewswriter($id)) {
+        $newswriter =
+            '<input type="checkbox" name="newswriter" value="1" onmouseover="showWMTT(\'id2\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $newswriter =
+            '<input type="checkbox" name="newswriter" value="1" onmouseover="showWMTT(\'id2\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (ispollsadmin($id)) {
+        $polls =
+            '<input type="checkbox" name="pollsadmin" value="1" onmouseover="showWMTT(\'id3\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $polls =
+            '<input type="checkbox" name="pollsadmin" value="1" onmouseover="showWMTT(\'id3\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (isfeedbackadmin($id)) {
+        $feedback =
+            '<input type="checkbox" name="feedbackadmin" value="1" onmouseover="showWMTT(\'id4\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $feedback =
+            '<input type="checkbox" name="feedbackadmin" value="1" onmouseover="showWMTT(\'id4\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (isuseradmin($id)) {
+        $useradmin =
+            '<input type="checkbox" name="useradmin" value="1" onmouseover="showWMTT(\'id5\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $useradmin =
+            '<input type="checkbox" name="useradmin" value="1" onmouseover="showWMTT(\'id5\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (isclanwaradmin($id)) {
+        $cwadmin =
+            '<input type="checkbox" name="cwadmin" value="1" onmouseover="showWMTT(\'id6\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $cwadmin =
+            '<input type="checkbox" name="cwadmin" value="1" onmouseover="showWMTT(\'id6\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (isforumadmin($id)) {
+        $board =
+            '<input type="checkbox" name="boardadmin" value="1" onmouseover="showWMTT(\'id7\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $board =
+            '<input type="checkbox" name="boardadmin" value="1" onmouseover="showWMTT(\'id7\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (isanymoderator($id)) {
+        $mod =
+            '<input type="checkbox" name="moderator" value="1" onmouseover="showWMTT(\'id8\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $mod =
+            '<input type="checkbox" name="moderator" value="1" onmouseover="showWMTT(\'id8\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (ispageadmin($id)) {
+        $page =
+            '<input type="checkbox" name="pageadmin" value="1" onmouseover="showWMTT(\'id9\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $page =
+            '<input type="checkbox" name="pageadmin" value="1" onmouseover="showWMTT(\'id9\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (isfileadmin($id)) {
+        $file =
+            '<input type="checkbox" name="fileadmin" value="1" onmouseover="showWMTT(\'id10\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $file =
+            '<input type="checkbox" name="fileadmin" value="1" onmouseover="showWMTT(\'id10\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (iscashadmin($id)) {
+        $cash =
+            '<input type="checkbox" name="cashadmin" value="1" onmouseover="showWMTT(\'id11\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $cash =
+            '<input type="checkbox" name="cashadmin" value="1" onmouseover="showWMTT(\'id11\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (isgalleryadmin($id)) {
+        $gallery =
+            '<input type="checkbox" name="galleryadmin" value="1" onmouseover="showWMTT(\'id12\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $gallery =
+            '<input type="checkbox" name="galleryadmin" value="1" onmouseover="showWMTT(\'id12\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    if (issuperadmin($id)) {
+        $super =
+            '<input type="checkbox" name="superadmin" value="1" onmouseover="showWMTT(\'id13\')"
+onmouseout="hideWMTT()" checked="checked" />';
+    } else {
+        $super =
+            '<input type="checkbox" name="superadmin" value="1" onmouseover="showWMTT(\'id13\')"
+onmouseout="hideWMTT()" />';
+    }
+
+    $usergrp = array();
+    $ergebnis = safe_query("SELECT * FROM " . PREFIX . "forum_groups");
     while ($ds = mysqli_fetch_array($ergebnis)) {
-        $anzmembers = mysqli_num_rows(
+        $name = $ds[ 'name' ];
+        $fgrID = $ds[ 'fgrID' ];
+        if (isinusergrp($fgrID, $id)) {
+            $usergrp[ $fgrID ] = '<input type="checkbox" name="' . $fgrID . '" value="1" checked="checked" />';
+        } else {
+            $usergrp[ $fgrID ] = '<input type="checkbox" name="' . $fgrID . '" value="1" />';
+        }
+    }
+
+    if (isclanmember($id)) {
+        $userdes = '
+
+<div class="col-md-12"><hr>' . $_language->module[ 'description' ] . ':</div>
+<div class="col-md-12">' . $addflags . '<br>' . $addbbcode . '<br></div>
+
+<div class="col-md-12"><textarea class="form-control" id="message" rows="5" cols="" name="message" style="width: 100%;">' . getuserdescription($id) .
+            '</textarea>
+ </div>        
+
+        
+
+
+
+
+
+  ';
+    } else {
+        $userdes = '';
+    }
+
+    $get_rank = mysqli_fetch_assoc(
+        safe_query(
+            "SELECT
+              special_rank
+            FROM
+              " . PREFIX . "user
+            WHERE
+              userID='" . $id . "'"
+        )
+    );
+
+    $ranks = "<option value='0'>" . $_language->module[ 'no_special_rank' ] . "</option>";
+    $get = safe_query("SELECT * FROM " . PREFIX . "forum_ranks WHERE special='1'");
+    while ($rank = mysqli_fetch_assoc($get)) {
+        $ranks .="<option value='" . $rank[ 'rankID' ] . "'>" . $rank[ 'rank' ] . "</option>";
+    }
+    if ($get_rank[ 'special_rank' ]) {
+        $ranks = str_replace(
+            "value='" . $get_rank[ 'special_rank'] . "",
+            "value='" . $get_rank[ 'special_rank' ] . "' selected='selected'",
+            $ranks
+        );
+    } else {
+        $ranks = str_replace("value='0", "value='0' selected='selected'", $ranks);
+    }
+
+    echo '<script>
+        function chkFormular() {
+            if(!validbbcode(document.getElementById(\'message\').value, \'admin\')){
+                return false;
+            }
+        }
+    </script>';
+
+    echo '
+    <form method="post" id="post" name="post" action="admincenter.php?site=members" onsubmit="return chkFormular();">
+        <div class="tooltip" id="id1">' . $_language->module[ 'tooltip_1' ] . '</div>
+        <div class="tooltip" id="id2">' . $_language->module[ 'tooltip_2' ] . '</div>
+        <div class="tooltip" id="id3">' . $_language->module[ 'tooltip_3' ] . '</div>
+        <div class="tooltip" id="id4">' . $_language->module[ 'tooltip_4' ] . '</div>
+        <div class="tooltip" id="id5">' . $_language->module[ 'tooltip_5' ] . '</div>
+        <div class="tooltip" id="id6">' . $_language->module[ 'tooltip_6' ] . '</div>
+        <div class="tooltip" id="id7">' . $_language->module[ 'tooltip_7' ] . '</div>
+        <div class="tooltip" id="id8">' . $_language->module[ 'tooltip_8' ] . '</div>
+        <div class="tooltip" id="id9">' . $_language->module[ 'tooltip_9' ] . '</div>
+        <div class="tooltip" id="id10">' . $_language->module[ 'tooltip_10' ] . '</div>
+        <div class="tooltip" id="id11">' . $_language->module[ 'tooltip_11' ] . '</div>
+        <div class="tooltip" id="id12">' . $_language->module[ 'tooltip_12' ] . '</div>
+        <div class="tooltip" id="id13">' . $_language->module[ 'tooltip_13' ] . '</div>
+        
+        
+
+<div class="row">
+
+<div class="col-md-12">
+
+    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'nickname' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em><a href="../index.php?site=profile&amp;id=' . $id . '" target="_blank">' .
+            strip_tags(stripslashes(getnickname($id))) . '</a></em></span></div></div>
+     
+        ' . $squads . '
+        ' . $userdes . '
+
+        <div class="col-md-12">
+
+    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'special_rank' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em><select name="special_rank">' . $ranks . '</select></em></span></div></div>
+
+</div>
+
+<div class="col-md-12">
+
+    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div><div class="col-md-6"></div></div>
+
+<div class="col-md-4">
+
+    <div class="row bt"><div class="col-md-6">' . $news . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_admin' ] . '</em></span></div></div>
+
+    <div class="row bt"><div class="col-md-6">' . $newswriter . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_writer' ] . '</em></span></div></div>
+    <div class="row bt"><div class="col-md-6">' . $polls . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'polls_admin' ] . '</em></span></div></div>
+<div class="row bt"><div class="col-md-6">' . $feedback . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'feedback_admin' ] . '</em></span></div></div>';
+ if (issuperadmin($userID)) {
+        echo '<div class="row bt"><div class="col-md-6">' . $file . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'super_admin' ] . '</em></span></div></div>';
+    }
+
+    echo '
+
+<div></div></div>
+
+<div class="col-md-4">
+
+    <div class="row bt"><div class="col-md-6">' . $board . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'messageboard_admin' ] . '</em></span></div></div>
+
+    <div class="row bt"><div class="col-md-6">' . $mod . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'messageboard_moderator' ] . '</em></span></div></div>
+    <div class="row bt"><div class="col-md-6">' . $gallery . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'gallery_admin' ] . '</em></span></div></div>
+<div class="row bt"><div class="col-md-6">' . $page . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'page_admin' ] . '</em></span></div></div>
+
+</div>
+
+<div class="col-md-4">
+
+    <div class="row bt"><div class="col-md-6">' . $cwadmin . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'clanwar_admin' ] . '</em></span></div></div>
+
+    <div class="row bt"><div class="col-md-6">' . $cash . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'cash_admin' ] . '</em></span></div></div>
+    <div class="row bt"><div class="col-md-6">' . $useradmin . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'user_admin' ] . '</em></span></div></div>
+<div class="row bt"><div class="col-md-6">' . $file . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'file_admin' ] . '</em></span></div></div>
+
+</div>
+
+
+<table width="100%" border="0" cellspacing="1" cellpadding="3">
+
+<tr>
+        <td colspan="3"><b>' . $_language->module[ 'group_access' ] . '</b></td>
+    </tr>';
+
+    $sql = safe_query("SELECT * FROM " . PREFIX . "forum_groups");
+    echo '<tr>';
+    $i = 1;
+    while ($dc = mysqli_fetch_array($sql)) {
+        $name = $dc[ 'name' ];
+        $fgrID = $dc[ 'fgrID' ];
+        echo '<td>' . $usergrp[ $fgrID ] . ' ' . $name . '</td>';
+        if (3 > 1) {
+            if (($i - 1) % 3 == (3 - 1)) {
+                echo '</tr><tr>';
+            }
+        } else {
+            echo '</tr><tr>';
+        }
+        $i++;
+    }
+    echo '<td></td></tr>';
+
+    echo '<tr>
+      <td><br><input type="hidden" name="id" value="' . $id . '" /><input type="hidden" name="captcha_hash" value="' .
+        $hash . '" />
+      <input class="btn btn-success btn-xs" type="submit" name="saveedit" value="' . $_language->module[ 'edit_member' ] . '" /></td>
+    </tr>
+  </table>
+  </form>
+  </div></div>';
+
+    unset($squads);
+    unset($userdes);
+} else {
+    
+    $CAPCLASS = new \webspell\Captcha;
+    $CAPCLASS->createTransaction();
+    $hash = $CAPCLASS->getHash();
+
+    $squads = safe_query("SELECT * FROM " . PREFIX . "squads ORDER BY sort");
+    echo '<form method="post" action="admincenter.php?site=members">';
+    while ($ds = mysqli_fetch_array($squads)) {
+        echo'<div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-users"></i> '.$_language->module['members'].'
+                        </div>
+        <div class="panel-body">';
+        echo '<table class="table table-striped">
+    
+<thead>
+
+
+      <tr>
+        <th colspan="5">' . $ds[ 'name' ] . ':</th>
+      </tr>';
+
+        $members = safe_query(
+            "SELECT * FROM " . PREFIX . "squads_members WHERE squadID='" . $ds[ 'squadID' ] . "' ORDER BY sort"
+        );
+        $tmp = mysqli_fetch_assoc(
             safe_query(
-                "SELECT
-                    sqmID
-                FROM
-                    " . PREFIX . "squads_members
-                WHERE
-                    squadID='" . $ds[ 'squadID' ] . "'"
+                "SELECT count(squadID) as cnt
+                FROM " . PREFIX . "squads_members
+                WHERE squadID='" . $ds[ 'squadID' ] . "'"
             )
         );
-        $name = '<strong>' . $ds[ 'name' ] . '</strong>';
-        if ($ds[ 'icon' ]) {
-            $icon = '<img src="images/squadicons/' . $ds[ 'icon' ] . '" alt="' . htmlspecialchars($ds[ 'name' ]) . '">';
-        } else {
-            $icon = '';
-        }
-        $info = htmloutput($ds[ 'info' ]);
-        $squadID = $ds[ 'squadID' ];
-        $backlink = $_language->module[ 'back_overview' ];
-        $results = '';
-        $awards = '';
-        $challenge = '';
+        $anzmembers = $tmp[ 'cnt' ];
 
-        $border = BORDER;
-
-        if ($ds[ 'gamesquad' ]) {
-            $results = '<a href="index.php?site=clanwars&amp;action=showonly&amp;id=' . $squadID .
-                '&amp;sort=date&amp;only=squad" class="btn btn-primary">' . $_language->module[ 'results' ] . '</a>';
-            $awards = '<a href="index.php?site=awards&amp;action=showsquad&amp;squadID=' . $squadID .
-                '&amp;page=1" class="btn btn-primary">' . $_language->module[ 'awards' ] . '</a>';
-            $challenge = '<a href="index.php?site=challenge" class="btn btn-primary" class="btn btn-primary">' .
-                $_language->module[ 'challenge' ] . '</a>';
-        } else {
-            $results = '';
-            $awards = '';
-            $challenge = '';
-        }
-
-        $member = safe_query(
-            "SELECT
-                *
-            FROM
-                " . PREFIX . "squads_members s, " . PREFIX . "user u
-            WHERE
-                s.squadID='" . $ds[ 'squadID' ] . "'
-            AND
-                s.userID = u.userID
-            ORDER BY sort"
-        );
-
-        if ($anzmembers == 1) {
-            $anzmembers = $anzmembers . ' ' . $_language->module[ 'member' ];
-        } else {
-            $anzmembers = $anzmembers . ' ' . $_language->module[ 'members' ];
-        }
-
-        $data_array = array();
-        $data_array['$icon'] = $icon;
-        $data_array['$name'] = $name;
-        $data_array['$anzmembers'] = $anzmembers;
-        $data_array['$results'] = $results;
-        $data_array['$awards'] = $awards;
-        $data_array['$challenge'] = $challenge;
-        $data_array['$info'] = $info;
-        $members_details_head = $GLOBALS["_template"]->replaceTemplate("members_details_head", $data_array);
-        echo $members_details_head;
+        echo '<tr>
+      <th>' . $_language->module[ 'country_nickname' ] . ':</th>
+      <th>' . $_language->module[ 'position' ] . ':</th>
+      <th>' . $_language->module[ 'activity' ] . ':</th>
+      <th>' . $_language->module[ 'actions' ] . ':</th>
+      <th>' . $_language->module[ 'sort' ] . ':</th>
+    </tr></thead>
+          <tbody>';
 
         $i = 1;
-        while ($dm = mysqli_fetch_array($member)) {
-            #if ($i % 2) {
-            #    $bg1 = BG_1;
-            #    $bg2 = BG_2;
-            #} else {
-            #    $bg1 = BG_3;
-            #    $bg2 = BG_4;
-            #}
+        while ($dm = mysqli_fetch_array($members)) {
+            if ($i % 2) {
+                $td = 'td1';
+            } else {
+                $td = 'td2';
+            }
 
-            $country = '[flag]' . $dm[ 'country' ] . '[/flag]';
+            $country = '[flag]' . getcountry($dm[ 'userID' ]) . '[/flag]';
             $country = flags($country);
-            $nickname = '<a href="index.php?site=profile&amp;id=' . $dm[ 'userID' ] . '"><b>' .
-                strip_tags(stripslashes($dm[ 'nickname' ])) . '</b></a>';
-            $nicknamee = strip_tags(stripslashes($dm[ 'nickname' ]));
-            $profilid = $dm[ 'userID' ];
-
-            if ($dm[ 'userdescription' ]) {
-                $userdescription = htmloutput($dm[ 'userdescription' ]);
+            $country = str_replace("images/", "../images/", $country);
+            $nickname = '<a href="../index.php?site=profile&amp;id=' . $dm[ 'userID' ] . '" target="_blank">' .
+                strip_tags(stripslashes(getnickname($dm[ 'userID' ]))) . '</a>';
+            if ($dm[ 'activity' ]) {
+                $activity = '<font color="green">' . $_language->module[ 'active' ] . '</font>';
             } else {
-                $userdescription = $_language->module[ 'no_description' ];
+                $activity = '<font color="red">' . $_language->module[ 'inactive' ] . '</font>';
             }
 
-            if (file_exists("images/userpics/" . $profilid . ".jpg")) {
-                $userpic = $profilid . ".jpg";
-                $pic_info = $dm[ 'nickname' ] . " userpicture";
-            } elseif (file_exists("images/userpics/" . $profilid . ".gif")) {
-                $userpic = $profilid . ".gif";
-                $pic_info = $dm[ 'nickname' ] . " userpicture";
-            } else {
-                $userpic = "nouserpic.gif";
-                $pic_info = "no userpic available!";
-            }
+            echo '<tr>
+        <td>' . $country . ' ' . $nickname . '</td>
+        <td>' . $dm[ 'position' ] . '</td>
+        <td>' . $activity . '</td>
+        <td>
 
-            $icq = $dm[ 'icq' ];
-            if (getemailhide($dm[ 'userID' ])) {
-                $email = '';
-            } else {
-                $email = '<a href="mailto:' . mail_protect($dm[ 'email' ]) .
-                    '"><i class="fa fa-envelope" title="email"></i></a>';
-            }
-            $emaill = $dm[ 'email' ];
 
-            $pm = '';
-            $buddy = '';
-            if ($loggedin && $dm[ 'userID' ] != $userID) {
-                $pm = '<a href="index.php?site=messenger&amp;action=touser&amp;touser=' . $dm[ 'userID' ] .
-                    '"><img src="images/icons/pm.gif" width="12" height="13" alt="messenger"></a>';
+        <a href="admincenter.php?site=members&amp;action=edit&amp;id=' . $dm[ 'userID' ] . '" class="hidden-xs hidden-sm btn btn-warning btn-xs" type="button">' . $_language->module[ 'edit' ] . '</a>
 
-                if (isignored($userID, $dm[ 'userID' ])) {
-                    $buddy = '<a href="buddies.php?action=readd&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                        '"><img src="images/icons/buddy_readd.gif" width="16" height="16" alt="back to buddylist"></a>';
-                } elseif (isbuddy($userID, $dm[ 'userID' ])) {
-                    $buddy = '<a href="buddies.php?action=ignore&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                        '"><img src="images/icons/buddy_ignore.gif" width="16" height="16" alt="ignore user"></a>';
-                } elseif ($userID == $dm[ 'userID' ]) {
-                    $buddy = "";
+        <input class="hidden-xs hidden-sm btn btn-danger btn-xs" type="button" onclick="MM_confirm(\'' . $_language->module['really_delete'] . '\', \'admincenter.php?site=members&amp;delete=true&amp;id=' . $dm[ 'userID' ] . '&amp;squadID=' .
+                $dm[ 'squadID' ] . '&amp;captcha_hash=' . $hash . '\')" value="' . $_language->module['delete'] . '" />
+            
+
+            <a href="admincenter.php?site=members&amp;action=edit&amp;id=' . $dm[ 'userID' ] . '"  class="mobile visible-xs visible-sm" type="button"><i class="fa fa-pencil"></i></a>
+      <a class="mobile visible-xs visible-sm" type="button" onclick="MM_confirm(\'' . $_language->module['really_delete'] . '\', \'admincenter.php?site=members&amp;delete=true&amp;id=' . $dm[ 'userID' ] . '&amp;squadID=' .
+                $dm[ 'squadID' ] . '&amp;captcha_hash=' . $hash . '\')" /><i class="fa fa-times"></i></a>
+
+
+
+                </td>
+        <td><select name="sort[]">';
+            for ($j = 1; $j <= $anzmembers; $j++) {
+                if ($dm[ 'sort' ] == $j) {
+                    echo '<option value="' . $dm[ 'sqmID' ] . '-' . $j . '" selected="selected">' . $j . '</option>';
                 } else {
-                    $buddy = '<a href="buddies.php?action=add&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                        '"><img src="images/icons/buddy_add.gif" width="16" height="16" alt="add to buddylist"></a>';
+                    echo '<option value="' . $dm[ 'sqmID' ] . '-' . $j . '">' . $j . '</option>';
                 }
             }
+            echo '</select></td>
+        </tr>';
 
-            if (isonline($dm[ 'userID' ]) == "offline") {
-                $statuspic = '<img src="images/icons/offline.gif" width="7" height="7" alt="offline">';
-            } else {
-                $statuspic = '<img src="images/icons/online.gif" width="7" height="7" alt="online">';
-            }
-
-            $position = $dm[ 'position' ];
-            $firstname = strip_tags($dm[ 'firstname' ]);
-            $lastname = strip_tags($dm[ 'lastname' ]);
-            $town = strip_tags($dm[ 'town' ]);
-            if ($dm[ 'activity' ]) {
-                $activity = '<font color="' . $wincolor . '">' . $_language->module[ 'active' ] . '</font>';
-            } else {
-                $activity = '<font color="' . $loosecolor . '">' . $_language->module[ 'inactive' ] . '</font>';
-            }
-
-            $data_array = array();
-            $data_array['$country'] = $country;
-            $data_array['$firstname'] = $firstname;
-            $data_array['$nickname'] = $nickname;
-            $data_array['$lastname'] = $lastname;
-            $data_array['$position'] = $position;
-            $data_array['$activity'] = $activity;
-            $data_array['$statuspic'] = $statuspic;
-            $data_array['$email'] = $email;
-            $data_array['$pm'] = $pm;
-            $data_array['$buddy'] = $buddy;
-            $data_array['$town'] = $town;
-            $data_array['$memberID'] = $dm['userID'];
-            $data_array['$userpic'] = $userpic;
-            $data_array['$nicknamee'] = $nicknamee;
-            $data_array['$userdescription'] = $userdescription;
-            $members_details_content = $GLOBALS["_template"]->replaceTemplate("members_details_content", $data_array);
-            echo $members_details_content;
             $i++;
         }
-        $members_details_foot = $GLOBALS["_template"]->replaceTemplate("members_details_foot", array());
-        echo $members_details_foot;
+        echo '</tbody></table></div></div><br />';
     }
-} else {
-    if (isset($_POST[ 'squadID' ])) {
-        $onesquadonly = 'WHERE squadID="' . (int)$_POST[ 'squadID' ] . '"';
-        $visible = "block";
-    } elseif (isset($_GET[ 'squadID' ])) {
-        $onesquadonly = 'WHERE squadID="' . (int)$_GET[ 'squadID' ] . '"';
-        $visible = "block";
-    } else {
-        $visible = "none";
-        $onesquadonly = '';
-    }
-
-    $ergebnis = safe_query("SELECT * FROM " . PREFIX . "squads " . $onesquadonly . " ORDER BY sort");
-    if (mysqli_num_rows($ergebnis)) {
-        while ($ds = mysqli_fetch_array($ergebnis)) {
-            $anzmembers = mysqli_num_rows(
-                safe_query(
-                    "SELECT
-                        sqmID
-                    FROM
-                        " . PREFIX . "squads_members
-                    WHERE squadID='" . $ds[ 'squadID' ] . "'"
-                )
-            );
-            $name = '<a href="index.php?site=members&amp;action=show&amp;squadID=' . $ds[ 'squadID' ] . '"><b>' .
-                $ds[ 'name' ] . '</b></a>';
-
-            if ($ds[ 'icon' ]) {
-                $icon =
-                    '<img src="images/squadicons/' . $ds[ 'icon' ] . '" alt="' . htmlspecialchars($ds[ 'name' ]) . '">';
-            } else {
-                $icon = '';
-            }
-
-            $info = htmloutput($ds[ 'info' ]);
-            $squadID = $ds[ 'squadID' ];
-            $details = str_replace('%squadID%', $squadID, $_language->module[ 'show_details' ]);
-
-            if ($ds[ 'gamesquad' ]) {
-                $results = '<a href="index.php?site=clanwars&amp;action=showonly&amp;id=' . $squadID .
-                    '&amp;sort=date&amp;only=squad" class="btn btn-primary">' . $_language->module[ 'results' ] .
-                    '</a>';
-                $awards = '<a href="index.php?site=awards&amp;action=showsquad&amp;squadID=' . $squadID .
-                    '&amp;page=1" class="btn btn-primary">' . $_language->module[ 'awards' ] . '</a>';
-                $challenge =
-                    '<a href="index.php?site=challenge" class="btn btn-primary">' . $_language->module[ 'challenge' ] .
-                    '</a>';
-            } else {
-                $results = '';
-                $awards = '';
-                $challenge = '';
-            }
-
-            #$bgcat = BGCAT;
-
-            if ($anzmembers == 1) {
-                $anzmembers = $anzmembers . ' ' . $_language->module[ 'member' ];
-            } else {
-                $anzmembers = $anzmembers . ' ' . $_language->module[ 'members' ];
-            }
-
-            $data_array = array();
-            $data_array['$icon'] = $icon;
-            $data_array['$name'] = $name;
-            $data_array['$anzmembers'] = $anzmembers;
-            $data_array['$results'] = $results;
-            $data_array['$awards'] = $awards;
-            $data_array['$challenge'] = $challenge;
-            $data_array['$info'] = $info;
-            $members_head_head = $GLOBALS["_template"]->replaceTemplate("members_head_head", $data_array);
-            echo $members_head_head;
-
-            $member =
-                safe_query(
-                    "SELECT
-                        *
-                    FROM
-                        " . PREFIX . "squads_members s, " . PREFIX . "user u
-                    WHERE
-                        s.squadID='" . $ds[ 'squadID' ] . "'
-                    AND
-                        s.userID = u.userID
-                    ORDER BY
-                        sort"
-                );
-
-            $members_head = $GLOBALS["_template"]->replaceTemplate("members_head", array());
-            echo $members_head;
-
-            $i = 1;
-            while ($dm = mysqli_fetch_array($member)) {
-                #if ($i % 2) {
-                #    $bg1 = BG_1;
-                #    $bg2 = BG_2;
-                #} else {
-                #    $bg1 = BG_3;
-                #    $bg2 = BG_4;
-                #}
-
-                $country = '[flag]' . $dm[ 'country' ] . '[/flag]';
-                $country = flags($country);
-                $nickname = strip_tags(stripslashes($dm[ 'nickname' ]));
-                $profilid = $dm[ 'userID' ];
-
-                $icq = $dm[ 'icq' ];
-                if (getemailhide($dm[ 'userID' ])) {
-                    $email = '';
-                } else {
-                    $email = '<a href="mailto:' . mail_protect($dm[ 'email' ]) .
-                        '"><i class="fa fa-envelope" title="email"></i></a>';
-                }
-                $emaill = $dm[ 'email' ];
-
-                $pm = '';
-                $buddy = '';
-                if ($loggedin && $dm[ 'userID' ] != $userID) {
-                    $pm = '<a href="index.php?site=messenger&amp;action=touser&amp;touser=' . $dm[ 'userID' ] .
-                        '"><img src="images/icons/pm.gif" width="12" height="13" alt="messenger"></a>';
-
-                    if (isignored($userID, $dm[ 'userID' ])) {
-                        $buddy =
-                            '<a href="buddies.php?action=readd&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                            '"><img src="images/icons/buddy_readd.gif" width="16" height="16" alt="back to buddylist">
-                            </a>';
-                    } elseif (isbuddy($userID, $dm[ 'userID' ])) {
-                        $buddy =
-                            '<a href="buddies.php?action=ignore&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                            '"><img src="images/icons/buddy_ignore.gif" width="16" height="16" alt="ignore user"></a>';
-                    } elseif ($userID == $dm[ 'userID' ]) {
-                        $buddy = "";
-                    } else {
-                        $buddy =
-                            '<a href="buddies.php?action=add&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                            '"><img src="images/icons/buddy_add.gif" width="16" height="16" alt="add to buddylist">
-                            </a>';
-                    }
-                }
-
-                if (isonline($dm[ 'userID' ]) == "offline") {
-                    $statuspic = '<img src="images/icons/offline.gif" width="7" height="7" alt="offline">';
-                } else {
-                    $statuspic = '<img src="images/icons/online.gif" width="7" height="7" alt="online">';
-                }
-
-                $position = $dm[ 'position' ];
-                $firstname = strip_tags($dm[ 'firstname' ]);
-                $lastname = strip_tags($dm[ 'lastname' ]);
-                $town = strip_tags($dm[ 'town' ]);
-                if ($dm[ 'activity' ]) {
-                    $activity = '<font color="' . $wincolor . '">' . $_language->module[ 'active' ] . '</font>';
-                } else {
-                    $activity = '<font color="' . $loosecolor . '">' . $_language->module[ 'inactive' ] . '</font>';
-                }
-
-                $data_array = array();
-                $data_array['$country'] = $country;
-                $data_array['$profilid'] = $profilid;
-                $data_array['$nickname'] = $nickname;
-                $data_array['$statuspic'] = $statuspic;
-                $data_array['$position'] = $position;
-                $data_array['$email'] = $email;
-                $data_array['$pm'] = $pm;
-                $data_array['$buddy'] = $buddy;
-                $data_array['$activity'] = $activity;
-                $members_content = $GLOBALS["_template"]->replaceTemplate("members_content", $data_array);
-                echo $members_content;
-                $i++;
-            }
-            $data_array = array();
-            $data_array['$details'] = $details;
-            $members_content_foot = $GLOBALS["_template"]->replaceTemplate("members_content_foot", $data_array);
-            echo $members_content_foot;
-        }
-
-        $ergebnis = safe_query("SELECT squadID, name FROM " . PREFIX . "squads ORDER BY sort");
-        $squadlist = '';
-        while ($ds = mysqli_fetch_array($ergebnis)) {
-            $squadlist .= '<option value="' . $ds[ 'squadID' ] . '">' . $ds[ 'name' ] . '</option>';
-        }
-
-        $data_array = array();
-        $data_array['$squadlist'] = $squadlist;
-        $members_foot = $GLOBALS["_template"]->replaceTemplate("members_foot", $data_array);
-        echo $members_foot;
-    } else {
-        echo generateAlert($_language->module['no_entries'], 'alert-info');
-    }
+    echo '<div align="right"><input class="btn btn-primary btn-xs" type="hidden" name="captcha_hash" value="' . $hash .
+        '" /><input type="submit" name="sortieren" value="' . $_language->module[ 'to_sort' ] . '" /></div></form>';
 }
