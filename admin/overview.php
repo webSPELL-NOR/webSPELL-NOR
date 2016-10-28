@@ -147,11 +147,16 @@ echo $_language->module['welcome_message'];
     echo file_get_contents('https://update.webspell-nor.de/update.php?v='.$version.'&h='.$_SERVER[ 'SERVER_NAME' ].'');
 ?>
 </div>
-<div class="row bt">
+<!-- <div class="row bt">
 <div class="col-md-5">
-    <div class="row bt"><div class="col-md-6">webSPELL NOR | Changelog:</div><div class="col-md-6"><?php include("changelog.php"); ?></div></div>
+    <div class="row bt">
 
-</div></div>
+    <div class="col-md-6">webSPELL NOR | Changelog:</div>
+    <div class="col-md-6"><?php include("changelog.php"); ?></div>
+
+    </div>
+
+</div></div> -->
 
 </div>
 

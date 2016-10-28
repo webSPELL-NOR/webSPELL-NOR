@@ -23,7 +23,10 @@
       </div>
       <div class="modal-body">
 		<?php
-		try { # written by Getschonnik
+		# written by Getschonnik
+ 		/*
+		try { 
+
 			$myXMLData = file_get_contents("http://webspell-nor.de/_NOR/changelog.xml");
 			$xml=simplexml_load_string($myXMLData) or die("Error: Cannot create object");
 
@@ -46,7 +49,8 @@
 		} CATCH(Exception $e) {
 			echo '> Changlog can\'t found.';
 		}
-?> 
+		}*/
+?> Deactivated
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
