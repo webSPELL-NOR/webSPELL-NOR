@@ -147,7 +147,7 @@ $ds =
     <!-- Style CSS -->
     <link href="./css/style.css" rel="stylesheet">
 
-    <link href="../css/bootstrap-switch.css" rel="stylesheet">
+    <link href="./css/bootstrap-switch.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -430,9 +430,9 @@ $ds =
     <!-- Custom Theme JavaScript -->
     <script src="./js/page.js"></script>
 
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/bootstrap-switch.js"></script>
-<script src="../js/index.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/bootstrap-switch.js"></script>
+<script src="./js/index.js"></script>
 
 </body>
 </html>

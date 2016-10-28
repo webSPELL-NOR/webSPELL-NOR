@@ -35,6 +35,7 @@
   user-select: none;
   vertical-align: middle;
   min-width: 100px;
+  height: 25px;
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
@@ -130,8 +131,8 @@
   display: inline-block !important;
   height: 100%;
   padding-bottom: 4px;
-  padding-top: 4px;
-  font-size: 14px;
+  padding-top: 2px;
+  font-size: 12px;
   line-height: 20px;
 }
 .bootstrap-switch > div > span {

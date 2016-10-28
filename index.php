@@ -103,7 +103,7 @@ header('X-UA-Compatible: IE=edge,chrome=1');
     <link href="css/scrolling-nav.css" rel="stylesheet">
     <link href="css/styles.css.php" rel="styleSheet" type="text/css">
     <link href="css/button.css.php" rel="styleSheet" type="text/css">
-    <link href="css/bootstrap-switch.css" rel="stylesheet">
+    
 
     <link href="_stylesheet.css" rel="stylesheet">
 
@@ -419,8 +419,7 @@ header('X-UA-Compatible: IE=edge,chrome=1');
 <!-- Scrolling Nav JavaScript -->
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/scrolling-nav.js"></script>
-    <script src="js/bootstrap-switch.js"></script>
-<script src="js/index.js"></script>
+    
 
 </body>
 </html>
