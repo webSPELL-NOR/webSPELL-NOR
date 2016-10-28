@@ -152,7 +152,8 @@
 }
 .bootstrap-switch > div > span.bootstrap-switch-primary {
   color: #fff;
-  background: #428bca;
+  /*background: #428bca;*/
+  background: #5cb85c;
 }
 .bootstrap-switch > div > span.bootstrap-switch-info {
   color: #fff;
@@ -172,7 +173,8 @@
 }
 .bootstrap-switch > div > span.bootstrap-switch-default {
   color: #000;
-  background: #eeeeee;
+ /* background: #eeeeee;*/
+  background: #d9534f;
 }
 .bootstrap-switch > div > label {
   text-align: center;
