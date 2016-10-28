@@ -33,13 +33,12 @@ echo $title_sponsors;
 $ergebnis = safe_query("SELECT * FROM " . PREFIX . "sponsors WHERE displayed = '1' ORDER BY sort");
 if (mysqli_num_rows($ergebnis)) {
     $i = 1;
-    $url_replace = array('http://','https://');
     while ($ds = mysqli_fetch_array($ergebnis)) {
-        $url = str_replace($url_replace, '', $ds['url']);
-		$link = '<a href="http://'.htmlspecialchars($url).'" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds['sponsorID'] . '\', 1000})" target="_blank">' . $url . '</a>';
-        $sponsor = '<a href="'.$url.'" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds['sponsorID'] . '\', 1000})" target="_blank">' . $ds['name'] . '</a>';
+        $url = str_replace('http://', '', $ds['url']);
+        $sponsor = '<a href="'.$ds['url'].'" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds['sponsorID'] . '\', 1000})" target="_blank">' . $ds['name'] . '</a>';
+        $link = '<a href="'.$ds['url'].'" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds['sponsorID'] . '\', 1000})" target="_blank">' . $url . '</a>';
         $info = cleartext($ds['info']);
-        $banner = '<a href="" id="sponsor_'.$ds['sponsorID'].'" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds['sponsorID'] . '\', 1000})" target="_blank"><img src="images/sponsors/' .
+        $banner = '<a href="'.$ds['url'].'" id="sponsor_'.$ds['sponsorID'].'" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds['sponsorID'] . '\', 1000})" target="_blank"><img src="images/sponsors/' .
             $ds['banner'] . '" alt="' . htmlspecialchars($ds['name']) . '" class="img-responsive"></a>';
 
 		$script = '<script>	
@@ -53,7 +52,7 @@ if (mysqli_num_rows($ergebnis)) {
         e.preventDefault()
     }, false)
     box'.$ds['sponsorID'].'.addEventListener("touchend", function(e){
-				window.open("'.htmlspecialchars($url).'", "_blank")
+				window.open("'.$ds['url'].'", "_blank")
         e.preventDefault()
     }, false)
 }, false)	
