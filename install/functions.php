@@ -889,7 +889,7 @@ function update_base_12($_database)
 ) AUTO_INCREMENT=2
   DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
 
-    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "styles` (`styleID`, `title`, `win`, `loose`, `draw`, `nav1`, `nav2`, `nav3`, `nav4`, `nav5`, `nav6`, `body1`, `body2`, `body3`, `body4`, `typo1`, `typo2`, `typo3`, `typo4`, `typo5`, `typo6`, `typo7`, `typo8`, `foot1`, `foot2`) VALUES (1, 'WebSPELL NOR', '#00cc00', '#dd0000', '#ff6600', '#e3e3e3', '16px', '#000000', '#5bc0de', '#5bc0de', '3px', 'Helvetica Neue, Helvetica, Arial, sans-serif', '13px', '#ffffff', '#000000', '#6a6565', '#5bc0de', '#999999', '#5bc0de', '13px', '#5bc0de', '1px', '#000000', '#726868', '#ffffff')");
+    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "styles` (`styleID`, `title`, `win`, `loose`, `draw`, `nav1`, `nav2`, `nav3`, `nav4`, `nav5`, `nav6`, `body1`, `body2`, `body3`, `body4`, `typo1`, `typo2`, `typo3`, `typo4`, `typo5`, `typo6`, `typo7`, `typo8`, `foot1`, `foot2`) VALUES (1, 'WebSPELL NOR', '#00cc00', '#dd0000', '#ff6600', '#ffffff', '16px', '#000000', '#5bc0de', '#5bc0de', '3px', 'Helvetica Neue, Helvetica, Arial, sans-serif', '13px', '#ffffff', '#000000', '#6a6565', '#5bc0de', '#999999', '#5bc0de', '13px', '#5bc0de', '1px', '#000000', '#726868', '#ffffff')");
 
   $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "buttons`");
     $transaction->addQuery("CREATE TABLE `" . PREFIX . "buttons` (
