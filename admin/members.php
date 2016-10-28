@@ -289,8 +289,8 @@ onmouseout="hideWMTT()" />';
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $newswriter =
-            '<input type="checkbox" name="newswriter" onmouseover="showWMTT(\'id2\')"
-onmouseout="hideWMTT()" value="1" />';
+            '<input type="checkbox" name="newswriter" value="1" onmouseover="showWMTT(\'id2\')"
+onmouseout="hideWMTT()" />';
     }
 
     if (ispollsadmin($id)) {
@@ -490,7 +490,7 @@ onmouseout="hideWMTT()" />';
 
 <div class="row">
 
-<div class="col-md-6">
+<div class="col-md-12">
 
     <div class="row bt"><div class="col-md-6">' . $_language->module[ 'nickname' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em><a href="../index.php?site=profile&amp;id=' . $id . '" target="_blank">' .
             strip_tags(stripslashes(getnickname($id))) . '</a></em></span></div></div>
@@ -510,13 +510,13 @@ onmouseout="hideWMTT()" />';
 
 <div class="col-md-4">
 
-    <div class="row bt"><div class="col-md-4">' . $news . '</div><div class="col-md-8"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_admin' ] . '</em></span></div></div>
+    <div class="row bt"><div class="col-md-6">' . $news . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_admin' ] . '</em></span></div></div>
 
     <div class="row bt"><div class="col-md-6">' . $newswriter . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_writer' ] . '</em></span></div></div>
     <div class="row bt"><div class="col-md-6">' . $polls . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'polls_admin' ] . '</em></span></div></div>
 <div class="row bt"><div class="col-md-6">' . $feedback . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'feedback_admin' ] . '</em></span></div></div>';
  if (issuperadmin($userID)) {
-        echo '<div class="row bt"><div class="col-md-6">' . $file . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'super_admin' ] . '</em></span></div></div>';
+        echo '<div class="row bt"><div class="col-md-6">' . $super . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'super_admin' ] . '</em></span></div></div>';
     }
 
     echo '
@@ -525,7 +525,7 @@ onmouseout="hideWMTT()" />';
 
 <div class="col-md-4">
 
-    <div class="row bt"><div class="col-md-4">' . $board . '</div><div class="col-md-8"><span class="pull-right text-muted small"><em>' . $_language->module[ 'messageboard_admin' ] . '</em></span></div></div>
+    <div class="row bt"><div class="col-md-6">' . $board . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'messageboard_admin' ] . '</em></span></div></div>
 
     <div class="row bt"><div class="col-md-6">' . $mod . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'messageboard_moderator' ] . '</em></span></div></div>
     <div class="row bt"><div class="col-md-6">' . $gallery . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'gallery_admin' ] . '</em></span></div></div>
@@ -535,7 +535,7 @@ onmouseout="hideWMTT()" />';
 
 <div class="col-md-4">
 
-    <div class="row bt"><div class="col-md-4">' . $cwadmin . '</div><div class="col-md-8"><span class="pull-right text-muted small"><em>' . $_language->module[ 'clanwar_admin' ] . '</em></span></div></div>
+    <div class="row bt"><div class="col-md-6">' . $cwadmin . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'clanwar_admin' ] . '</em></span></div></div>
 
     <div class="row bt"><div class="col-md-6">' . $cash . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'cash_admin' ] . '</em></span></div></div>
     <div class="row bt"><div class="col-md-6">' . $useradmin . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'user_admin' ] . '</em></span></div></div>
@@ -569,7 +569,7 @@ onmouseout="hideWMTT()" />';
     echo '<td></td></tr>';
 
     echo '<tr>
-      <td><input type="hidden" name="id" value="' . $id . '" /><input type="hidden" name="captcha_hash" value="' .
+      <td><br><input type="hidden" name="id" value="' . $id . '" /><input type="hidden" name="captcha_hash" value="' .
         $hash . '" />
       <input class="btn btn-success btn-xs" type="submit" name="saveedit" value="' . $_language->module[ 'edit_member' ] . '" /></td>
     </tr>
