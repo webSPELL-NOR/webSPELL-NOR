@@ -430,7 +430,7 @@ $ds =
     <!-- Custom Theme JavaScript -->
     <script src="./js/page.js"></script>
 
-<script src="./js/bootstrap.min.js"></script>
+
 <script src="./js/bootstrap-switch.js"></script>
 <script src="./js/index.js"></script>
 
