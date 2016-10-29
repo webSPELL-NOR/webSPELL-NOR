@@ -27,6 +27,9 @@
 
 $_language->readModule('login');
 
+$title_login = $GLOBALS["_template"]->replaceTemplate("title_login", array());
+echo $title_login;
+
 if ($loggedin) {
 			
     $username =

@@ -146,6 +146,16 @@ header('X-UA-Compatible: IE=edge,chrome=1');
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav visible-xs">
+                <li class="dropdown">
+                    <?php if($loggedin) {
+                        echo
+                            '<a href="index.php?site=loginoverview">' . getnickname($userID) . '</a>';
+                    } else {
+                        echo '<a href="index.php?site=login">' . ucfirst($index_language[ 'login' ]) . '</a>';
+                    } ?>
+                </li>
+            </ul>
 			<?php include("navigation.php"); ?>
         </div>
     </div> <!-- /container -->
@@ -277,9 +287,7 @@ header('X-UA-Compatible: IE=edge,chrome=1');
             <!-- right column -->
             <div id="rightcol" class="col-md-3 col-sm-3 hidden-xs"><br>
                 <!-- login include -->
-                <div class="hidden-xs">
-                    <h2><?php echo $index_language[ 'login' ]; ?></h2>
-                    <hr>
+                <div class="hidden-xs">                    
                     <?php include("login.php"); ?>
                     <hr class="grey">
                 </div>
