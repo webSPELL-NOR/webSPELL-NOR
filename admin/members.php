@@ -492,25 +492,26 @@ onmouseout="hideWMTT()" />';
 
 <div class="col-md-12">
 
-    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'nickname' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em><a href="../index.php?site=profile&amp;id=' . $id . '" target="_blank">' .
+    <div class="row bt"><div class="col-md-3">' . $_language->module[ 'nickname' ] . ':</div><div class="col-md-9"><span class="pull-left text-muted small"><em><a href="../index.php?site=profile&amp;id=' . $id . '" target="_blank">' .
             strip_tags(stripslashes(getnickname($id))) . '</a></em></span></div></div>
      
         ' . $squads . '
         ' . $userdes . '
 
-        <div class="col-md-12">
+        
 
-    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'special_rank' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em><select name="special_rank">' . $ranks . '</select></em></span></div></div>
+    <div class="row bt"><div class="col-md-3">' . $_language->module[ 'special_rank' ] . ':</div><div class="col-md-9"><span class="pull-left text-muted small"><em><select name="special_rank">' . $ranks . '</select></em></span></div></div>
 
 </div>
 
 <div class="col-md-12">
-
-    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div><div class="col-md-6"></div></div>
+<br>
+    <div class="row bt"><div class="col-md-6"><b>' . $_language->module[ 'access_rights' ] . ':</b></div><div class="col-md-6"></div></div>
 
 <div class="col-md-4">
 
-    <div class="row bt"><div class="col-md-6">' . $news . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_admin' ] . '</em></span></div></div>
+    <br>
+<div class="row bt"><div class="col-md-6">' . $news . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_admin' ] . '</em></span></div></div>
 
     <div class="row bt"><div class="col-md-6">' . $newswriter . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_writer' ] . '</em></span></div></div>
     <div class="row bt"><div class="col-md-6">' . $polls . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'polls_admin' ] . '</em></span></div></div>
@@ -524,7 +525,7 @@ onmouseout="hideWMTT()" />';
 <div></div></div>
 
 <div class="col-md-4">
-
+<br>
     <div class="row bt"><div class="col-md-6">' . $board . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'messageboard_admin' ] . '</em></span></div></div>
 
     <div class="row bt"><div class="col-md-6">' . $mod . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'messageboard_moderator' ] . '</em></span></div></div>
@@ -534,7 +535,7 @@ onmouseout="hideWMTT()" />';
 </div>
 
 <div class="col-md-4">
-
+<br>
     <div class="row bt"><div class="col-md-6">' . $cwadmin . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'clanwar_admin' ] . '</em></span></div></div>
 
     <div class="row bt"><div class="col-md-6">' . $cash . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'cash_admin' ] . '</em></span></div></div>
@@ -547,7 +548,7 @@ onmouseout="hideWMTT()" />';
 <table width="100%" border="0" cellspacing="1" cellpadding="3">
 
 <tr>
-        <td colspan="3"><b>' . $_language->module[ 'group_access' ] . '</b></td>
+        <td colspan="3"><br><b>' . $_language->module[ 'group_access' ] . '</b></td>
     </tr>';
 
     $sql = safe_query("SELECT * FROM " . PREFIX . "forum_groups");
@@ -556,7 +557,7 @@ onmouseout="hideWMTT()" />';
     while ($dc = mysqli_fetch_array($sql)) {
         $name = $dc[ 'name' ];
         $fgrID = $dc[ 'fgrID' ];
-        echo '<td>' . $usergrp[ $fgrID ] . ' ' . $name . '</td>';
+        echo '<td><br>' . $usergrp[ $fgrID ] . ' ' . $name . '</td>';
         if (3 > 1) {
             if (($i - 1) % 3 == (3 - 1)) {
                 echo '</tr><tr>';
