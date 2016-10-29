@@ -34,7 +34,7 @@ if (mysqli_num_rows($mainsponsors)) {
     } else {
         $main_title = $_language->module[ 'mainsponsors' ];
     }
-    echo '<h2>' . $main_title . '</h2>';
+    echo '<h3>' . $main_title . '</h3>';
     echo '<ul class="list-group">';
 
     while ($da = mysqli_fetch_array($mainsponsors)) {
