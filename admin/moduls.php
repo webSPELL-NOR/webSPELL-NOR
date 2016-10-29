@@ -58,39 +58,26 @@ if (isset($_GET[ 'delete' ])) {
         $module = $_POST[ 'module' ];
 		
 		
-		if($_POST['radio1']=="le_activated") {
+		if(@$_POST['radio1']=="le_activated") {
 			  $le_activated = 1;
 			  $re_activated = 0;
 			  $activated = 0;
-		} elseif($_POST['radio1']=="re_activated") {
+		} elseif(@$_POST['radio1']=="re_activated") {
 			  $le_activated = 0;
 			  $re_activated = 1;
 			  $activated = 0;
-		} else {
-			  $le_activated = 0;
-			  $re_activated = 0;
-			  $activated = 1;
-		}
+		} elseif(@$_POST['radio1']=="activated") {
+        $le_activated = 0;
+        $re_activated = 0;
+        $activated = 1;    
+     
+    } else {
+        $le_activated = 0;
+        $re_activated = 0;
+        $activated = 0;
+    }
 		
-		/*		
-        if (isset($_POST[ "le_activated" ])) {
-            $le_activated = 1;
-        } else {
-            $le_activated = 0;
-        }
-
-        if (isset($_POST[ "re_activated" ])) {
-            $re_activated = 1;
-        } else {
-            $re_activated = 0;
-        }
-
-        if (isset($_POST[ "activated" ])) {
-            $activated = 1;
-        } else {
-            $activated = 0;
-        }
-		*/
+		
         
         safe_query(
             "INSERT INTO
@@ -119,40 +106,27 @@ if (isset($_GET[ 'delete' ])) {
     $CAPCLASS = new \webspell\Captcha;
     if ($CAPCLASS->checkCaptcha(0, $_POST[ 'captcha_hash' ])) {
         $module = $_POST[ 'module' ];
-
-        if($_POST['radio1']=="le_activated") {
+        
+      if(@$_POST['radio1']=="le_activated") {
         $le_activated = 1;
         $re_activated = 0;
         $activated = 0;
-    } elseif($_POST['radio1']=="re_activated") {
+    } elseif(@$_POST['radio1']=="re_activated") {
         $le_activated = 0;
         $re_activated = 1;
         $activated = 0;
+    } elseif(@$_POST['radio1']=="activated") {
+        $le_activated = 0;
+        $re_activated = 0;
+        $activated = 1;    
+     
     } else {
         $le_activated = 0;
         $re_activated = 0;
-        $activated = 1;
+        $activated = 0;
     }
         
-      /*  if($_Post['radio']=="le_activate") {
-            $le_activated = 1;
-        } else {
-            $le_activated = 0;
-        }
-
-        elseif($_Post['radio']=="re_activate") {
-            $re_activated = 1;
-        } else {
-            $re_activated = 0;
-        }
-
-        elseif($_Post['radio']=="activated" ]) {
-            $activated = 1;
-        } else {
-            $activated = 0;
-        } */
-
-        
+    
 
         $modulID = (int)$_POST[ 'modulID' ];
         $id = $modulID;
@@ -217,8 +191,6 @@ if ($action == "add") {
     </div>
   </div>
 
-
-
 <div class="form-group">
 <label class="col-sm-2 control-label"></label>
     <div class="col-sm-8"><span class="text-muted small"><em>
@@ -228,15 +200,10 @@ if ($action == "add") {
   <input id="re_activated" type="radio" name="radio1" value="re_activated">
   <label for="activated">'.$_language->module['activated'].'</label>
   <input id="activated" type="radio" name="radio1" value="activated">
-  </em></span>
+   </em></span>
     </div>
   </div>
 
-
-
-
-
-  
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
 		<input type="hidden" name="captcha_hash" value="'.$hash.'" />
@@ -307,8 +274,6 @@ if ($action == "add") {
       <input type="text" class="form-control" name="module" value="'.getinput($ds['module']).'" /></em></span>
     </div>
   </div>
-
-  
 
   <div class="form-group">
 <label class="col-sm-2 control-label"></label>

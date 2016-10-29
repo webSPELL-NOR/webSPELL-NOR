@@ -999,7 +999,7 @@ if ($action == "activate") {
             search("user","nickname","userID",encodeURIComponent(this.value),"search_user","searchresult","replace",
             document.getElementById("exact").checked, "ac_usersearch")\' size="25" /><br />
         <div id="searchresult"
-            style="position:absolute;display:none;border:1px solid black;background-color:#DDDDDD; padding:2px;">
+            style="width: 180px;display:none;border:1px solid black;background-color:#DDDDDD; padding:2px;">
         </div></td>
       </tr>
       <tr>
