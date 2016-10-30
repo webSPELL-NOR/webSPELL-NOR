@@ -121,11 +121,7 @@ header('X-UA-Compatible: IE=edge,chrome=1');
 	?>
 	<script src="js/bbcode.js" type="text/javascript"></script>
     <!-- end Head & Title include -->
-    <?php
-    $plugin = new plugin_manager();
-    $plugin->set_debug(DEBUG);
-    echo $plugin->plugin_sc(4);
-?>  
+    
 </head>
 <body>
 <div class="wrapper">
@@ -291,7 +287,7 @@ header('X-UA-Compatible: IE=edge,chrome=1');
                     <?php include("login.php"); ?>
                     <hr class="grey">
                 </div>
-
+ 
                 <div class="visible-sm">
                     <h3><?php echo $index_language[ 'topics' ]; ?></h3>
                     <?php include("latesttopics.php"); ?>
