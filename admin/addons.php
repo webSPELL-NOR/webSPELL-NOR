@@ -190,7 +190,7 @@ if ($action == "add") {
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <input type="hidden" name="captcha_hash" value="' . $hash . '"><input class="btn btn-success btn-xs" type="button" type="submit" name="save" value="' . $_language->module[ 'add_link' ] . '">
+      <input type="hidden" name="captcha_hash" value="' . $hash . '"><input class="btn btn-success btn-xs" type="submit" name="save" value="' . $_language->module[ 'add_link' ] . '">
     </div>
   </div>
    
@@ -307,7 +307,7 @@ if ($action == "add") {
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <input type="hidden" name="captcha_hash" value="'.$hash.'" />
-      <input class="btn btn-success btn-xs" type="button" type="submit" name="savecat" value="' . $_language->module[ 'add_category' ] . '">
+      <input class="btn btn-success btn-xs" type="submit" name="savecat" value="' . $_language->module[ 'add_category' ] . '">
     </div>
   </div>
 
