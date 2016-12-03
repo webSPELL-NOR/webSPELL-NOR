@@ -165,7 +165,7 @@ if ($action == "add") {
     <tr>
     <td><input type="hidden" name="ruleID" value="' . $ds['ruleID'] .
         '"><input type="hidden" name="captcha_hash" value="' . $hash . '"></td>
-    <td><input class="btn btn-primary btn-xs" type="button" type="submit" name="saveedit" value="' . $_language->module['save_rule'] . '"></td>
+    <td><input class="btn btn-primary btn-xs" type="submit" name="saveedit" value="' . $_language->module['save_rule'] . '"></td>
     </tr>
     </table>
     </form></div></div>';
