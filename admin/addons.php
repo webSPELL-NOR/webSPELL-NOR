@@ -341,7 +341,7 @@ if ($action == "add") {
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <input type="hidden" name="captcha_hash" value="'.$hash.'" />
-      <input class="btn btn-success btn-xs" type="button" type="submit" name="saveeditcat" value="' . $_language->module[ 'edit_category' ] . '">
+      <input class="btn btn-success btn-xs" type="submit" name="saveeditcat" value="' . $_language->module[ 'edit_category' ] . '">
     </div>
   </div>
     </form></div></div>';
@@ -353,9 +353,9 @@ if ($action == "add") {
         <div class="panel-body">';
 
     echo
-        '<a class="btn btn-primary btn-xs" type="button" href="admincenter.php?site=addons&amp;action=addcat" class="input">' .
+        '<a class="btn btn-primary btn-xs" href="admincenter.php?site=addons&amp;action=addcat" class="input">' .
         $_language->module[ 'new_category' ] . '</a>
-        <a class="btn btn-primary btn-xs" type="button" href="admincenter.php?site=addons&amp;action=add" class="input">' .
+        <a class="btn btn-primary btn-xs" href="admincenter.php?site=addons&amp;action=add" class="input">' .
         $_language->module[ 'new_link' ] . '</a><br><br>';
 
     echo '<form method="post" action="admincenter.php?site=addons">
@@ -399,7 +399,7 @@ if ($action == "add") {
             $catactions =
                 '<a href="admincenter.php?site=addons&amp;action=editcat&amp;catID=' . $ds[ 'catID' ] .
                 '" class="input">' . $_language->module[ 'edit' ] . '</a>
-                <input type="button" onclick="MM_confirm(\'' . $_language->module[ 'really_delete_category' ] . '\',
+                <input onclick="MM_confirm(\'' . $_language->module[ 'really_delete_category' ] . '\',
                 \'admincenter.php?site=addons&amp;delcat=true&amp;catID=' . $ds[ 'catID' ] .
                 '&amp;captcha_hash=' . $hash . '\')" value="' . $_language->module[ 'del1ete' ] . '">';
             $name = getinput($ds[ 'name' ]);
@@ -449,12 +449,12 @@ if ($action == "add") {
                     <td class="' . $td . '" align="center"><small><b>' .
                     $_language->module[ 'admin_' . getinput($db[ 'accesslevel' ]) ] . '</b></small></td>
                     <td class="' . $td . '" align="center">
-<a href="admincenter.php?site=addons&amp;action=edit&amp;linkID=' . $db[ 'linkID' ] .'" class="hidden-xs hidden-sm btn btn-warning btn-xs" type="button">' . $_language->module[ 'edit' ] . '</a>
+<a href="admincenter.php?site=addons&amp;action=edit&amp;linkID=' . $db[ 'linkID' ] .'" class="hidden-xs hidden-sm btn btn-warning btn-xs">' . $_language->module[ 'edit' ] . '</a>
 
         <input class="hidden-xs hidden-sm btn btn-danger btn-xs" type="button" onclick="MM_confirm(\'' . $_language->module['really_delete_link'] . '\', \'admincenter.php?site=addons&amp;delete=true&amp;linkID=' . $db[ 'linkID' ] . '&amp;captcha_hash=' . $hash . '\')" value="' . $_language->module['delete'] . '" />
 
-      <a href="admincenter.php?site=addons&amp;action=edit&amp;linkID=' . $db[ 'linkID' ] .'"  class="mobile visible-xs visible-sm" type="button"><i class="fa fa-pencil"></i></a>
-      <a class="mobile visible-xs visible-sm" type="button" onclick="MM_confirm(\'' . $_language->module['really_delete_link'] . '\', \'admincenter.php?site=addons&amp;delete=true&amp;linkID=' . $db[ 'linkID' ] . '&amp;captcha_hash=' . $hash . '\')" /><i class="fa fa-times"></i></a>
+      <a href="admincenter.php?site=addons&amp;action=edit&amp;linkID=' . $db[ 'linkID' ] .'"  class="mobile visible-xs visible-sm"><i class="fa fa-pencil"></i></a>
+      <a class="mobile visible-xs visible-sm" onclick="MM_confirm(\'' . $_language->module['really_delete_link'] . '\', \'admincenter.php?site=addons&amp;delete=true&amp;linkID=' . $db[ 'linkID' ] . '&amp;captcha_hash=' . $hash . '\')" /><i class="fa fa-times"></i></a>
                     </td>
                     <td class="' . $td . '" align="center">' . $linklist . '</td>
                 </tr>';
@@ -491,12 +491,12 @@ if ($action == "add") {
                 <small><b>' . $_language->module[ 'admin_' . getinput($db[ 'accesslevel' ]) ] . '</b></small>
             </td>
             <td bgcolor="#FFFFFF">
-<a href="admincenter.php?site=addons&amp;action=edit&amp;linkID=' . $db[ 'linkID' ] . '" class="hidden-xs hidden-sm btn btn-warning btn-xs" type="button">' . $_language->module[ 'edit' ] . '</a>
+<a href="admincenter.php?site=addons&amp;action=edit&amp;linkID=' . $db[ 'linkID' ] . '" class="hidden-xs hidden-sm btn btn-warning btn-xs">' . $_language->module[ 'edit' ] . '</a>
 
         <input class="hidden-xs hidden-sm btn btn-danger btn-xs" type="button" onclick="MM_confirm(\'' . $_language->module['really_delete'] . '\', \'admincenter.php?site=addons&amp;delete=true&amp;linkID=' . $db[ 'linkID' ] . '&amp;captcha_hash=' . $hash . '\')" value="' . $_language->module['delete'] . '" />
 
-      <a href="admincenter.php?site=addons&amp;action=edit&amp;linkID=' . $db[ 'linkID' ] . '"  class="mobile visible-xs visible-sm" type="button"><i class="fa fa-pencil"></i></a>
-      <a class="mobile visible-xs visible-sm" type="button" onclick="MM_confirm(\'' . $_language->module['really_delete'] . '\', \'admincenter.php?site=addons&amp;delete=true&amp;linkID=' . $db[ 'linkID' ] . '&amp;captcha_hash=' . $hash . '\')" /><i class="fa fa-times"></i></a>
+      <a href="admincenter.php?site=addons&amp;action=edit&amp;linkID=' . $db[ 'linkID' ] . '"  class="mobile visible-xs visible-sm"><i class="fa fa-pencil"></i></a>
+      <a class="mobile visible-xs visible-sm" onclick="MM_confirm(\'' . $_language->module['really_delete'] . '\', \'admincenter.php?site=addons&amp;delete=true&amp;linkID=' . $db[ 'linkID' ] . '&amp;captcha_hash=' . $hash . '\')" /><i class="fa fa-times"></i></a>
 
                      </td>
             <td bgcolor="#FFFFFF">' . $noncatlist . '</td>
