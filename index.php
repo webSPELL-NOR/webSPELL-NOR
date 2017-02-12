@@ -90,7 +90,14 @@ header('X-UA-Compatible: IE=edge,chrome=1');
     <meta name="author" content="webspell-nor.de">
 
     <!-- Head & Title include -->
-    <title><?php echo PAGETITLE; ?></title>
+    <title><?php 
+     $pm = new plugin_manager();
+     if(isset($_GET['site']) AND $pm->plugin_updatetitle($_GET['site'])) {
+      echo $pm->plugin_updatetitle($_GET['site']);
+     } else {  
+      echo PAGETITLE; 
+     }
+     ?></title>
     <base href="<?php echo $rewriteBase; ?>">
     <?php foreach ($components['css'] as $component) {
         echo '<link href="' . $component . '" rel="stylesheet">';
