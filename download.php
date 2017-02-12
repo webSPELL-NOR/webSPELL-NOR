@@ -44,7 +44,7 @@ function download($file, $extern = 0)
         header("Content-Transfer-Encoding: binary");
 
         @readfile($file); */
-		header("Location: downloads/" . $filename . ""); 
+		header("Location: /downloads/" . $filename . ""); 
 
         exit;
     } else {
