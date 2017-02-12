@@ -300,7 +300,12 @@
 	                $update_functions = array();
 	                $update_functions[] = "122_123";
                     $update_functions[] = "clearfolder";
+                } elseif ($_POST['installtype'] == 'update_124') {
+	                $update_functions = array();
+	                $update_functions[] = "123_124";
+                    $update_functions[] = "clearfolder";
                 }
+                
         
                 if (count($errors)) {
                     $fehler = implode('<br>', array_unique($errors));
