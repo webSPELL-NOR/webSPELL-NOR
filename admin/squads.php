@@ -666,7 +666,8 @@ else {
 	}
 	
   echo'<tr>
-      <td colspan="5" align="right"><input type="hidden" name="captcha_hash" value="'.$hash.'" /><input class="btn btn-primary btn-xs" type="button" type="submit" name="sortieren" value="'.$_language->module['to_sort'].'" /></td>
+      <td colspan="5" align="right"><input type="hidden" name="captcha_hash" value="'.$hash.'" />
+      <input class="btn btn-primary btn-xs" type="submit" name="sortieren" value="'.$_language->module['to_sort'].'" /></td>
     </tr>
   </table>
   </form></div></div>';
