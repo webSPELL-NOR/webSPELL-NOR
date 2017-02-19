@@ -114,24 +114,24 @@ if (isset($_POST[ 'saveedit' ])) {
                 safe_query("INSERT INTO " . PREFIX . "user_groups (userID) values ('" . $id . "')");
             }
             safe_query(
-                "UPDATE
-                    " . PREFIX . "user_groups
-                SET
-                    news='$newsadmin',
-                    news_writer='" . $newswriter . "',
-                    polls='$pollsadmin',
-                    feedback='$feedbackadmin',
-                    user='$useradmin',
-                    clanwars='$cwadmin',
-                    forum='$boardadmin',
-                    moderator='$moderator',
-                    page='$pageadmin',
-                    gallery='$gallery',
-                    files='$fileadmin',
-                    cash='$cashadmin'
-                WHERE
-                    userID='" . $id . "'"
-            );
+                    "UPDATE
+                        " . PREFIX . "user_groups
+                    SET
+                        `news` = '" . $newsadmin . "',
+                        `news_writer` = '" . $newswriter . "',
+                        `polls` = '" . $pollsadmin . "',
+                        `feedback` = '" . $feedbackadmin . "',
+                        `user` = '" . $useradmin . "',
+                        `clanwars` = '" . $cwadmin . "',
+                        `forum` = '" . $boardadmin . "',
+                        `moderator` = '" . $moderator . "',
+                        `page` = '" . $pageadmin . "',
+                        `gallery` = '" . $gallery . "',
+                        `files` = '" . $fileadmin . "',
+                        `cash` = '" . $cashadmin . "'
+                    WHERE
+                        userID='" . $id . "'"
+                );
             //remove from mods
             if ($moderator === false) {
                 safe_query("DELETE FROM " . PREFIX . "forum_moderators WHERE userID='" . $id . "'");
