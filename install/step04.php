@@ -92,6 +92,12 @@ if ($_POST['hp_url']) {
 				</div>
 				<div class="radio">
 					<label>
+                        <input type="radio" name="installtype" value="update_124">
+                        <?php echo $_language->module['update_124']; ?>
+					</label>
+				</div>
+				<div class="radio">
+					<label>
                         <input type="radio" name="installtype" value="full" checked="checked" id="full_install">
                         <input type="hidden" name="hp_url" value="<?php echo $_POST['hp_url']; ?>">
                         <?php echo $_language->module['new_install']; ?>

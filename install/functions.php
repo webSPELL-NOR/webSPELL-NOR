@@ -857,7 +857,7 @@ function update_base_12($_database)
   PRIMARY KEY  (`sqmID`)
 ) AUTO_INCREMENT=1
   DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
-
+  
   $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "styles`");
     $transaction->addQuery("CREATE TABLE `" . PREFIX . "styles` (
   `styleID` int(11) NOT NULL AUTO_INCREMENT,
@@ -936,48 +936,49 @@ function update_base_12($_database)
 ) AUTO_INCREMENT=44
    DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
 
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (1, 'forum', 0, 0, 0, 14)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (2, 'news', 0, 0, 0, 28)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (3, 'faq', 0, 0, 0, 12)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (4, 'squads', 0, 0, 0, 40)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (5, 'about', 0, 0, 0, 1)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (6, 'articles', 0, 0, 0, 2)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (7, 'forum_topic', 0, 0, 0, 15)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (8, 'loginoverview', 0, 0, 0, 23)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (9, 'cashbox', 0, 0, 0, 6)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (10, 'buddies', 0, 0, 0, 4)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (11, 'messenger', 0, 0, 0, 26)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (12, 'myprofile', 0, 0, 0, 27)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (13, 'profile', 0, 0, 0, 34)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (14, 'usergallery', 0, 0, 0, 41)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (15, 'awards', 0, 0, 0, 3)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (16, 'calendar', 0, 0, 0, 5)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (17, 'challenge', 0, 0, 0, 7)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (18, 'clanwars', 0, 0, 0, 8)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (19, 'contact', 0, 0, 0, 9)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (20, 'counter_stats', 0, 0, 0, 10)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (21, 'demos', 0, 0, 0, 11)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (22, 'files', 0, 0, 0, 13)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (23, 'gallery', 0, 0, 0, 16)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (24, 'guestbook', 0, 0, 0, 17)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (25, 'history', 0, 0, 0, 18)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (26, 'imprint', 0, 0, 0, 19)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (27, 'joinus', 0, 0, 0, 20)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (28, 'links', 0, 0, 0, 21)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (29, 'linkus', 0, 0, 0, 22)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (30, 'lostpassword', 0, 0, 0, 24)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (31, 'members', 0, 0, 0, 25)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (32, 'newsletter', 0, 0, 0, 30)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (34, 'partners', 0, 0, 0, 31)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (35, 'poll', 0, 0, 0, 32)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (36, 'polls', 0, 0, 0, 33)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (37, 'register', 0, 0, 0, 35)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (38, 'registered_users', 0, 0, 0, 36)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (39, 'search', 0, 0, 0, 37)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (40, 'server', 0, 0, 0, 38)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (41, 'sponsors', 0, 0, 0, 39)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (42, 'whoisonline', 0, 0, 0, 42)");
-$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (43, 'news_comments', 0, 0, 0, 29)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (1, 'forum', 0, 0, 0, 14)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (2, 'news', 0, 0, 0, 28)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (3, 'faq', 0, 0, 0, 12)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (4, 'squads', 0, 0, 0, 40)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (5, 'about', 0, 0, 0, 1)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (6, 'articles', 0, 0, 0, 2)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (7, 'forum_topic', 0, 0, 0, 15)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (8, 'loginoverview', 0, 0, 0, 23)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (9, 'cashbox', 0, 0, 0, 6)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (10, 'buddies', 0, 0, 0, 4)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (11, 'messenger', 0, 0, 0, 26)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (12, 'myprofile', 0, 0, 0, 27)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (13, 'profile', 0, 0, 0, 34)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (14, 'usergallery', 0, 0, 0, 41)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (15, 'awards', 0, 0, 0, 3)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (16, 'calendar', 0, 0, 0, 5)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (17, 'challenge', 0, 0, 0, 7)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (18, 'clanwars', 0, 0, 0, 8)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (19, 'contact', 0, 0, 0, 9)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (20, 'counter_stats', 0, 0, 0, 10)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (21, 'demos', 0, 0, 0, 11)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (22, 'files', 0, 0, 0, 13)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (23, 'gallery', 0, 0, 0, 16)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (24, 'guestbook', 0, 0, 0, 17)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (25, 'history', 0, 0, 0, 18)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (26, 'imprint', 0, 0, 0, 19)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (27, 'joinus', 0, 0, 0, 20)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (28, 'links', 0, 0, 0, 21)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (29, 'linkus', 0, 0, 0, 22)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (30, 'lostpassword', 0, 0, 0, 24)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (31, 'members', 0, 0, 0, 25)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (32, 'newsletter', 0, 0, 0, 30)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (34, 'partners', 0, 0, 0, 31)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (35, 'poll', 0, 0, 0, 32)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (36, 'polls', 0, 0, 0, 33)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (37, 'register', 0, 0, 0, 35)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (38, 'registered_users', 0, 0, 0, 36)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (39, 'search', 0, 0, 0, 37)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (40, 'server', 0, 0, 0, 38)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (41, 'sponsors', 0, 0, 0, 39)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (42, 'whoisonline', 0, 0, 0, 42)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (43, 'news_comments', 0, 0, 0, 29)");
+
 
 
 $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "comments_settings`");
@@ -2970,6 +2971,137 @@ function update_122_123($_database) {
         return array('status' => 'success', 'message' => 'Updated to webSPELL NOR 1.2.3');
     } else {
         return array('status' => 'fail', 'message' => 'Failed to update to webSPELL NOR 1.2.3<br/>' . $transaction->getError());
+    }
+}
+
+function update_123_124($_database) {
+	$transaction = new Transaction($_database);
+	
+	$transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "styles`");
+    $transaction->addQuery("CREATE TABLE `" . PREFIX . "styles` (
+  `styleID` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL default '',
+  `win` varchar(255) NOT NULL default '',
+  `loose` varchar(255) NOT NULL default '',
+  `draw` varchar(255) NOT NULL default '',
+  `nav1` varchar(255) NOT NULL default '',
+  `nav2` varchar(255) NOT NULL default '',
+  `nav3` varchar(255) NOT NULL default '',
+  `nav4` varchar(255) NOT NULL default '',
+  `nav5` varchar(255) NOT NULL default '',
+  `nav6` varchar(255) NOT NULL default '',
+  `body1` varchar(255) NOT NULL default '',
+  `body2` varchar(255) NOT NULL default '',
+  `body3` varchar(255) NOT NULL default '',
+  `body4` varchar(255) NOT NULL default '',
+  `typo1` varchar(255) NOT NULL default '',
+  `typo2` varchar(255) NOT NULL default '',
+  `typo3` varchar(255) NOT NULL default '',
+  `typo4` varchar(255) NOT NULL default '',
+  `typo5` varchar(255) NOT NULL default '',
+  `typo6` varchar(255) NOT NULL default '',
+  `typo7` varchar(255) NOT NULL default '',
+  `typo8` varchar(255) NOT NULL default '',
+  `foot1` varchar(255) NOT NULL default '',
+  `foot2` varchar(255) NOT NULL default '',
+  PRIMARY KEY  (`styleID`)
+) AUTO_INCREMENT=2
+  DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
+
+    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "styles` (`styleID`, `title`, `win`, `loose`, `draw`, `nav1`, `nav2`, `nav3`, `nav4`, `nav5`, `nav6`, `body1`, `body2`, `body3`, `body4`, `typo1`, `typo2`, `typo3`, `typo4`, `typo5`, `typo6`, `typo7`, `typo8`, `foot1`, `foot2`) VALUES (1, 'WebSPELL NOR', '#00cc00', '#dd0000', '#ff6600', '#ffffff', '16px', '#000000', '#5bc0de', '#5bc0de', '3px', 'Helvetica Neue, Helvetica, Arial, sans-serif', '13px', '#ffffff', '#000000', '#6a6565', '#5bc0de', '#999999', '#5bc0de', '13px', '#5bc0de', '1px', '#000000', '#726868', '#ffffff')");
+
+  $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "buttons`");
+    $transaction->addQuery("CREATE TABLE `" . PREFIX . "buttons` (
+  `buttonID` int(11) NOT NULL AUTO_INCREMENT,
+  `button1` varchar(255) NOT NULL default '',
+  `button2` varchar(255) NOT NULL default '',
+  `button3` varchar(255) NOT NULL default '',
+  `button4` varchar(255) NOT NULL default '',
+  `button5` varchar(255) NOT NULL default '',
+  `button6` varchar(255) NOT NULL default '',
+  `button7` varchar(255) NOT NULL default '',
+  `button8` varchar(255) NOT NULL default '',
+  `button9` varchar(255) NOT NULL default '',
+  `button10` varchar(255) NOT NULL default '',
+  `button11` varchar(255) NOT NULL default '',
+  `button12` varchar(255) NOT NULL default '',
+  `button13` varchar(255) NOT NULL default '',
+  `button14` varchar(255) NOT NULL default '',
+  `button15` varchar(255) NOT NULL default '',
+  `button16` varchar(255) NOT NULL default '',
+  `button17` varchar(255) NOT NULL default '',
+  `button18` varchar(255) NOT NULL default '',
+  `button19` varchar(255) NOT NULL default '',
+  `button20` varchar(255) NOT NULL default '',
+  `button21` varchar(255) NOT NULL default '',
+  `button22` varchar(255) NOT NULL default '',
+  `button23` varchar(255) NOT NULL default '',
+  `button24` varchar(255) NOT NULL default '',
+  PRIMARY KEY  (`buttonID`)
+) AUTO_INCREMENT=2
+  DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
+
+    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "buttons` (`buttonID`, `button1`, `button2`, `button3`, `button4`, `button5`, `button6`, `button7`, `button8`, `button9`, `button10`, `button11`, `button12`, `button13`, `button14`, `button15`, `button16`, `button17`, `button18`, `button19`, `button20`, `button21`, `button22`, `button23`, `button24`) VALUES (1, '#ffffff', '#e6e6e6', '#333333', '#0088cc', '#0044cc', '#ffffff', '#5cb85c', '#449d44', '#ffffff', '#5bc0de', '#2f96b4', '#ffffff', '#ef7814', '#f89406', '#ffffff', '#da0c0c', '#950d0d', '#ffffff', '#adadad', '#2e6da4', '#398439', '#269abc', '#d58512', '#ac2925')");
+
+    $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "moduls`");
+    $transaction->addQuery("CREATE TABLE `" . PREFIX . "moduls` (
+  `modulID` int(11) NOT NULL AUTO_INCREMENT,
+  `module` varchar(255) NOT NULL default '',
+  `le_activated` int(11) NOT NULL default '0',
+  `re_activated` int(11) NOT NULL default '0',
+  `activated` int(11) NOT NULL default '0',
+  `sort` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`modulID`)
+) AUTO_INCREMENT=44
+   DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
+
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (1, 'forum', 0, 0, 0, 14)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (2, 'news', 0, 0, 0, 28)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (3, 'faq', 0, 0, 0, 12)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (4, 'squads', 0, 0, 0, 40)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (5, 'about', 0, 0, 0, 1)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (6, 'articles', 0, 0, 0, 2)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (7, 'forum_topic', 0, 0, 0, 15)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (8, 'loginoverview', 0, 0, 0, 23)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (9, 'cashbox', 0, 0, 0, 6)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (10, 'buddies', 0, 0, 0, 4)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (11, 'messenger', 0, 0, 0, 26)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (12, 'myprofile', 0, 0, 0, 27)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (13, 'profile', 0, 0, 0, 34)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (14, 'usergallery', 0, 0, 0, 41)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (15, 'awards', 0, 0, 0, 3)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (16, 'calendar', 0, 0, 0, 5)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (17, 'challenge', 0, 0, 0, 7)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (18, 'clanwars', 0, 0, 0, 8)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (19, 'contact', 0, 0, 0, 9)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (20, 'counter_stats', 0, 0, 0, 10)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (21, 'demos', 0, 0, 0, 11)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (22, 'files', 0, 0, 0, 13)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (23, 'gallery', 0, 0, 0, 16)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (24, 'guestbook', 0, 0, 0, 17)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (25, 'history', 0, 0, 0, 18)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (26, 'imprint', 0, 0, 0, 19)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (27, 'joinus', 0, 0, 0, 20)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (28, 'links', 0, 0, 0, 21)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (29, 'linkus', 0, 0, 0, 22)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (30, 'lostpassword', 0, 0, 0, 24)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (31, 'members', 0, 0, 0, 25)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (32, 'newsletter', 0, 0, 0, 30)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (34, 'partners', 0, 0, 0, 31)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (35, 'poll', 0, 0, 0, 32)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (36, 'polls', 0, 0, 0, 33)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (37, 'register', 0, 0, 0, 35)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (38, 'registered_users', 0, 0, 0, 36)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (39, 'search', 0, 0, 0, 37)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (40, 'server', 0, 0, 0, 38)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (41, 'sponsors', 0, 0, 0, 39)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (42, 'whoisonline', 0, 0, 0, 42)");
+	$transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "moduls` (`modulID`, `module`, `le_activated`, `re_activated`, `activated`, `sort`) VALUES (43, 'news_comments', 0, 0, 0, 29)");
+	
+	if ($transaction->successful()) {
+        return array('status' => 'success', 'message' => 'Updated to webSPELL NOR 1.2.4');
+    } else {
+        return array('status' => 'fail', 'message' => 'Failed to update to webSPELL NOR 1.2.4<br/>' . $transaction->getError());
     }
 }
 
