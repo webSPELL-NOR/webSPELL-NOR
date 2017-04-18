@@ -24,7 +24,7 @@
 #                                                                        #
 ##########################################################################
 */
-$n=0;
+$n=1;
 $_language->readModule('files');
 function get_all_sub_cats($parent, $start = 0)
 {
@@ -1003,7 +1003,7 @@ if ($action == "save") {
             LIMIT 0,5"
         );
         $top5 = '<strong>' . $_language->module[ 'top_5_downloads' ] . '</strong><ul class="list-group">';
-		if(!isset($n)) { $n=0; }
+		if(!isset($n)) { $n=1; }
         while ($file = mysqli_fetch_array($top5qry)) {
             $filename = $file[ 'filename' ];
             if (mb_strlen($filename) > 40) {
