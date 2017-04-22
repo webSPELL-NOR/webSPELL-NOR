@@ -41,53 +41,31 @@ echo '<!DOCTYPE html>
     <title>Smilies</title>';
     $componentsCss = generateComponents($components['css'], 'css');
     echo $componentsCss;
-    echo '<link href="_stylesheet.css" rel="stylesheet">
+    
+    echo '
+    <link href="_stylesheet.css" rel="stylesheet">
     <script src="js/bbcode.js"></script>
 </head>
 
 <body>
 <div class="container">
-<div class="page-header">
-    <h1>Smilies</h1>
-</div>
-<table class="table table-striped table-bordered text-center">
-    <thead>
-        <tr>
-            <th>Smiley:</th>
-            <th>Tag:</th>
-        </tr>
-    </thead>
-    <tbody>';
-
-
-$filepath = "./images/smileys/";
-unset($files);
-if ($dh = opendir($filepath)) {
-    while ($file = readdir($dh)) {
-        if (preg_match("/\.gif/si", $file)) {
-            $files[ ] = $file;
-        }
-    }
-    closedir($dh);
-}
-
-if (is_array($files)) {
-    sort($files);
-    foreach ($files as $file) {
-        $smiley = explode(".", $file);
-
-        echo '<tr>
-            <td><a href="javascript:AddCodeFromWindow(\':' . $smiley[ 0 ] . ':\')">
-                    <img src="images/smileys/' . $file . '" alt="">
-                </a>
-            </td>
-            <td><a href="javascript:AddCodeFromWindow(\':' . $smiley[ 0 ] . ':\')">:' . $smiley[ 0 ] . ':</a></td>
-        </tr>';
-    }
-}
-
-echo '</tbody>
-</table>
+	<div class="page-header">
+	    <h1>Smilies</h1>
+	</div>
+	<div class="row">
+	
+		<div class="col-md-12 col-xs-12 col-sm-12">
+			<ul class="list-inline">';
+				$emojiQuery = safe_query("SELECT * FROM ".PREFIX."smileys");
+				while($sm = mysqli_fetch_array($emojiQuery)) {
+					echo '<li>
+						<a href="javascript:AddCodeFromWindow(\'' . $sm['pattern'] . ' \')"><i class="em em-'.$sm['name'].'"></i></a>
+					</li>';
+				}
+	echo'		</ul>
+		</div>
+	
+	</div>
 </div>
 </body>
 </html>';

@@ -290,7 +290,8 @@ if (is_dir("development")) {
             'components/bootstrap/dist/css/bootstrap.css',
             'components/font-awesome.min.css',
             'components/scrolltotop/css/scrolltotop.css',
-			'components/profile.css'
+			'components/profile.css',
+			'components/emoji.css'
         ),
         'js' => array(
             'components/jquery/dist/jquery.js',
@@ -305,7 +306,8 @@ if (is_dir("development")) {
             'components/bootstrap.min.css',
             'components/font-awesome.min.css',
             'components/scrolltotop/css/scrolltotop.css',
-			'components/profile.css'
+			'components/profile.css',
+			'components/emoji.css'
         ),
         'js' => array(
             'components/jquery.min.js',

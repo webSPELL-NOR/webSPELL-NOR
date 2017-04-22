@@ -45,29 +45,15 @@ function replace_smileys($text, $calledfrom = 'root')
         $prefix2 = '';
     }
 
-    $filepath = $prefix . "./images/smileys/";
-    $files = array();
-    if ($dh = opendir($filepath)) {
-        while ($file = readdir($dh)) {
-            if (preg_match("/\.gif/si", $file)) {
-                $files[] = $file;
-            }
-        }
-    }
 
     $replacements_1 = array();
     $replacements_2 = array();
 
-    foreach ($files as $file) {
-        $smiley = explode(".", $file);
-        $replacements_1[] = ':' . quotemeta($smiley[0]) . ':';
-        $replacements_2[] = '[SMILE=smile]' . $prefix2 . 'images/smileys/' . $file . '[/SMILE]';
-    }
 
     $ergebnis = safe_query("SELECT * FROM `" . PREFIX . "smileys`");
     while ($ds = mysqli_fetch_array($ergebnis)) {
         $replacements_1[] = $ds['pattern'];
-        $replacements_2[] = '[SMILE=' . $ds['alt'] . ']' . $prefix2 . 'images/smileys/' . $ds['name'] . '[/SMILE]';
+        $replacements_2[] = '[SMILE=' . $ds['alt'] . ']  '. $ds['name']. ' [/SMILE]';
     }
 
     $text = strtr($text, array_combine($replacements_1, $replacements_2));
@@ -635,7 +621,7 @@ function cut_urls($link)
 
 function removeIllegalCharacerts($string)
 {
-    return preg_replace("/[^a-z0-9#]/si", "", $string);
+    return preg_replace("/[^a-z0-9_#]/si", "", $string);
 }
 
 function removeIllegalCharacertsWithoutUrls($string)
@@ -676,9 +662,9 @@ function align_callback($match)
 function smiley_callback($match)
 {
     return
-        '<img ' .
-            'src="' . removeIllegalCharacertsWithoutUrls($match[2]) . '" ' .
-            'alt="' . removeIllegalCharacerts($match[1]) . '" />';
+        '<i ' .
+            'class="em em-' . removeIllegalCharacerts($match[2]) . '" ' .
+            'alt="' . removeIllegalCharacerts($match[1]) . '" ></i>';
 }
 
 function replacement($content, $bbcode = true)
