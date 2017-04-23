@@ -323,7 +323,7 @@ if ($action == "new") {
 	
 
  foreach ($components['css'] as $component) {
-        $css = '<link href="' . $component . '" rel="stylesheet">';
+        $css.= '<link href="' . $component . '" rel="stylesheet">';
 }
     echo '<!DOCTYPE html>
 <html>
@@ -336,8 +336,13 @@ if ($action == "new") {
 	'.$css.'
 
     <!-- Head & Title include -->
-    <title>' . PAGETITLE . '; ?></title>
+    <title>' . PAGETITLE . '</title>
     <link href="_stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="css/page.css" rel="stylesheet">
+    
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+    <link href="css/styles.css.php" rel="styleSheet" type="text/css">
+    <link href="css/button.css.php" rel="styleSheet" type="text/css">
     <script src="js/bbcode.js"></script>
     <!-- end Head & Title include -->
 </head>
