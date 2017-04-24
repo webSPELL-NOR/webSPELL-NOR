@@ -25,7 +25,7 @@
 ##########################################################################
 */
 if (isset($site)) {
-    $_language->readModule('clanwars');
+	$_language->readModule('clanwars');
 }
 
 $title_clanwars_details = $GLOBALS["_template"]->replaceTemplate("title_clanwars_details", array());
@@ -33,19 +33,20 @@ echo $title_clanwars_details;
 
 echo '<p><a href="index.php?site=clanwars" class="btn btn-primary">' . $_language->module[ 'show_clanwars' ] . '</a>
 <a href="index.php?site=clanwars&amp;action=stats" class="btn btn-primary">' . $_language->module[ 'stat' ] .
-    '</a></p>';
+	'</a></p>';
 
 $cwID = (int)$_GET[ 'cwID' ];
 $ds = mysqli_fetch_array(safe_query("SELECT * FROM `" . PREFIX . "clanwars` WHERE `cwID` = '" . (int)$cwID."'"));
+$extension = explode('.',$ds['game']);
 $date = getformatdate($ds[ 'date' ]);
 $opponent = '<a href="' . getinput($ds[ 'opphp' ]) . '" target="_blank"><b>' . getinput($ds[ 'opptag' ]) . ' / ' .
-            ($ds[ 'opponent' ]) . '</b></a>';
+	($ds[ 'opponent' ]) . '</b></a>';
 $league = '<a href="' . getinput($ds[ 'leaguehp' ]) . '" target="_blank">' . getinput($ds[ 'league' ]) . '</a>';
-if (file_exists('images/games/' . $ds[ 'game' ] . '.gif')) {
-    $game_ico = 'images/games/' . $ds[ 'game' ] . '.gif';
-    $game = '<img src="' . $game_ico . '" alt="">';
+if (is_gamefilexist($filepath, $ds[ 'tag' ])) {
+	$game_ico = 'images/games/' . is_gamefilexist($filepath, $ds[ 'tag' ]);
+	$game = '<img src="' . $game_ico . '" alt="">';
 } else {
-    $game = $ds[ 'game' ];
+	$game = $ds[ 'game' ];
 }
 $maps = "";
 $hometeam = "";
@@ -60,34 +61,34 @@ $oppscr = array_sum(unserialize($ds[ 'oppscore' ]));
 $theMaps = unserialize($ds[ 'maps' ]);
 
 if (is_array($theMaps)) {
-    $n = 1;
-    foreach ($theMaps as $map) {
-        if ($n == 1) {
-            $maps .= $map;
-        } else {
-            if ($map == '') {
-                $maps = $_language->module[ 'no_maps' ];
-            } else {
-                $maps .= ', ' . $map;
-            }
-        }
-        $n++;
-    }
+	$n = 1;
+	foreach ($theMaps as $map) {
+		if ($n == 1) {
+			$maps .= $map;
+		} else {
+			if ($map == '') {
+				$maps = $_language->module[ 'no_maps' ];
+			} else {
+				$maps .= ', ' . $map;
+			}
+		}
+		$n++;
+	}
 }
 
 if ($homescr > $oppscr) {
-    $results_1 = '<font color="' . $wincolor . '">' . $homescr . '</font>';
-    $results_2 = '<font color="' . $wincolor . '">' . $oppscr . '</font>';
+	$results_1 = '<font color="' . $wincolor . '">' . $homescr . '</font>';
+	$results_2 = '<font color="' . $wincolor . '">' . $oppscr . '</font>';
 } elseif ($homescr < $oppscr) {
-    $results_1 = '<font color="' . $loosecolor . '">' . $homescr . '</font>';
-    $results_2 = '<font color="' . $loosecolor . '">' . $oppscr . '</font>';
+	$results_1 = '<font color="' . $loosecolor . '">' . $homescr . '</font>';
+	$results_2 = '<font color="' . $loosecolor . '">' . $oppscr . '</font>';
 } else {
-    $results_1 = '<font color="' . $drawcolor . '">' . $homescr . '</font>';
-    $results_2 = '<font color="' . $drawcolor . '">' . $oppscr . '</font>';
+	$results_1 = '<font color="' . $drawcolor . '">' . $homescr . '</font>';
+	$results_2 = '<font color="' . $drawcolor . '">' . $oppscr . '</font>';
 }
 
 if (isclanwaradmin($userID)) {
-    $adminaction = '<input type="button" onclick="window.open(
+	$adminaction = '<input type="button" onclick="window.open(
             \'upload.php?cwID=' . $cwID . '\',
             \'Clanwars\',
             \'toolbar=no,status=no,scrollbars=yes,width=800,height=600\'
@@ -102,17 +103,17 @@ if (isclanwaradmin($userID)) {
     \'clanwars.php?action=delete&amp;cwID=' . $ds[ 'cwID' ] . '\'
     )" value="' . $_language->module[ 'delete' ] . '" class="btn btn-danger">';
 } else {
-    $adminaction = '';
+	$adminaction = '';
 }
 
 $report = cleartext($ds[ 'report' ]);
 $report = toggle($report, $ds[ 'cwID' ]);
 if ($report == "") {
-    $report = "n/a";
+	$report = "n/a";
 }
 
 $squad = '<a href="index.php?site=clanwars&amp;action=showonly&amp;only=squad&amp;id=' . $ds[ 'squad' ] . '"><b>' .
-getsquadname($ds[ 'squad' ]) . '</b></a>';
+	getsquadname($ds[ 'squad' ]) . '</b></a>';
 
 $opptag = getinput($ds[ 'opptag' ]);
 $oppteam = getinput($ds[ 'oppteam' ]);
@@ -120,43 +121,43 @@ $server = getinput($ds[ 'server' ]);
 $hltv = getinput($ds[ 'hltv' ]);
 
 if (!empty($ds[ 'hometeam' ])) {
-    $array = unserialize($ds[ 'hometeam' ]);
-    $n = 1;
-    foreach ($array as $id) {
-        if (!empty($id)) {
-            if ($n > 1) {
-                $hometeam .= ', <a href="index.php?site=profile&amp;id=' . $id . '">' . getnickname($id) . '</a>';
-            } else {
-                $hometeam .= '<a href="index.php?site=profile&amp;id=' . $id . '">' . getnickname($id) . '</a>';
-            }
-            $n++;
-        }
-    }
+	$array = unserialize($ds[ 'hometeam' ]);
+	$n = 1;
+	foreach ($array as $id) {
+		if (!empty($id)) {
+			if ($n > 1) {
+				$hometeam .= ', <a href="index.php?site=profile&amp;id=' . $id . '">' . getnickname($id) . '</a>';
+			} else {
+				$hometeam .= '<a href="index.php?site=profile&amp;id=' . $id . '">' . getnickname($id) . '</a>';
+			}
+			$n++;
+		}
+	}
 }
 $screenshots = '';
 if (!empty($ds[ 'screens' ])) {
-    $screens = explode("|", $ds[ 'screens' ]);
+	$screens = explode("|", $ds[ 'screens' ]);
 }
 if (is_array($screens)) {
-    $n = 1;
-    foreach ($screens as $screen) {
-        if (!empty($screen)) {
-            $screenshots .= '<a href="images/clanwar-screens/' . $screen .
-            '" target="_blank"><img src="images/clanwar-screens/' . $screen .
-            '" width="150" height="100" style="padding-top:3px; padding-right:3px;" alt=""></a>';
-            if ($nbr == 2) {
-                $nbr = 1;
-                $screenshots .= '<br>';
-            } else {
-                $nbr = 2;
-            }
-            $n++;
-        }
-    }
+	$n = 1;
+	foreach ($screens as $screen) {
+		if (!empty($screen)) {
+			$screenshots .= '<a href="images/clanwar-screens/' . $screen .
+				'" target="_blank"><img src="images/clanwar-screens/' . $screen .
+				'" width="150" height="100" style="padding-top:3px; padding-right:3px;" alt=""></a>';
+			if ($nbr == 2) {
+				$nbr = 1;
+				$screenshots .= '<br>';
+			} else {
+				$nbr = 2;
+			}
+			$n++;
+		}
+	}
 }
 
 if (!(mb_strlen(trim($screenshots)))) {
-    $screenshots = $_language->module[ 'no_screenshots' ];
+	$screenshots = $_language->module[ 'no_screenshots' ];
 }
 
 #$bg1 = BG_1;
@@ -167,10 +168,10 @@ if (!(mb_strlen(trim($screenshots)))) {
 $linkpage = cleartext($ds[ 'linkpage' ]);
 $linkpage = str_replace('http://', '', $ds[ 'linkpage' ]);
 if ($linkpage == "") {
-    $linkpage = "#";
+	$linkpage = "#";
 }
 
-    // -- v1.0, extended results -- //
+// -- v1.0, extended results -- //
 
 $scoreHome = unserialize($ds[ 'homescore' ]);
 $scoreOpp = unserialize($ds[ 'oppscore' ]);
@@ -178,52 +179,52 @@ $homescr = array_sum($scoreHome);
 $oppscr = array_sum($scoreOpp);
 
 if ($homescr > $oppscr) {
-    $result_map = '[color=' . $wincolor . '][b]' . $homescr . ':' . $oppscr . '[/b][/color]';
-    $result_map2 = 'won';
+	$result_map = '[color=' . $wincolor . '][b]' . $homescr . ':' . $oppscr . '[/b][/color]';
+	$result_map2 = 'won';
 } elseif ($homescr < $oppscr) {
-    $result_map = '[color=' . $loosecolor . '][b]' . $homescr . ':' . $oppscr . '[/b][/color]';
-    $result_map2 = 'lost';
+	$result_map = '[color=' . $loosecolor . '][b]' . $homescr . ':' . $oppscr . '[/b][/color]';
+	$result_map2 = 'lost';
 } else {
-    $result_map = '[color=' . $drawcolor . '][b]' . $homescr . ':' . $oppscr . '[/b][/color]';
-    $result_map2 = 'draw';
+	$result_map = '[color=' . $drawcolor . '][b]' . $homescr . ':' . $oppscr . '[/b][/color]';
+	$result_map2 = 'draw';
 }
 
 if (is_array($theMaps)) {
-    $d = 0;
-    foreach ($theMaps as $map) {
-        $score = '';
-        #if (($d + 1) % 2) {
-        #    $bgone = BG_1;
-        #    $bgtwo = BG_2;
-        #} else {
-        #    $bgone = BG_3;
-        #    $bgtwo = BG_4;
-        #}
-        if ($scoreHome[ $d ] > $scoreOpp[ $d ]) {
-            $score_1 = '<font color="' . $wincolor . '"><strong>' . $scoreHome[ $d ] . '</strong></font>';
-            $score_2 = '<font color="' . $wincolor . '"><strong>' . $scoreOpp[ $d ] . '</strong></font>';
-        } elseif ($scoreHome[ $d ] < $scoreOpp[ $d ]) {
-            $score_1 = '<font color="' . $loosecolor . '"><strong>' . $scoreHome[ $d ] . '</strong></font>';
-            $score_2 = '<font color="' . $loosecolor . '"><strong>' . $scoreOpp[ $d ] . '</strong></font>';
-        } else {
-            $score_1 = '<font color="' . $drawcolor . '"><strong>' . $scoreHome[ $d ] . '</strong></font>';
-            $score_2 = '<font color="' . $drawcolor . '"><strong>' . $scoreOpp[ $d ] . '</strong></font>';
-        }
+	$d = 0;
+	foreach ($theMaps as $map) {
+		$score = '';
+		#if (($d + 1) % 2) {
+		#    $bgone = BG_1;
+		#    $bgtwo = BG_2;
+		#} else {
+		#    $bgone = BG_3;
+		#    $bgtwo = BG_4;
+		#}
+		if ($scoreHome[ $d ] > $scoreOpp[ $d ]) {
+			$score_1 = '<font color="' . $wincolor . '"><strong>' . $scoreHome[ $d ] . '</strong></font>';
+			$score_2 = '<font color="' . $wincolor . '"><strong>' . $scoreOpp[ $d ] . '</strong></font>';
+		} elseif ($scoreHome[ $d ] < $scoreOpp[ $d ]) {
+			$score_1 = '<font color="' . $loosecolor . '"><strong>' . $scoreHome[ $d ] . '</strong></font>';
+			$score_2 = '<font color="' . $loosecolor . '"><strong>' . $scoreOpp[ $d ] . '</strong></font>';
+		} else {
+			$score_1 = '<font color="' . $drawcolor . '"><strong>' . $scoreHome[ $d ] . '</strong></font>';
+			$score_2 = '<font color="' . $drawcolor . '"><strong>' . $scoreOpp[ $d ] . '</strong></font>';
+		}
 
-        $data_array = array();
-        $data_array['$map'] = $map;
-        $data_array['$score_1'] = $score_1;
-        $data_array['$score_2'] = $score_2;
-        $clanwars_details_results = $GLOBALS["_template"]->replaceTemplate("clanwars_details_results", $data_array);
-        $extendedresults .= $clanwars_details_results;
-        unset($score);
-        $d++;
-    }
+		$data_array = array();
+		$data_array['$map'] = $map;
+		$data_array['$score_1'] = $score_1;
+		$data_array['$score_2'] = $score_2;
+		$clanwars_details_results = $GLOBALS["_template"]->replaceTemplate("clanwars_details_results", $data_array);
+		$extendedresults .= $clanwars_details_results;
+		unset($score);
+		$d++;
+	}
 } else {
-    $extendedresults = '';
+	$extendedresults = '';
 }
 
-    // -- clanwar output -- //
+// -- clanwar output -- //
 
 $data_array = array();
 $data_array['$report'] = $report;

@@ -66,7 +66,7 @@ if ($action == "add") {
   <div class="form-group">
     <label class="col-sm-2 control-label">' . $_language->module['game_tag'] . ':</label>
     <div class="col-sm-8">
-      <input class="form-control" type="text" name="tag" size="5" maxlength="3" />
+      <input class="form-control" type="text" name="tag" size="7" maxlength="10" />
     </div>
   </div>
   <div class="form-group">
@@ -81,7 +81,7 @@ if ($action == "add") {
 
 } elseif ($action == "edit") {
     $ds = mysqli_fetch_array(safe_query("SELECT * FROM " . PREFIX . "games WHERE gameID='" . $_GET[ "gameID" ] . "'"));
-    $pic = '<img src="../images/games/' . $ds[ 'tag' ] . '.gif" alt="' . $ds[ 'name' ] . '">';
+    $pic = '<img src="../images/games/'.is_gamefilexist($filepath, $ds[ 'tag' ]).'" alt="' . $ds[ 'name' ] . '">';
 
     $CAPCLASS = new \webspell\Captcha;
     $CAPCLASS->createTransaction();
@@ -117,7 +117,7 @@ if ($action == "add") {
   <div class="form-group">
     <label class="col-sm-2 control-label">' . $_language->module['game_tag'] . ':</label>
     <div class="col-sm-8">
-      <input class="form-control" type="text" name="tag" size="5" maxlength="3" value="' . getinput($ds['tag']) . '" />
+      <input class="form-control" type="text" name="tag" size="7" maxlength="10" value="' . getinput($ds['tag']) . '" />
     </div>
   </div>
   <div class="form-group">
@@ -145,7 +145,7 @@ if ($action == "add") {
             $upload = new \webspell\HttpUpload('icon');
             if ($upload->hasFile()) {
                 if ($upload->hasError() === false) {
-                    $mime_types = array('image/gif');
+                    $mime_types = array('image/gif','image/jpg','image/png');
 
                     if ($upload->supportedMimeType($mime_types)) {
                         $imageInformation = getimagesize($upload->getTempFile());
@@ -161,7 +161,7 @@ if ($action == "add") {
                                 )"
                             );
 
-                            $file = $tag . ".gif";
+                            $file = $tag . '.'.$upload->getExtension();
 
                             if ($upload->saveAs($filepath . $file, true)) {
                                 @chmod($filepath . $file, $new_chmod);
@@ -212,13 +212,13 @@ if ($action == "add") {
             $upload = new \webspell\HttpUpload('icon');
             if ($upload->hasFile()) {
                 if ($upload->hasError() === false) {
-                    $mime_types = array('image/gif');
+                    $mime_types = array('image/gif','image/jpg','image/png');
 
                     if ($upload->supportedMimeType($mime_types)) {
                         $imageInformation = getimagesize($upload->getTempFile());
 
                         if (is_array($imageInformation)) {
-                            $file = $tag . ".gif";
+                            $file = $tag . '.'. $upload->getExtension();
 
                             if ($upload->saveAs($filepath . $file, true)) {
                                 @chmod($filepath . $file, $new_chmod);
@@ -252,9 +252,10 @@ if ($action == "add") {
                 "SELECT tag FROM " . PREFIX . "games WHERE gameID='" . $_GET[ "gameID" ] . "'"
             )
         );
+        $extension = explode('.',$ds['tag']);
         safe_query("DELETE FROM " . PREFIX . "games WHERE gameID='" . $_GET[ "gameID" ] . "'");
-        if (file_exists($filepath.$ds['tag'].".gif")) {
-            unlink($filepath.$ds['tag'].".gif");
+        if (is_gamefilexist($filepath, $ds[ 'tag' ])) {
+            unlink(is_gamefilexist($filepath, $ds[ 'tag' ]));
         }
         redirect("admincenter.php?site=games", "", 0);
     } else {
@@ -273,7 +274,6 @@ if ($action == "add") {
   
   echo'<a href="admincenter.php?site=games&amp;action=add" class="btn btn-primary btn-xs" type="button">' . $_language->module[ 'new_game' ] . '</a><br /><br />';
   
-  #echo'<form method="post" action="admincenter.php?site=games">';
   $alle=safe_query("SELECT gameID FROM ".PREFIX."games");
   $gesamt = mysqli_num_rows($alle);
   $pages=1;
@@ -313,7 +313,12 @@ if ($action == "add") {
     $hash = $CAPCLASS->getHash();
 
   while($ds=mysqli_fetch_array($ergebnis)) {
-            $pic = '<img src="../images/games/' . $ds[ 'tag' ] . '.gif" alt="">';
+	  if(is_gamefilexist($filepath,$ds[ 'tag' ])) {
+		 $pic = '<img src="../images/games/' . is_gamefilexist($filepath,$ds[ 'tag' ]).'" alt="">';  
+	  }
+	  else {
+		  $pic = $ds[ 'tag' ];
+	  }
       			
       echo'<tr>
         <td>' . $pic . '</td>
@@ -332,7 +337,6 @@ if ($action == "add") {
     echo'</table>';
   
 if($pages>1) echo $page_link;
-  #echo'</form>';
 }
 echo '</div></div>';
 ?>
