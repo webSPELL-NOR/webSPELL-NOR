@@ -2601,8 +2601,8 @@ function update_40100_40101($_database)
 
     $q = mysqli_query($_database, "SELECT boardID FROM `" . PREFIX . "forum_boards`");
     while ($ds = mysqli_fetch_array($q)) {
-        $topics = mysqli_num_rows(mysqli_query($_database, "SELECT topicID FROM `" . PREFIX . "forum_topics` WHERE boardID='" . $ds['boardID'] . "' AND moveID='0')"));
-        $posts = mysqli_num_rows(mysqli_query($_database, "SELECT postID FROM `" . PREFIX . "forum_posts` WHERE boardID='" . $ds['boardID'] . "')"));
+        $topics = mysqli_num_rows(mysqli_query($_database, "SELECT topicID FROM `" . PREFIX . "forum_topics` WHERE boardID='" . $ds['boardID'] . "' AND moveID='0'"));
+        $posts = mysqli_num_rows(mysqli_query($_database, "SELECT postID FROM `" . PREFIX . "forum_posts` WHERE boardID='" . $ds['boardID'] . "'"));
         if (($posts - $topics) < 0) $posts = 0;
         else $posts = $posts - $topics;
         $transaction->addQuery("UPDATE `" . PREFIX . "forum_boards` SET topics='" . $topics . "' , posts='" . $posts . "' WHERE boardID='" . $ds['boardID'] . "'");
