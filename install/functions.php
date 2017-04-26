@@ -3192,7 +3192,7 @@ function update_40101_420_6($_database)
     $transaction->addQuery("ALTER TABLE `" . PREFIX . "settings` ADD `autoresize` int(1) NOT NULL default '1' AFTER `captcha_linenoise`");
 
     // add contacts for mail formular
-    $getadminmail = mysqli_fetch_array(mysqli_query($_database, "SELECT adminemail FROM `" . PREFIX . "settings`)"));
+    $getadminmail = mysqli_fetch_array(mysqli_query($_database, "SELECT adminemail FROM `" . PREFIX . "settings`"));
     $adminmail = $getadminmail['adminemail'];
 
     $transaction->addQuery("CREATE TABLE IF NOT EXISTS `" . PREFIX . "contact` (
@@ -3247,29 +3247,6 @@ function update_40101_420_6($_database)
     $transaction->addQuery("UPDATE `" . PREFIX . "user` SET `mousepad` = '' WHERE `mousepad` = 'n/a'");
     $transaction->addQuery("UPDATE `" . PREFIX . "user` SET `verbindung` = '' WHERE `verbindung` = 'n/a'");
 
-    // Smilie update
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `pattern` = '=)' WHERE `pattern` = ':))'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `pattern` = ':p' WHERE `pattern` = ':P'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `pattern` = ';p' WHERE `pattern` = ';P'");
-
-    $transaction->addQuery("INSERT INTO `" . PREFIX . "smileys` VALUES ('', 'crazy.gif', 'crazy', '^^')");
-
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'amused' WHERE `pattern` = ':D'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'confused' WHERE `pattern` = '?('");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'sad' WHERE `pattern` = ';('");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'pleased' WHERE `pattern` = ':]'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'happy' WHERE `pattern` = '=)'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'smiling' WHERE `pattern` = ':)'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'wink' WHERE `pattern` = ';)'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'unhappy' WHERE `pattern` = ':('");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'tongue' WHERE `pattern` = ':p'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'funny' WHERE `pattern` = ';p'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'tired' WHERE `pattern` = ':O'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'cool' WHERE `pattern` = '8)'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'shocked' WHERE `pattern` = '8o'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'devilish' WHERE `pattern` = ':evil:'");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'angry' WHERE `pattern` = 'X('");
-    $transaction->addQuery("UPDATE `" . PREFIX . "smileys` SET `alt` = 'crazy' WHERE `pattern` = '^^'");
     if ($transaction->successful()) {
         return array('status' => 'success', 'message' => 'Updated to webSPELL 4.2 Part 6');
     } else {
