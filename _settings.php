@@ -28,6 +28,7 @@
 // -- SYSTEM ERROR DISPLAY -- //
 
 include('_error.php');
+ini_set('display_errors',1);
 
 // -- PHP FUNCTION CHECK -- //
 
@@ -303,15 +304,15 @@ if (is_dir("development")) {
 } else {
     $components = array(
         'css' => array(
-            'components/bootstrap.min.css',
-            'components/font-awesome.min.css',
+            'components/bootstrap/bootstrap.min.css',
+            'components/font-awesome/font-awesome.min.css',
             'components/scrolltotop/css/scrolltotop.css',
-			'components/profile.css',
-			'components/emoji.css'
+			'components/profile/profile.css',
+			'components/emoji/emoji.css'
         ),
         'js' => array(
-            'components/jquery.min.js',
-            'components/bootstrap.min.js',
+            'components/jquery/jquery.min.js',
+            'components/bootstrap/bootstrap.min.js',
             'components/webshim/polyfiller.js',
             'components/scrolltotop/js/scrolltotop.js'
         )
