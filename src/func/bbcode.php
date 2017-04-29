@@ -379,7 +379,7 @@ function imgreplace($content)
 						$content = preg_replace(
 							'#\[img\]' . preg_quote($teil[2], "#") . '\[/img\]#si',
 							'<div style="width: 100%;"><img ' .
-							'class="img-responsive"'.
+							'class="img-responsive" '.
 							'src="' . fixJavaEvents($teil[2]) . '" ' .
 							'alt="' . $teil[2] . '" ' .
 							'/></div>',
@@ -399,7 +399,7 @@ function imgreplace($content)
                     '<img ' .
                     'src="' . fixJavaEvents($teil[2]) . '" ' .
                     'id="ws_image_' . $n . '" ' .
-                    'class="img-responsive"'.
+                    'class="img-responsive" '.
                     'onload="checkSize(\'' . $n . '\', ' . $picsize_l . ', ' . $picsize_h . ')" ' .
                     'alt="' . fixJavaEvents($teil[2]) . '" ' .
                     'style="max-width: ' . ($picsize_l + 1) . 'px; max-height: ' . ($picsize_h + 1) . 'px;" ' .
@@ -641,17 +641,17 @@ function emailreplace_callback_2($match)
 
 function font_size_callback($match)
 {
-    return '<font size="' . removeIllegalCharacerts($match[1]) . '">' . $match[2] . '</font>';
+    return '<span style="font-size: ' . removeIllegalCharacerts($match[1]) . '">' . $match[2] . '</span>';
 }
 
 function font_color_callback($match)
 {
-    return '<font color="' . removeIllegalCharacerts($match[1]) . '">' . $match[2] . '</font>';
+    return '<span style="color: ' . removeIllegalCharacerts($match[1]) . '">' . $match[2] . '</span>';
 }
 
 function font_face_callback($match)
 {
-    return '<font face="' . removeIllegalCharacerts($match[1]) . '">' . $match[2] . '</font>';
+    return '<span style="font-family: ' . removeIllegalCharacerts($match[1]) . '">' . $match[2] . '</span>';
 }
 
 function align_callback($match)
@@ -690,8 +690,8 @@ function replacement($content, $bbcode = true)
         $content = preg_replace_callback("#\[email\](.*?)\[/email\]#si", "emailreplace_callback_1", $content);
         $content = preg_replace_callback("#\[email=(.*?)\](.*?)\[/email\]#si", "emailreplace_callback_2", $content);
         $content = preg_replace_callback("#<a\b[^>]*>(.*?)</a>#si", "cut_urls", $content);
-        while (preg_match("#\[size=([0-9]*)\](.*?)\[/size\]#si", $content)) {
-            $content = preg_replace_callback("#\[size=([0-9]*)\](.*?)\[/size\]#si", "font_size_callback", $content);
+        while (preg_match("#\[size=([a-z-]*)\](.*?)\[/size\]#si", $content)) {
+            $content = preg_replace_callback("#\[size=([a-z-]*)\](.*?)\[/size\]#si", "font_size_callback", $content);
         }
         while (preg_match("#\[color=([a-z0-9\#]*)\](.*?)\[/color\]#si", $content)) {
             $content = preg_replace_callback(
