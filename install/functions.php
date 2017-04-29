@@ -250,7 +250,7 @@ function update_base_3($_database)
   `cwID` int(11) NOT NULL AUTO_INCREMENT,
   `date` int(14) NOT NULL default '0',
   `squad` int(11) NOT NULL default '0',
-  `game` varchar(5) NOT NULL default '',
+  `game` varchar(10) NOT NULL default '',
   `league` varchar(255) NOT NULL default '',
   `leaguehp` varchar(255) NOT NULL default '',
   `opponent` varchar(255) NOT NULL default '',
@@ -505,7 +505,7 @@ function update_base_6($_database)
     $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "games`");
     $transaction->addQuery("CREATE TABLE `" . PREFIX . "games` (
   `gameID` int(3) NOT NULL AUTO_INCREMENT,
-  `tag` varchar(5) NOT NULL default '',
+  `tag` varchar(10) NOT NULL default '',
   `name` varchar(20) NOT NULL default '',
   PRIMARY KEY  (`gameID`)
 ) PACK_KEYS=0 AUTO_INCREMENT=8
@@ -1219,7 +1219,7 @@ function update_31_4beta4($_database)
     $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "games`");
     $transaction->addQuery("CREATE TABLE `" . PREFIX . "games` (
   `gameID` int(3) NOT NULL AUTO_INCREMENT,
-  `tag` varchar(5) NOT NULL default '',
+  `tag` varchar(10) NOT NULL default '',
   `name` varchar(20) NOT NULL default '',
   PRIMARY KEY  (`gameID`)
  ) AUTO_INCREMENT=8
