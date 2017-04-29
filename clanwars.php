@@ -1348,8 +1348,8 @@ if ($action == "new") {
             $squad = '<a href="index.php?site=clanwars&amp;action=showonly&amp;id=' . $id . '&amp;page=' . $page .
                 '&amp;sort=game&amp;type=' . $type . '&amp;only=squad"><strong>' . getsquadname($ds[ 'squad' ]) .
                 '</strong></a>';
-            if (file_exists('images/games/' . $ds[ 'game' ] . '.gif')) {
-                $pic = $ds[ 'game' ] . '.gif';
+            if (is_gamefilexist('images/games/', $ds[ 'game' ])) {
+                $pic = is_gamefilexist('images/games/', $ds[ 'game' ]);
                 $game =
                 '<a href="index.php?site=clanwars&amp;action=showonly&amp;id=' . $ds[ 'game' ] . '&amp;page=' . $page .
                 '&amp;sort=game&amp;type=' . $type . '&amp;only=game"><img src="images/games/' . $pic .
@@ -1597,13 +1597,6 @@ if ($action == "new") {
 
         $n = 1;
         while ($ds = mysqli_fetch_array($ergebnis)) {
-            #if ($n % 2) {
-            #    $bg1 = BG_1;
-            #    $bg2 = BG_2;
-            #} else {
-            #    $bg1 = BG_3;
-            #    $bg2 = BG_4;
-            #}
             $date = getformatdate($ds[ 'date' ]);
             $squad =
                 '<a href="index.php?site=clanwars&amp;action=showonly&amp;id=' . $ds[ 'squad' ] . '&amp;page=' . $page .
@@ -1616,8 +1609,8 @@ if ($action == "new") {
             $hometeam = $ds[ 'hometeam' ];
             $oppteam = $ds[ 'oppteam' ];
             $server = $ds[ 'server' ];
-            if (file_exists('images/games/' . $ds[ 'game' ] . '.gif')) {
-                $pic = $ds[ 'game' ] . '.gif';
+            if (is_gamefilexist('images/games/', $ds[ 'game' ])) {
+                $pic = is_gamefilexist('images/games/', $ds[ 'game' ]);
             }
             $game =
                 '<a href="index.php?site=clanwars&amp;action=showonly&amp;id=' . $ds[ 'game' ] . '&amp;page=' . $page .

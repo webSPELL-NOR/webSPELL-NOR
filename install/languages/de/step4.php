@@ -39,6 +39,7 @@ $language_array = Array(
 	'update_121'=>'Update von webSPELL 4.3.0x1.2',
 	'update_123'=>'Update von webSPELL NOR 1.2.2',
 	'update_124'=>'Update von webSPELL NOR 1.2.3 / 1.2.3.1',
+	'update_125'=>'Update von webSPELL NOR 1.2.4',
 	'what_to_do'=>'Was möchtest Du tun?'
 );
 ?>

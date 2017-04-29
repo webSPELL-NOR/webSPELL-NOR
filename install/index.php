@@ -72,12 +72,12 @@ if (!isset($_GET['step'])) {
     <meta name="copyright" content="Copyright 2005-2014 by webspell.org">
     <meta name="generator" content="webSPELL">
     <title>webSPELL NOR Installation</title>
-    <link href="../components/bootstrap.min.css" rel="stylesheet">
+    <link href="../components/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome Include -->
-    <link href="../components/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../components/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="../_stylesheet.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <script src="../components/jquery.min.js"></script>
+    <script src="../components/jquery/jquery.min.js"></script>
     <script src="install.js"></script>
 </head>
 <body>
@@ -118,7 +118,7 @@ if (!isset($_GET['step'])) {
     </footer>
 	</div>
     </div> <!-- /container -->
-<script src="../components/bootstrap.min.js"></script>
+<script src="../components/bootstrap/bootstrap.min.js"></script>
 	<script>
 	  $("body").tooltip({   
 		selector: "[data-toggle='tooltip']",

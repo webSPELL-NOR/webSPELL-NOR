@@ -107,6 +107,19 @@ function is_gametag($tag)
     return (mysqli_num_rows(safe_query("SELECT `name` FROM `" . PREFIX . "games` WHERE `tag` = '$tag'")) > 0);
 }
 
+function is_gamefilexist($filepath, $tag) {
+	if (file_exists($filepath.$tag.'.png')) {
+    	$extension = $tag.'.png';
+    }
+    elseif (file_exists($filepath.$tag.'.jpg')){
+	    $extension = $tag.'.jpg';
+    }
+    else {
+	    $extension = $tag.'.gif';
+    }
+    return $extension;
+}
+
 function getGamesAsOptionList($selected = null)
 {
     $gamesa = safe_query("SELECT * FROM `" . PREFIX . "games` ORDER BY `name`");

@@ -98,7 +98,7 @@ if (function_exists('mb_substr')) {
 <tr>
   <td><?php echo $_language->module['setting_chmod']; ?></td>
   <td><?php
-		$chmodfiles = Array('_mysql.php', '_stylesheet.css', 'demos/', 'downloads/', 'images/articles-pics', 'images/avatars', 'images/banner', 'images/bannerrotation', 'images/clanwar-screens', 'images/flags', 'images/gallery/large', 'images/gallery/thumb', 'images/games', 'images/icons/ranks', 'images/links', 'images/linkus', 'images/news-pics', 'images/news-rubrics', 'images/partners', 'images/smileys', 'images/sponsors', 'images/squadicons', 'images/userpics', 'tmp/');
+		$chmodfiles = Array('_mysql.php', '_stylesheet.css', 'demos/', 'downloads/', 'images/articles-pics', 'images/avatars', 'images/banner', 'images/bannerrotation', 'images/clanwar-screens', 'images/flags', 'images/gallery/large', 'images/gallery/thumb', 'images/games', 'images/icons/ranks', 'images/links', 'images/linkus', 'images/news-pics', 'images/news-rubrics', 'images/partners', 'images/sponsors', 'images/squadicons', 'images/userpics', 'tmp/');
 		sort($chmodfiles);
 		$error = array();
 		foreach ($chmodfiles as $file) {

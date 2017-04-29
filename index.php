@@ -103,7 +103,6 @@ header('X-UA-Compatible: IE=edge,chrome=1');
         echo '<link href="' . $component . '" rel="stylesheet">';
 	}
     ?>
-    <link href="components/font-awesome.min.css" rel="stylesheet">
     <link href="css/page.css" rel="stylesheet">
     
     <link href="css/scrolling-nav.css" rel="stylesheet">
