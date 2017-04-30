@@ -132,7 +132,7 @@ $ds =
     <title>Webspell NOR - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../components/bootstrap.min.css" rel="stylesheet">
+    <link href="../components/bootstrap/bootstrap.min.css" rel="stylesheet">
 
    
     <!-- Custom CSS -->
@@ -142,7 +142,7 @@ $ds =
     <link href="./css/menu.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../components/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../components/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Style CSS -->
     <link href="./css/style.css" rel="stylesheet">
@@ -159,9 +159,6 @@ $ds =
         var calledfrom='admin';
     </script>
     <script src="../js/bbcode.js"></script>
-
-
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -415,13 +412,13 @@ $ds =
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../components/jquery.min.js"></script>
+    <script src="../components/jquery/jquery.min.js"></script>
     
 
 
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../components/bootstrap.min.js"></script>
+    <script src="../components/bootstrap/bootstrap.min.js"></script>
 
     <!-- Menu Plugin JavaScript -->
     <script src="./js/menu.min.js"></script>
