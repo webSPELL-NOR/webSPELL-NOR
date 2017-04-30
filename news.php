@@ -321,10 +321,10 @@ if ($action == "new") {
         die($_language->module[ 'no_access' ]);
     }
 	
-
- foreach ($components['css'] as $component) {
-        $css.= '<link href="' . $component . '" rel="stylesheet">';
-}
+	$css = '';
+	foreach ($components['css'] as $component) {
+		$css.= '<link href="' . $component . '" rel="stylesheet">';
+	}
     echo '<!DOCTYPE html>
 <html>
 <head>
@@ -348,12 +348,9 @@ if ($action == "new") {
 </head>
 <body>';
 
-    #$bg1 = BG_1;
-
     $title_news = $GLOBALS["_template"]->replaceTemplate("title_news", array());
     echo $title_news;
 
-    #$bgcolor = BG_1;
     $date = getformatdate($ds[ 'date' ]);
     $time = getformattime($ds[ 'date' ]);
     $rubrikname = getrubricname($ds[ 'rubric' ]);
