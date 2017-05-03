@@ -136,18 +136,19 @@ $ds =
 
    
     <!-- Custom CSS -->
-    <link href="./css/page.css" rel="stylesheet">
+    <link href="../components/admin/css/page.css" rel="stylesheet">
 
     <!-- Menu CSS -->
-    <link href="./css/menu.min.css" rel="stylesheet">
+    <link href="../components/admin/css/menu.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../components/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Style CSS -->
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="../components/admin/css/style.css" rel="stylesheet">
 
-    <link href="./css/bootstrap-switch.css" rel="stylesheet">
+    <link href="../components/admin/css/bootstrap-switch.css" rel="stylesheet">
+    <link href="../css/button.css.php" rel="styleSheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -174,7 +175,7 @@ $ds =
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="images/setting.png" class="img-circle hidden-xs"> <a class="navbar-brand" href="admincenter.php">WebSPELL NOR</a>
+                <img src="../components/admin/images/setting.png" class="img-circle hidden-xs"> <a class="navbar-brand" href="admincenter.php">WebSPELL NOR</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -413,22 +414,49 @@ $ds =
 
     <!-- jQuery -->
     <script src="../components/jquery/jquery.min.js"></script>
-    
-
-
-
+    <link rel="stylesheet" type="text/css" media="all" href="../components/admin/css/style-nav.css">
+	<link href="../components/admin/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+	<script src="../components/admin/js/bootstrap-colorpicker.js"></script>
+	<script>  
+		jQuery(function($) { 
+			$('#cp1').colorpicker(); 
+			$('#cp2').colorpicker();
+			$('#cp3').colorpicker();
+			$('#cp4').colorpicker();
+			$('#cp5').colorpicker();
+			$('#cp6').colorpicker();
+			$('#cp7').colorpicker();
+			$('#cp8').colorpicker();
+			$('#cp9').colorpicker();
+			$('#cp10').colorpicker();
+			$('#cp11').colorpicker();
+			$('#cp12').colorpicker();
+			$('#cp13').colorpicker();
+			$('#cp14').colorpicker();
+			$('#cp15').colorpicker();
+			$('#cp16').colorpicker();
+			$('#cp17').colorpicker();
+			$('#cp18').colorpicker();
+			$('#cp19').colorpicker();
+			$('#cp20').colorpicker();
+			$('#cp21').colorpicker();
+			$('#cp22').colorpicker();
+			$('#cp23').colorpicker();
+			$('#cp24').colorpicker();
+		}); 
+    </script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../components/bootstrap/bootstrap.min.js"></script>
 
     <!-- Menu Plugin JavaScript -->
-    <script src="./js/menu.min.js"></script>
+    <script src="../components/admin/js/menu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="./js/page.js"></script>
+    <script src="../components/admin/js/page.js"></script>
 
 
-<script src="./js/bootstrap-switch.js"></script>
-<script src="./js/index.js"></script>
+<script src="../components/admin/js/bootstrap-switch.js"></script>
+<script src="../components/admin/js/index.js"></script>
 
 </body>
 </html>

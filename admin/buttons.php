@@ -1,38 +1,3 @@
-  <link rel="stylesheet" type="text/css" media="all" href="css/style-nav.css">
-  <link href="css/bootstrap-colorpicker.min.css" rel="stylesheet">
-  <script
-        src="https://code.jquery.com/jquery-2.2.2.min.js"
-        integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
-        crossorigin="anonymous"></script>
-    
-  <script src="js/bootstrap-colorpicker.js"></script>
-  <link href="../css/button.css.php" rel="styleSheet" type="text/css">
-  <script>  jQuery(function($) { $('#cp1').colorpicker(); }); 
-          jQuery(function($) { $('#cp2').colorpicker(); }); 
-          jQuery(function($) { $('#cp3').colorpicker(); }); 
-          jQuery(function($) { $('#cp4').colorpicker(); });
-          jQuery(function($) { $('#cp5').colorpicker(); });
-          jQuery(function($) { $('#cp6').colorpicker(); });
-          jQuery(function($) { $('#cp7').colorpicker(); });
-          jQuery(function($) { $('#cp8').colorpicker(); });
-          jQuery(function($) { $('#cp9').colorpicker(); });
-          jQuery(function($) { $('#cp10').colorpicker(); });
-          jQuery(function($) { $('#cp11').colorpicker(); });
-          jQuery(function($) { $('#cp12').colorpicker(); });
-          jQuery(function($) { $('#cp13').colorpicker(); });
-          jQuery(function($) { $('#cp14').colorpicker(); });
-          jQuery(function($) { $('#cp15').colorpicker(); });
-          jQuery(function($) { $('#cp16').colorpicker(); });
-          jQuery(function($) { $('#cp17').colorpicker(); });
-          jQuery(function($) { $('#cp18').colorpicker(); });
-          jQuery(function($) { $('#cp19').colorpicker(); });
-          jQuery(function($) { $('#cp20').colorpicker(); });
-          jQuery(function($) { $('#cp21').colorpicker(); });
-          jQuery(function($) { $('#cp22').colorpicker(); });
-          jQuery(function($) { $('#cp23').colorpicker(); });
-          jQuery(function($) { $('#cp24').colorpicker(); }); </script>
-
-
 <?php
 /*
 ##########################################################################
