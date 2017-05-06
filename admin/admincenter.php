@@ -443,6 +443,9 @@ $ds =
 			$('#cp22').colorpicker();
 			$('#cp23').colorpicker();
 			$('#cp24').colorpicker();
+			$(document).ready(function(){
+				$('[data-toggle="tooltip"]').tooltip(); 
+			});
 		}); 
     </script>
     <!-- Bootstrap Core JavaScript -->
