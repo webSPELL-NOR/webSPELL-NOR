@@ -1180,7 +1180,7 @@ if ($action == "new") {
         $rubrikname = getrubricname($ds[ 'rubric' ]);
         $rubrikname_link = getinput($rubrikname);
         $rubricpic_path = "images/news-rubrics/" . getrubricpic($ds[ 'rubric' ]);
-        $rubricpic = '<img src="' . $rubricpic_path . '" alt="">';
+        $rubricpic = '<img src="' . $rubricpic_path . '" alt="" class="img-responsive">';
         if (!is_file($rubricpic_path)) {
             $rubricpic = '';
         }
@@ -1324,7 +1324,11 @@ if ($action == "new") {
         }
 		
 		$data_array = array();
-    if($rubricpic!='') { $data_array['$rubric_pic'] =  '<div><div class="thumbnail pull-left">'.$rubricpic.'</div></div>'; } else {$data_array['$rubric_pic']='';}
+		if($rubricpic!='') { 
+			$data_array['$rubric_pic'] =  '<div><div class="thumbnail pull-left">'.$rubricpic.'</div></div>'; 
+		} else {
+			$data_array['$rubric_pic']='';
+		}
         $data_array['$langs'] = $langs;
 		$data_array['$related'] = $related;	
         $data_array['$newsID'] = $newsID;
