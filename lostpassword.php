@@ -84,8 +84,9 @@ if (isset($_POST[ 'submit' ])) {
                     echo generateBoxFromArray($_language->module[ 'successful' ], 'alert-success', $fehler);
                     echo str_replace($vars, $repl, $_language->module[ 'successful' ]);
                 } else {
-                    echo str_replace($vars, $repl, $_language->module[ 'successful' ]);
+                    echo  redirect("index.php?site=login", str_replace($vars, $repl, $_language->module[ 'successful' ]), 3);
                 }
+                
             }
         } else {
             echo $_language->module[ 'no_user_found' ];

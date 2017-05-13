@@ -34,14 +34,6 @@ if (mysqli_num_rows($ergebnis)) {
         $homescr = array_sum(unserialize($ds[ 'homescore' ]));
         $oppscr = array_sum(unserialize($ds[ 'oppscore' ]));
 
-        #if ($n % 2) {
-        #    $bg1 = BG_1;
-        #    $bg2 = BG_2;
-        #} else {
-        #    $bg1 = BG_3;
-        #    $bg2 = BG_4;
-        #}
-
         if ($homescr > $oppscr) {
             $result = '<font color="' . $wincolor . '">' . $homescr . ':' . $oppscr . '</font>';
         } elseif ($homescr < $oppscr) {
@@ -51,10 +43,7 @@ if (mysqli_num_rows($ergebnis)) {
         }
 
         $resultID = $ds[ 'cwID' ];
-        $gameicon = "images/games/";
-        if (file_exists($gameicon . $ds[ 'game' ] . ".gif")) {
-            $gameicon = $gameicon . $ds[ 'game' ] . ".gif";
-        }
+        $gameicon = 'images/games/'.is_gamefilexist('images/games/', $ds[ 'game' ]);
 
         $data_array = array();
         $data_array['$result'] = $result;

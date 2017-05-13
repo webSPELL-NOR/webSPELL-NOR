@@ -80,7 +80,7 @@ if (isset($newsID)) {
         if (!file_exists($rubricpic) || $rubricpic_name == '') {
             $rubricpic = '';
         } else {
-            $rubricpic = '<img src="' . $rubricpic . '" alt="">';
+            $rubricpic = '<img src="' . $rubricpic . '" alt="" class="img-responsive">';
         }
 
         $message_array = array();

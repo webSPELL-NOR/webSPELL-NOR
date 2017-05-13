@@ -42,8 +42,8 @@ $date = getformatdate($ds[ 'date' ]);
 $opponent = '<a href="' . getinput($ds[ 'opphp' ]) . '" target="_blank"><b>' . getinput($ds[ 'opptag' ]) . ' / ' .
 	($ds[ 'opponent' ]) . '</b></a>';
 $league = '<a href="' . getinput($ds[ 'leaguehp' ]) . '" target="_blank">' . getinput($ds[ 'league' ]) . '</a>';
-if (is_gamefilexist($filepath, $ds[ 'tag' ])) {
-	$game_ico = 'images/games/' . is_gamefilexist($filepath, $ds[ 'tag' ]);
+if (is_gamefilexist('images/games/', $ds[ 'game' ])) {
+	$game_ico = 'images/games/' . is_gamefilexist('images/games/', $ds[ 'game' ]);
 	$game = '<img src="' . $game_ico . '" alt="">';
 } else {
 	$game = $ds[ 'game' ];

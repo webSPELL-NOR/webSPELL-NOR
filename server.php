@@ -41,6 +41,7 @@ if (mysqli_num_rows($ergebnis)) {
         }
 
         $showgame = getgamename($ds[ 'game' ]);
+        $gameicon = 'images/games/'.is_gamefilexist('images/games/', $ds[ 'game' ]);
 
         $serverdata = explode(":", $ds[ 'ip' ]);
         $ip = $serverdata[ 0 ];
@@ -63,6 +64,7 @@ if (mysqli_num_rows($ergebnis)) {
         $info = htmloutput($ds[ 'info' ]);
         $data_array = array();
         $data_array['$game'] = $ds[ 'game' ];
+        $data_array['$gameicon'] = $gameicon;
         $data_array['$ip'] = $ds[ 'ip' ];
         $data_array['$servername'] = $servername;
         $data_array['$status'] = $status;

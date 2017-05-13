@@ -47,6 +47,7 @@ $language_array = array(
     'homepage' => 'Homepage',
     'html_off' => 'HTML ist AUS',
     'ignore_user' => 'Nutzer ignorieren',
+    'mail' => 'E-Mail',
     'name' => 'Name',
     'no_access' => '<br><br>Du musst registriert und angemeldet sein, um Kommentare schreiben zu dürfen!<br><br>&#8226; <a href="index.php?site=register">registrieren</a><br>&#8226; <a href="index.php?site=login">anmelden</a>',
     'no_commentid' => 'Keine Kommentar ID angegeben - leite weiter...',

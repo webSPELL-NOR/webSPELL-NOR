@@ -321,10 +321,10 @@ if ($action == "new") {
         die($_language->module[ 'no_access' ]);
     }
 	
-
- foreach ($components['css'] as $component) {
-        $css.= '<link href="' . $component . '" rel="stylesheet">';
-}
+	$css = '';
+	foreach ($components['css'] as $component) {
+		$css.= '<link href="' . $component . '" rel="stylesheet">';
+	}
     echo '<!DOCTYPE html>
 <html>
 <head>
@@ -348,12 +348,9 @@ if ($action == "new") {
 </head>
 <body>';
 
-    #$bg1 = BG_1;
-
     $title_news = $GLOBALS["_template"]->replaceTemplate("title_news", array());
     echo $title_news;
 
-    #$bgcolor = BG_1;
     $date = getformatdate($ds[ 'date' ]);
     $time = getformattime($ds[ 'date' ]);
     $rubrikname = getrubricname($ds[ 'rubric' ]);
@@ -1183,7 +1180,7 @@ if ($action == "new") {
         $rubrikname = getrubricname($ds[ 'rubric' ]);
         $rubrikname_link = getinput($rubrikname);
         $rubricpic_path = "images/news-rubrics/" . getrubricpic($ds[ 'rubric' ]);
-        $rubricpic = '<img src="' . $rubricpic_path . '" alt="">';
+        $rubricpic = '<img src="' . $rubricpic_path . '" alt="" class="img-responsive">';
         if (!is_file($rubricpic_path)) {
             $rubricpic = '';
         }
@@ -1327,7 +1324,11 @@ if ($action == "new") {
         }
 		
 		$data_array = array();
-    if($rubricpic!='') { $data_array['$rubric_pic'] =  '<div><div class="thumbnail pull-left">'.$rubricpic.'</div></div>'; } else {$data_array['$rubric_pic']='';}
+		if($rubricpic!='') { 
+			$data_array['$rubric_pic'] =  '<div><div class="thumbnail pull-left">'.$rubricpic.'</div></div>'; 
+		} else {
+			$data_array['$rubric_pic']='';
+		}
         $data_array['$langs'] = $langs;
 		$data_array['$related'] = $related;	
         $data_array['$newsID'] = $newsID;

@@ -31,15 +31,8 @@ while ($row = mysqli_fetch_array($result)) {
 
     $servername = htmloutput($row[ 'name' ]);
     $serverip = $row[ 'ip' ];
-    $servergame = '<img src="images/games/' . $row[ 'game' ] . '.gif" alt="">';
+    $servergame = 'images/games/'.is_gamefilexist('images/games/', $row[ 'game' ]);
 
-    #if ($n % 2) {
-    #    $bg1 = BG_1;
-    #    $bg2 = BG_2;
-    #} else {
-    #    $bg1 = BG_3;
-    #    $bg2 = BG_4;
-    #}
 
     $data_array = array();
     $data_array['$servergame'] = $servergame;

@@ -71,6 +71,7 @@ $language_array = array(
     'rating' => 'Note',
     'save_demo' => 'Enregistrer',
     'sort' => 'Ordre',
+    'vs' => 'vs.',
     'to_download' => 'Vous devez être enregistré et connecté pour télécharger cette démo !',
     'to_rate' => 'Vous devez être enregistré et connecté pour noter cette démo !',
     'update_demo' => 'Editer',

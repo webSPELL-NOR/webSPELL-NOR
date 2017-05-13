@@ -47,6 +47,7 @@ $language_array = array(
     'homepage' => 'Homepage',
     'html_off' => 'HTML is OFF',
     'ignore_user' => 'ignore user',
+    'mail' => 'E-Mail',
     'name' => 'Name',
     'no_access' => '<br><br>You have to login!<br><br>&#8226; <a href="index.php?site=register">register now!</a><br>&#8226; <a href="index.php?site=login">login</a>',
     'no_commentid' => 'No commentID specified - redirecting',

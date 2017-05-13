@@ -328,7 +328,7 @@ if (isset($_POST[ 'save' ])) {
     $country2 = "[flag]" . $ds[ 'country2' ] . "[/flag]";
     $country2 = flags($country2);
     $clan2 = $country2 . ' <a href="' . $ds[ 'url2' ] . '" target="_blank">' . $ds[ 'clan2' ] . '</a>';
-    $game = '<img src="images/games/' . $ds[ 'game' ] . '.gif" alt=""> ' .
+    $game = '<img src="images/games/' . is_gamefilexist('images/games/', $ds[ 'game' ]) .'" alt=""> ' .
         getgamename($ds[ 'game' ]);
 
     $clicks = $ds[ 'downloads' ];

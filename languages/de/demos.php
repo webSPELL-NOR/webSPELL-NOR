@@ -71,6 +71,7 @@ $language_array = array(
     'rating' => 'Bewertung',
     'save_demo' => 'Demo speichern',
     'sort' => 'Sortieren',
+    'vs' => 'vs.',
     'to_download' => 'Um diese Demo herunterzuladen musst du registriert und angemeldet sein!',
     'to_rate' => 'Um diese Demo zu bewerten musst du registriert und angemeldet sein!',
     'update_demo' => 'Demo updaten',

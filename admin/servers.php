@@ -318,7 +318,7 @@ else {
             );
 
             echo '<tr>
-        <td><img src="../images/games/'.$ds['game'].'.gif" width="13" height="13" border="0" alt="" /> <a href="hlsw://'.$ds['ip'].'"><b>'.$ds['ip'].'</b></a><br /><b>'.getinput($ds['name']).'</b><br />
+        <td><img src="../images/games/'.is_gamefilexist('../images/games/', $ds[ 'game' ]).'" width="13" height="13" border="0" alt="" /> <a href="hlsw://'.$ds['ip'].'"><b>'.$ds['ip'].'</b></a><br /><b>'.getinput($ds['name']).'</b><br />
 
         <span class="text-muted small"><em>'.cleartext($ds['info'],1,'admin').'</em></span>
         </td>
