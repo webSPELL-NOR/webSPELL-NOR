@@ -83,6 +83,6 @@ if (isset($_GET[ 'sponsorID' ])) {
 if (isset($target)) {
     //output
     
-    header("Location: ".$_SERVER['HTTP_REFERER']);
+    header("Location: ".$target);
 }
 
