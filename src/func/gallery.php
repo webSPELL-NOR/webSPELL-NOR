@@ -154,15 +154,15 @@ class Gallery
         } else {
             $only = '';
         }
-        $anz = mysqli_num_rows(safe_query("SELECT picID FROM `" . PREFIX . "gallery_pictures` $only"));
-        $selected = rand(1, $anz);
-        $start = $selected - 1;
-        $pic = mysqli_fetch_array(
-            safe_query(
-                "SELECT `picID` FROM `" . PREFIX . "gallery_pictures` $only LIMIT $start, $anz"
-            )
-        );
 
+
+    	$anz = mysqli_num_rows(safe_query("SELECT picID FROM `" . PREFIX . "gallery_pictures` $only"));
+		$selected = mt_rand(0, $anz);	
+    	$pic = mysqli_fetch_array(								
+			safe_query(			
+				"SELECT `picID` FROM `" . PREFIX . "gallery_pictures` $only LIMIT $selected, 1"
+			)															
+    	);
         return $pic['picID'];
     }
 
