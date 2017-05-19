@@ -314,7 +314,7 @@ if (isset($_POST[ 'save' ])) {
     if (isfileadmin($userID)) {
         echo
             '<a href="index.php?site=demos&amp;action=new" class="btn btn-danger">' . $_language->module[ 'new_demo' ] .
-            '</a>';
+            '</a>&nbsp;';
     }
     echo '<a href="index.php?site=demos" class="btn btn-primary">' . $_language->module[ 'all_demos' ] . '</a><br><br>';
 
