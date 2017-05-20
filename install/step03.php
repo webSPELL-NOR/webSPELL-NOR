@@ -25,7 +25,7 @@
 ##########################################################################
 */
 $fatal_error = false;
-if (version_compare(PHP_VERSION, '5.3.0', '<')) {
+if (version_compare(PHP_VERSION, '5.4.0', '<')) {
     $php_version_check = '<span class="label label-danger">'.$_language->module['no'].'</span>';
     $fatal_error = true;
 } else {
@@ -60,7 +60,7 @@ if (function_exists('mb_substr')) {
   <td colspan="2"><h3><?php echo $_language->module['check_requirements']; ?>:</h3></td>
 </tr>
 <tr>
-  <td><?php echo $_language->module['php_version']; ?> &gt;= 5.2</td>
+  <td><?php echo $_language->module['php_version']; ?> &gt;= 5.4</td>
   <td><?php echo $php_version_check; ?></td>
 </tr>
 <tr>
