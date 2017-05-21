@@ -3951,6 +3951,7 @@ function update_123_124($_database) {
 function update_124_125($_database) {
 	
 	$transaction = new Transaction($_database);
+	$transaction->addQuery("ALTER TABLE ".PREFIX."settings ADD register_per_ip INT(1) NOT NULL default '1'");
 	//smileys
     $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "smileys`");
     $transaction->addQuery("CREATE TABLE `" . PREFIX . "smileys` (

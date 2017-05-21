@@ -109,19 +109,21 @@ if (isset($_POST['save'])) {
         if (!$CAPCLASS->checkCaptcha($_POST['captcha'], $_POST['captcha_hash'])) {
             $error[] = $_language->module['wrong_securitycode'];
         }
-
+        
         // check exisitings accounts from ip with same password
-        $get_users =
-            safe_query(
-                "SELECT
-                    userID
-                FROM
-                    " . PREFIX . "user
-                WHERE
-                    ip='" . $GLOBALS['ip'] . "'"
-            );
-        if (mysqli_num_rows($get_users)) {
-            $error[] = 'Only one Account per IP';
+		if(!$register_per_ip) {
+	        $get_users =
+	            safe_query(
+	                "SELECT
+	                    userID
+	                FROM
+	                    " . PREFIX . "user
+	                WHERE
+	                    ip='" . $GLOBALS['ip'] . "'"
+	            );
+	        if (mysqli_num_rows($get_users)) {
+	            $error[] = 'Only one Account per IP';
+	        }
         }
 
         if (count($error)) {

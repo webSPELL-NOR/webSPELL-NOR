@@ -97,6 +97,7 @@ if (isset($_POST[ 'submit' ])) {
                 time_format='" . $_POST[ 'time_format' ] . "',
                 user_guestbook='" . $_POST[ 'user_guestbook' ] . "',
                 autoresize='" . $_POST[ 'autoresize' ] . "',
+                register_per_ip='"	. isset($_POST[ 'register_per_ip' ]) . "',
                 sc_demos='" . intval($_POST[ 'sc_demos' ]) . "',
                 sc_files='" . intval($_POST[ 'sc_files' ]) . "' "
         );
@@ -117,6 +118,13 @@ if (isset($_POST[ 'submit' ])) {
 		/>';
     } else {
         $gb_info = '<input type="checkbox" name="gb_info" value="1" />';
+    }
+    
+    if ($ds[ 'register_per_ip' ]) {
+        $register_per_ip = '<input type="checkbox" name="register_per_ip" value="1" checked="checked"
+		/>';
+    } else {
+        $register_per_ip = '<input type="checkbox" name="register_per_ip" value="1" />';
     }
 
     if ($ds[ 'spam_check' ]) {
@@ -1043,6 +1051,19 @@ if (isset($_POST[ 'submit' ])) {
                                             		<select class="form-control" name="autoresize">
 														<?php echo $autoresize;?>
                                             		</select>
+                                            	</em>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row bt">
+                                        <div class="col-md-6">
+                                            <?php echo $_language->module[ 'register_per_ip' ]; ?>:
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <span class="pull-right text-muted small">
+                                            	<em data-toggle="tooltip" title="<?php echo $_language->module[ 'tooltip_63' ]; ?>">
+                                            		<?php echo $register_per_ip; ?>                                            	
                                             	</em>
                                             </span>
                                         </div>

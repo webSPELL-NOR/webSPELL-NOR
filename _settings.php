@@ -408,6 +408,7 @@ if (empty($maxusers)) {
     $maxusers = 5;
 }
 $hp_url = $ds[ 'hpurl' ];
+$register_per_ip = $ds[ 'register_per_ip' ];
 $admin_name = $ds[ 'adminname' ];
 $admin_email = $ds[ 'adminemail' ];
 $myclantag = $ds[ 'clantag' ];
