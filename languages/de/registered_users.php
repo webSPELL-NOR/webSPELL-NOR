@@ -36,7 +36,7 @@ $language_array = array(
     'nickname' => 'Nickname',
     'no_users' => 'keine Benutzer registriert',
     'now_on' => 'gerade online',
-    'registered_users' => 'registrierte Benutzer',
+    'registered_users' => 'Registrierte Benutzer',
     'registration' => 'Registriert seit',
     'sort' => 'Sortierung:'
 );
