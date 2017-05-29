@@ -62,7 +62,7 @@ $language_array = array(
     'servers' => 'Servers',
     'sponsors' => 'Sponsors',
     'squads' => 'Squads',
-    'who_is_online' => 'Who is online?',
+    'whoisonline' => 'Who is online?',
 	'login'=>'Login',
 	'overview'=>'overview'
 );

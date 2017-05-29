@@ -53,6 +53,7 @@ $language_array = array(
     'hltv_server' => 'hltv server',
     'home_team' => 'home team',
     'homepage' => 'homepage',
+	'id' =>	'number',
     'league' => 'league',
     'league_match_link' => 'league match link',
     'lost' => 'lost',
