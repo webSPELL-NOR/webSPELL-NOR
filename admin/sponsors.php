@@ -81,7 +81,7 @@ echo'<div class="panel panel-default">
   <div class="form-group">
     <label class="col-sm-4 control-label">'.$_language->module['sponsor_url'].':</label>
     <div class="col-sm-8"><span class="text-muted small"><em>
-    <input class="form-control" type="text" name="url" maxlength="255" /></em></span>
+    <input class="form-control" type="text" name="url" maxlength="255" value="http://" /></em></span>
     </div>
   </div>
 
