@@ -146,8 +146,6 @@ $ds =
 
     <!-- Style CSS -->
     <link href="../components/admin/css/style.css" rel="stylesheet">
-
-    <link href="../components/admin/css/bootstrap-switch.css" rel="stylesheet">
     <link href="../css/button.css.php" rel="styleSheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -156,11 +154,7 @@ $ds =
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script>
-        var calledfrom='admin';
-    </script>
-    <script src="../js/bbcode.js"></script>
-</head>
+  </head>
 
 <body>
 
@@ -457,9 +451,12 @@ $ds =
     <!-- Custom Theme JavaScript -->
     <script src="../components/admin/js/page.js"></script>
 
-
-<script src="../components/admin/js/bootstrap-switch.js"></script>
 <script src="../components/admin/js/index.js"></script>
+<script>
+        var calledfrom='admin';
+    </script>
+    <script src="../js/bbcode.js"></script>
+
 
 </body>
 </html>
