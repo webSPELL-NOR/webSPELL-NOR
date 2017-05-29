@@ -267,8 +267,6 @@ if ($action == "show") {
                 $challenge = '';
             }
 
-            $bgcat = BGCAT;
-
             if ($anzmembers == 1) {
                 $anzmembers = $anzmembers . ' ' . $_language->module[ 'member' ];
             } else {
