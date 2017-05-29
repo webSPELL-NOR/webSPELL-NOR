@@ -79,9 +79,6 @@ if ($action == "save" && isset($_POST['post'])) {
     if (!(mb_strlen(trim($city)))) {
         $error[] = $_language->module['forgot_city'];
     }
-    if (!(mb_strlen(trim($clanhistory)))) {
-        $error[] = $_language->module['forgot_history'];
-    }
 
     if ($userID) {
         $run = 1;
