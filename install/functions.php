@@ -803,12 +803,13 @@ function update_base_12($_database)
   `users` int(11) NOT NULL default '0',
   `profilelast` int(11) NOT NULL default '0',
   `topnewsID` int(11) NOT NULL default '0',
+  `register_per_ip` int(1) NOT NULL default '1',
   PRIMARY KEY  (`settingID`)
 ) AUTO_INCREMENT=2
   DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
 
-    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "settings` (`settingID`, `hpurl`, `clanname`, `clantag`, `adminname`, `adminemail`, `news`, `newsarchiv`, `headlines`, `headlineschars`, `articles`, `latestarticles`, `articleschars`, `clanwars`, `results`, `upcoming`, `shoutbox`, `sball`, `sbrefresh`, `topics`, `posts`, `latesttopics`, `hideboards`, `awards`, `demos`, `guestbook`, `feedback`, `messages`, `users`, `profilelast`, `topnewsID`) VALUES
-     (1, '" . $url . "', 'Clanname', 'MyClan', 'Admin-Name', '" . $adminmail . "', 10, 20, 10, 22, 20, 5, 20, 20, 5, 5, 5, 30, 60, 20, 10, 10, 1, 20, 20, 20, 20, 20, 60, 10, 27)");
+    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "settings` (`settingID`, `hpurl`, `clanname`, `clantag`, `adminname`, `adminemail`, `news`, `newsarchiv`, `headlines`, `headlineschars`, `articles`, `latestarticles`, `articleschars`, `clanwars`, `results`, `upcoming`, `shoutbox`, `sball`, `sbrefresh`, `topics`, `posts`, `latesttopics`, `hideboards`, `awards`, `demos`, `guestbook`, `feedback`, `messages`, `users`, `profilelast`, `topnewsID`, `register_per_ip`) VALUES
+     (1, '" . $url . "', 'Clanname', 'MyClan', 'Admin-Name', '" . $adminmail . "', 10, 20, 10, 22, 20, 5, 20, 20, 5, 5, 5, 30, 60, 20, 10, 10, 1, 20, 20, 20, 20, 20, 60, 10, 27, 1)");
 
     $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "shoutbox`");
     $transaction->addQuery("CREATE TABLE `" . PREFIX . "shoutbox` (
@@ -3951,7 +3952,7 @@ function update_123_124($_database) {
 function update_124_125($_database) {
 	
 	$transaction = new Transaction($_database);
-	$transaction->addQuery("ALTER TABLE ".PREFIX."settings ADD register_per_ip INT(1) NOT NULL default '1'");
+	$transaction->addQuery("ALTER TABLE `".PREFIX."settings` ADD register_per_ip INT(1) NOT NULL default '1'");
 	//smileys
     $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "smileys`");
     $transaction->addQuery("CREATE TABLE `" . PREFIX . "smileys` (
