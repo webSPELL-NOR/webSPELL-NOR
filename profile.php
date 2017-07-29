@@ -554,11 +554,17 @@ if (isset($id) && getnickname($id) != '') {
 
                     echo '<div class="row form-group"><div class="col-xs-6">' . $sorter . ' ' . $page_link . '</div>
                         <div class="col-xs-6 text-right">
-                            <a href="#addcomment" class="btn btn-primary">' .
+                            <a href="index.php?site=profile&amp;id=' . $id . '&amp;action=guestbook#addcomment" class="btn btn-primary">' .
                                 $_language->module[ 'new_entry' ] . '
                             </a>
                         </div>
                     </div>';
+                    
+                    $data_array = array();
+                    $data_array['$id'] = $id;
+                    $data_array['$profilelast'] = $profilelast;
+                    $quicklinks_profile = $GLOBALS["_template"]->replaceTemplate("profile_guestbook_quicklinks", $data_array);
+                    echo $quicklinks_profile;
 
                     echo '<form method="post" name="form"
                         action="index.php?site=profile&amp;id=' . $id . '&amp;action=guestbook&amp;delete=true">';
@@ -594,6 +600,7 @@ if (isset($id) && getnickname($id) != '') {
 
                         $name = strip_tags($ds[ 'name' ]);
                         $message = cleartext($ds[ 'comment' ]);
+                        $messagev = htmloutput($ds[ 'comment' ]);
                         $quotemessage = strip_tags($ds[ 'comment' ]);
                         $quotemessage = str_replace("'", "`", $quotemessage);
 
@@ -645,7 +652,7 @@ if (isset($id) && getnickname($id) != '') {
                         <td class="text-right">' . $submit . '</td>
                         </tr></table></form>';
 
-                    echo '<a name="addcomment"></a>';
+                    echo '<a id="addcomment"></a>';
                     if ($loggedin) {
                         $name = getnickname($userID);
                         if (getemailhide($userID)) {
