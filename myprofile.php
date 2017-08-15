@@ -381,15 +381,15 @@ if (!$userID) {
         $mail1 = $_POST['mail1'];
         $mail2 = $_POST['mail2'];
 
-        $ergebnis = safe_query("SELECT password, username FROM " . PREFIX . "user WHERE userID='" . $userID . "'");
+        $ergebnis = safe_query("SELECT password_hash, password_pepper, password, username FROM " . PREFIX . "user WHERE userID='" . $userID . "'");
         $ds = mysqli_fetch_array($ergebnis);
         $error = "";
         $username = $ds['username'];
+        $valid = password_verify($pwd.$ds['password_pepper'], $ds['password_hash']);
         if (!(mb_strlen(trim($pwd)))) {
             $error = $_language->module['forgot_old_pw'];
         }
-        $md5pwd = generatePasswordHash(stripslashes($pwd));
-        if ($md5pwd != $ds['password']) {
+        if (!$valid) {
             $error = $_language->module['wrong_password'];
         }
         if ($mail1 == $mail2) {
