@@ -25,7 +25,7 @@
 ##########################################################################
 */
 
-#$_language->readModule('moduls', false, true);
+$_language->readModule('moduls', false, true);
 
 if (!ispageadmin($userID) || mb_substr(basename($_SERVER[ 'REQUEST_URI' ]), 0, 15) != "admincenter.php") {
     die($_language->module[ 'access_denied' ]);
@@ -110,19 +110,28 @@ if (isset($_GET[ 'delete' ])) {
         $le_activated = 1;
         $re_activated = 0;
         $activated = 0;
+        $deactivated = 0;
     } elseif(@$_POST['radio1']=="re_activated") {
         $le_activated = 0;
         $re_activated = 1;
         $activated = 0;
+        $deactivated = 0;
     } elseif(@$_POST['radio1']=="activated") {
         $le_activated = 0;
         $re_activated = 0;
-        $activated = 1;    
+        $activated = 1;
+        $deactivated = 0;
+    } elseif(@$_POST['radio1']=="deactivated") {
+        $le_activated = 0;
+        $re_activated = 0;
+        $activated = 0;
+        $deactivated = 1;          
      
     } else {
         $le_activated = 0;
         $re_activated = 0;
         $activated = 0;
+        $deactivated = 0;
     }
         
     
@@ -192,16 +201,30 @@ if ($action == "add") {
 
 <div class="form-group">
 <label class="col-sm-2 control-label"></label>
-    <div class="col-sm-8"><span class="text-muted small"><em>
-  <label for="le_activated">'.$_language->module['left_is_activated'].'</label>
+
+<div class="col-sm-2">
+    <label for="activated">'.$_language->module['deactivated'].'</label>
+  <input id="deactivated" type="radio" name="radio1" value="deactivated">
+<img class="img-thumbnail" src="../images/plugins/layout-haupt2.jpg">
+</div>
+<div class="col-sm-2">
+    <label for="le_activated">'.$_language->module['left_is_activated'].'</label>
   <input id="le_activated" type="radio" name="radio1" value="le_activated">
-  <label for="re_activated">'.$_language->module['right_is_activated'].'</label>
+<img class="img-thumbnail" src="../images/plugins/layout-haupt3.jpg">
+</div>
+<div class="col-sm-2">
+    <label for="re_activated">'.$_language->module['right_is_activated'].'</label>
   <input id="re_activated" type="radio" name="radio1" value="re_activated">
-  <label for="activated">'.$_language->module['activated'].'</label>
+<img class="img-thumbnail" src="../images/plugins/layout-haupt4.jpg">
+</div>
+<div class="col-sm-2">
+    <label for="activated">'.$_language->module['activated'].'</label>
   <input id="activated" type="radio" name="radio1" value="activated">
-   </em></span>
-    </div>
-  </div>
+<img class="img-thumbnail" src="../images/plugins/layout-haupt5.jpg">
+</div>
+<label class="col-sm-2 control-label"></label>
+</div>
+   
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
@@ -259,6 +282,12 @@ if ($action == "add") {
         $activated = '<input id="activated" type="radio" name="radio1" value="activated">';
     }
 
+    if ($ds[ 'deactivated' ] == '1') {
+        $deactivated = '<input id="deactivated" type="radio" name="radio1" value="deactivated" checked="checked" />';
+    } else {
+        $deactivated = '<input id="deactivated" type="radio" name="radio1" value="deactivated">';
+    }
+
     echo'<form class="form-horizontal" method="post" action="admincenter.php?site=moduls" enctype="multipart/form-data">
 
      
@@ -274,18 +303,35 @@ if ($action == "add") {
     </div>
   </div>
 
-  <div class="form-group">
-<label class="col-sm-2 control-label"></label>
-    <div class="col-sm-8"><span class="text-muted small"><em>
-  <label for="le_activated">'.$_language->module['left_is_activated'].'</label>
+    <div class="form-group">
+<div class="col-sm-2"></div>
+<div class="col-sm-2">
+     <label for="deactivated">'.$_language->module['deactivated'].'</label>
+  '.$deactivated.'
+<img class="img-thumbnail" src="../images/plugins/layout-haupt2.jpg">
+</div>
+
+<div class="col-sm-2">
+    <label for="le_activated">'.$_language->module['left_is_activated'].'</label>
   '.$le_activated.'
-  <label for="re_activated">'.$_language->module['right_is_activated'].'</label>
+<img class="img-thumbnail" src="../images/plugins/layout-haupt3.jpg">
+</div>
+
+<div class="col-sm-2">
+    <label for="re_activated">'.$_language->module['right_is_activated'].'</label>
   '.$re_activated.'
-  <label for="activated">'.$_language->module['activated'].'</label>
+<img class="img-thumbnail" src="../images/plugins/layout-haupt4.jpg">
+</div>
+
+<div class="col-sm-2">
+     <label for="activated">'.$_language->module['activated'].'</label>
   '.$activated.'
-  </em></span>
-    </div>
-  </div>
+<img class="img-thumbnail" src="../images/plugins/layout-haupt5.jpg">
+</div>
+<div class="col-sm-2"></div>
+
+</div>
+
   
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
