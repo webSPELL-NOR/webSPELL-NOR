@@ -32,6 +32,7 @@ include("_functions.php");
 Include("_plugin.php");
 chdir('admin');
 
+$load = new plugin_manager();
 $_language->readModule('admincenter', false, true);
 
 if(isset($_GET['site'])) $site = $_GET['site'];
@@ -66,7 +67,7 @@ function admincenternav($catID)
 {
     global $userID;
     $links = '';
-    $ergebnis = safe_query("SELECT * FROM ".PREFIX."addon_links WHERE catID='$catID' ORDER BY sort");
+    $ergebnis = safe_query("SELECT * FROM ".PREFIX."dashnavi_links WHERE catID='$catID' ORDER BY sort");
     while ($ds=mysqli_fetch_array($ergebnis)) {
         $accesslevel = 'is'.$ds['accesslevel'].'admin';
         if ($accesslevel($userID)) {
@@ -79,17 +80,18 @@ function admincenternav($catID)
 function addonnav()
 {
     global $userID;
+
     $links = '';
-    $ergebnis = safe_query("SELECT * FROM ".PREFIX."addon_categories WHERE sort>'8' ORDER BY sort");
+    $ergebnis = safe_query("SELECT * FROM ".PREFIX."dashnavi_categories WHERE sort>'9' ORDER BY sort");
     while ($ds=mysqli_fetch_array($ergebnis)) {
         $links .= '<li>
-        <a href="#"><i class="fa fa-arrow-down"></i> '.$ds['name'].'<span class="fa arrow"></span></a>';
-        $catlinks = safe_query("SELECT * FROM ".PREFIX."addon_links WHERE catID='".$ds['catID']."' ORDER BY sort");
+        <a href="#"><i class="fa fa-plus"></i> '.$ds['name'].'<span class="fa arrow"></span></a>';
+        $catlinks = safe_query("SELECT * FROM ".PREFIX."dashnavi_links WHERE catID='".$ds['catID']."' ORDER BY sort");
         while ($db=mysqli_fetch_array($catlinks)) {
             $accesslevel = 'is'.$db['accesslevel'].'admin';
             if ($accesslevel($userID)) {
                 $links .= '<ul class="nav nav-second-level">
-                                    <li><a href="'.$db['url'].'">'.$db['name'].'</a></li>        
+                                    <li><a href="'.$db['url'].'">'.$ds['name'].'</a></li>        
                         </ul>';
             }
         }
@@ -147,6 +149,7 @@ $ds =
     <!-- Style CSS -->
     <link href="../components/admin/css/style.css" rel="stylesheet">
     <link href="../css/button.css.php" rel="styleSheet" type="text/css">
+    <link href="../components/admin/css/bootstrap-switch.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -286,11 +289,7 @@ $ds =
                                 <?php } if(isnewsadmin($userID)) { ?>
                                 <li><a href="admincenter.php?site=rubrics"><?php echo $_language->module['news_rubrics']; ?></a></li>
                                 <li><a href="admincenter.php?site=newslanguages"><?php echo $_language->module['news_languages']; ?></a></li>
-                                <?php } if(isfileadmin($userID)) { ?>
-                                <li><a href="admincenter.php?site=filecategories"><?php echo $_language->module['file_categories']; ?></a></li>
-                                <?php } if(ispageadmin($userID)) { ?>
-                                <li><a href="admincenter.php?site=faqcategories"><?php echo $_language->module['faq_categories']; ?></a></li>
-                                <li><a href="admincenter.php?site=linkcategories"><?php echo $_language->module['link_categories']; ?></a></li>
+                                
                                  <?php echo admincenternav(4); ?>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -303,7 +302,9 @@ $ds =
                             <ul class="nav nav-second-level">
                                 <li><a href="admincenter.php?site=settings"><?php echo $_language->module['settings']; ?></a></li>
                                 <li><a href="admincenter.php?site=styles"><?php echo $_language->module['styles']; ?></a></li>
-                                <li><a href="admincenter.php?site=addons"><?php echo $_language->module['addons']; ?></a></li>
+                                <li><a href="admincenter.php?site=sc_plugin_page_head"><?php echo $_language->module['styles']; ?> sc_datei</a></li>
+                                <li><a href="admincenter.php?site=dashnavi"><?php echo $_language->module['dashnavi']; ?></a></li>
+                                <li><a href="admincenter.php?site=navigation"><?php echo $_language->module['web_navigation']; ?></a></li>
                                 <li><a href="admincenter.php?site=countries"><?php echo $_language->module['countries']; ?></a></li>
                                 <li><a href="admincenter.php?site=games"><?php echo $_language->module['games']; ?></a></li>
                                 <li><a href="admincenter.php?site=modrewrite"><?php echo $_language->module['modrewrite']; ?></a></li>
@@ -318,16 +319,9 @@ $ds =
                         <li>
                             <a href="#"><i class="fa fa-font"></i> <?php echo $_language->module['content']; ?><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li><a href="admincenter.php?site=carousel"><?php echo $_language->module['carousel']; ?></a></li>
+                                
                                 <li><a href="admincenter.php?site=static"><?php echo $_language->module['static_pages']; ?></a></li>
-                                <li><a href="admincenter.php?site=faq"><?php echo $_language->module['faq']; ?></a></li>
-                                <li><a href="admincenter.php?site=servers"><?php echo $_language->module['servers']; ?></a></li>
-                                <li><a href="admincenter.php?site=sponsors"><?php echo $_language->module['sponsors']; ?></a></li>
-                                <li><a href="admincenter.php?site=partners"><?php echo $_language->module['partners']; ?></a></li>
-                                <li><a href="admincenter.php?site=history"><?php echo $_language->module['history']; ?></a></li>
-                                <li><a href="admincenter.php?site=about"><?php echo $_language->module['about_us']; ?></a></li>
-                                <li><a href="admincenter.php?site=imprint"><?php echo $_language->module['imprint']; ?></a></li>
-                                <li><a href="admincenter.php?site=bannerrotation"><?php echo $_language->module['bannerrotation']; ?></a></li>
+                                
                                 <?php echo admincenternav(6); ?>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -352,16 +346,25 @@ $ds =
                         <?php
                         } if (isgalleryadmin($userID)) {
                         ?>
+                        
+
+
+
+
+                        <?php
+                        } if (ispageadmin($userID)) {
+                        ?>
                         <li>
-                            <a href="#"><i class="fa fa-file-image-o"></i> <?php echo $_language->module['gallery']; ?><span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-arrow-right"></i> <?php echo $_language->module['plugin_base']; ?><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li><a href="admincenter.php?site=gallery&amp;part=groups"><?php echo $_language->module['manage_groups']; ?></a></li>
-                                <li><a href="admincenter.php?site=gallery&amp;part=gallerys"><?php echo $_language->module['manage_galleries']; ?></a></li>
-                                <?php echo admincenternav(8); ?>
+                            <li><a href="admincenter.php?site=plugin-manager"><?php echo $_language->module['plugin_manages']; ?></a></li>
+                            <li><a href="admincenter.php?site=plugin-installer"><?php echo $_language->module['plugin_installer']; ?></a></li>
+                                <?php echo admincenternav(9); ?>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-        
+
+                                
                         <?php echo addonnav(); ?>
                         </li>
                         <?php
@@ -391,11 +394,23 @@ $ds =
         if (file_exists($site.'.php')) {
             include($site.'.php');
         } else {
-            include('overview.php');
+            // Load Plugins-Admin-File (if exists)
+            chdir("../");
+            $plugin = $load->plugin_data($site,0,true);
+            $plugin_path = $plugin['path'];
+            if(file_exists($plugin_path."admin/".$plugin['admin_file'].".php")) {       
+                include($plugin_path."admin/".$plugin['admin_file'].".php");
+            } else {
+                chdir("admin");
+            echo "<b>Modul [or] Plugin Not found</b><br /><br />";
+                include('overview.php');
+            }
         }
     } else {
         include('overview.php');
     }
+
+    
     ?>
 
             </div>
@@ -403,6 +418,8 @@ $ds =
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
+
+
     </div>
     <!-- /#wrapper -->
 
@@ -456,7 +473,7 @@ $ds =
         var calledfrom='admin';
     </script>
     <script src="../js/bbcode.js"></script>
-
+<script src="../components/admin/js/bootstrap-switch.js"></script>
 
 </body>
 </html>

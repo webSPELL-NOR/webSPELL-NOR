@@ -275,131 +275,131 @@ if (isset($_GET[ 'action' ]) && $_GET[ 'action' ] == "edit") {
 
     if (isnewsadmin($id)) {
         $news =
-            '<input type="checkbox" name="newsadmin" value="1" onmouseover="showWMTT(\'id1\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="newsadmin" value="1" onmouseover="showWMTT(\'id1\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $news =
-            '<input type="checkbox" name="newsadmin" value="1" onmouseover="showWMTT(\'id1\')"
-onmouseout="hideWMTT()" />';
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="newsadmin" value="1" onmouseover="showWMTT(\'id1\')"
+onmouseout="hideWMTT()">';
     }
 
     if (isnewswriter($id)) {
         $newswriter =
-            '<input type="checkbox" name="newswriter" value="1" onmouseover="showWMTT(\'id2\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="newswriter" value="1" onmouseover="showWMTT(\'id2\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $newswriter =
-            '<input type="checkbox" name="newswriter" value="1" onmouseover="showWMTT(\'id2\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="newswriter" value="1" onmouseover="showWMTT(\'id2\')"
 onmouseout="hideWMTT()" />';
     }
 
     if (ispollsadmin($id)) {
         $polls =
-            '<input type="checkbox" name="pollsadmin" value="1" onmouseover="showWMTT(\'id3\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="pollsadmin" value="1" onmouseover="showWMTT(\'id3\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $polls =
-            '<input type="checkbox" name="pollsadmin" value="1" onmouseover="showWMTT(\'id3\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="pollsadmin" value="1" onmouseover="showWMTT(\'id3\')"
 onmouseout="hideWMTT()" />';
     }
 
     if (isfeedbackadmin($id)) {
         $feedback =
-            '<input type="checkbox" name="feedbackadmin" value="1" onmouseover="showWMTT(\'id4\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="feedbackadmin" value="1" onmouseover="showWMTT(\'id4\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $feedback =
-            '<input type="checkbox" name="feedbackadmin" value="1" onmouseover="showWMTT(\'id4\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="feedbackadmin" value="1" onmouseover="showWMTT(\'id4\')"
 onmouseout="hideWMTT()" />';
     }
 
     if (isuseradmin($id)) {
         $useradmin =
-            '<input type="checkbox" name="useradmin" value="1" onmouseover="showWMTT(\'id5\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="useradmin" value="1" onmouseover="showWMTT(\'id5\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $useradmin =
-            '<input type="checkbox" name="useradmin" value="1" onmouseover="showWMTT(\'id5\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="useradmin" value="1" onmouseover="showWMTT(\'id5\')"
 onmouseout="hideWMTT()" />';
     }
 
     if (isclanwaradmin($id)) {
         $cwadmin =
-            '<input type="checkbox" name="cwadmin" value="1" onmouseover="showWMTT(\'id6\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="cwadmin" value="1" onmouseover="showWMTT(\'id6\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $cwadmin =
-            '<input type="checkbox" name="cwadmin" value="1" onmouseover="showWMTT(\'id6\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="cwadmin" value="1" onmouseover="showWMTT(\'id6\')"
 onmouseout="hideWMTT()" />';
     }
 
     if (isforumadmin($id)) {
         $board =
-            '<input type="checkbox" name="boardadmin" value="1" onmouseover="showWMTT(\'id7\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="boardadmin" value="1" onmouseover="showWMTT(\'id7\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $board =
-            '<input type="checkbox" name="boardadmin" value="1" onmouseover="showWMTT(\'id7\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="boardadmin" value="1" onmouseover="showWMTT(\'id7\')"
 onmouseout="hideWMTT()" />';
     }
 
     if (isanymoderator($id)) {
         $mod =
-            '<input type="checkbox" name="moderator" value="1" onmouseover="showWMTT(\'id8\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="moderator" value="1" onmouseover="showWMTT(\'id8\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $mod =
-            '<input type="checkbox" name="moderator" value="1" onmouseover="showWMTT(\'id8\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="moderator" value="1" onmouseover="showWMTT(\'id8\')"
 onmouseout="hideWMTT()" />';
     }
 
     if (ispageadmin($id)) {
         $page =
-            '<input type="checkbox" name="pageadmin" value="1" onmouseover="showWMTT(\'id9\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="pageadmin" value="1" onmouseover="showWMTT(\'id9\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $page =
-            '<input type="checkbox" name="pageadmin" value="1" onmouseover="showWMTT(\'id9\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="pageadmin" value="1" onmouseover="showWMTT(\'id9\')"
 onmouseout="hideWMTT()" />';
     }
 
     if (isfileadmin($id)) {
         $file =
-            '<input type="checkbox" name="fileadmin" value="1" onmouseover="showWMTT(\'id10\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="fileadmin" value="1" onmouseover="showWMTT(\'id10\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $file =
-            '<input type="checkbox" name="fileadmin" value="1" onmouseover="showWMTT(\'id10\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="fileadmin" value="1" onmouseover="showWMTT(\'id10\')"
 onmouseout="hideWMTT()" />';
     }
 
     if (iscashadmin($id)) {
         $cash =
-            '<input type="checkbox" name="cashadmin" value="1" onmouseover="showWMTT(\'id11\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="cashadmin" value="1" onmouseover="showWMTT(\'id11\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $cash =
-            '<input type="checkbox" name="cashadmin" value="1" onmouseover="showWMTT(\'id11\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="cashadmin" value="1" onmouseover="showWMTT(\'id11\')"
 onmouseout="hideWMTT()" />';
     }
 
     if (isgalleryadmin($id)) {
         $gallery =
-            '<input type="checkbox" name="galleryadmin" value="1" onmouseover="showWMTT(\'id12\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="galleryadmin" value="1" onmouseover="showWMTT(\'id12\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $gallery =
-            '<input type="checkbox" name="galleryadmin" value="1" onmouseover="showWMTT(\'id12\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="galleryadmin" value="1" onmouseover="showWMTT(\'id12\')"
 onmouseout="hideWMTT()" />';
     }
 
     if (issuperadmin($id)) {
         $super =
-            '<input type="checkbox" name="superadmin" value="1" onmouseover="showWMTT(\'id13\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="superadmin" value="1" onmouseover="showWMTT(\'id13\')"
 onmouseout="hideWMTT()" checked="checked" />';
     } else {
         $super =
-            '<input type="checkbox" name="superadmin" value="1" onmouseover="showWMTT(\'id13\')"
+            '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="superadmin" value="1" onmouseover="showWMTT(\'id13\')"
 onmouseout="hideWMTT()" />';
     }
 
@@ -409,9 +409,9 @@ onmouseout="hideWMTT()" />';
         $name = $ds[ 'name' ];
         $fgrID = $ds[ 'fgrID' ];
         if (isinusergrp($fgrID, $id)) {
-            $usergrp[ $fgrID ] = '<input type="checkbox" name="' . $fgrID . '" value="1" checked="checked" />';
+            $usergrp[ $fgrID ] = '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="' . $fgrID . '" value="1" checked="checked" />';
         } else {
-            $usergrp[ $fgrID ] = '<input type="checkbox" name="' . $fgrID . '" value="1" />';
+            $usergrp[ $fgrID ] = '<input id="switch-onColor" type="checkbox" data-on-color="success" data-off-color="danger" name="' . $fgrID . '" value="1" />';
         }
     }
 

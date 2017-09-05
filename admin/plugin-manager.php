@@ -44,7 +44,7 @@
 .pato15 { padding-top: 15px; }
 </style>
 <?php
-$_language->readModule('plugin', false, true);
+$_language->readModule('plugin-manager', false, true);
 if (!ispageadmin($userID) || mb_substr(basename($_SERVER[ 'REQUEST_URI' ]), 0, 15) != "admincenter.php") {
     die($_language->module[ 'access_denied' ]);
 }
@@ -85,7 +85,7 @@ if($id!="" && $do=="del") {
 if(isset($_REQUEST['svn'])) {
 	if(isset($_REQUEST['activate'])) { $acti = 1; } else { $acti = 0; }
 	try {
-		safe_query("INSERT INTO `".PREFIX."plugins` (`pluginID`, `name`, `activate`, `admin_file`, `author`, `website`, `index_link`, `sc_link`, `hiddenfiles`, `version`, `path`) VALUES (NULL, '".$_REQUEST['name']."', '".$acti."', '".$_REQUEST['admin_file']."', '".$_REQUEST['author']."', '".$_REQUEST['website']."', '".$_REQUEST['index']."', '".$_REQUEST['sclink']."', '".$_REQUEST['hiddenfiles']."', '".$_REQUEST['version']."', '".$_REQUEST['path']."');");
+		safe_query("INSERT INTO `".PREFIX."plugins` (`pluginID`, `name`, `description`, `activate`, `admin_file`, `author`, `website`, `index_link`, `sc_link`, `hiddenfiles`, `version`, `path`) VALUES (NULL, '".$_REQUEST['name']."', '".$_REQUEST['description']."', '".$acti."', '".$_REQUEST['admin_file']."', '".$_REQUEST['author']."', '".$_REQUEST['website']."', '".$_REQUEST['index']."', '".$_REQUEST['sclink']."', '".$_REQUEST['hiddenfiles']."', '".$_REQUEST['version']."', '".$_REQUEST['path']."');");
 		echo $_language->module[ 'success_save' ]."<br /><br />";	
 		redirect("admincenter.php?site=plugin-manager", 3); return false;
 	} CATCH (Exception $e) {
@@ -97,7 +97,7 @@ return false;
 if(isset($_REQUEST['sve'])) {
 	if(isset($_REQUEST['activate'])) { $acti = 1; } else { $acti = 0; }
 	try {
-		safe_query("UPDATE `".PREFIX."plugins` SET `name` = '".$_REQUEST['name']."', `activate` = '".$acti."', `admin_file` = '".$_REQUEST['admin_file']."', `author` = '".$_REQUEST['author']."', `website` = '".$_REQUEST['website']."', `index_link` = '".$_REQUEST['index']."', `sc_link` = '".$_REQUEST['sclink']."', `hiddenfiles` = '".$_REQUEST['hiddenfiles']."', `version` = '".$_REQUEST['version']."', `path` = '".$_REQUEST['path']."' WHERE `pluginID` = '".intval($_REQUEST['pid'])."';");
+		safe_query("UPDATE `".PREFIX."plugins` SET `name` = '".$_REQUEST['name']."', `description` = '".$_REQUEST['description']."', `activate` = '".$acti."', `admin_file` = '".$_REQUEST['admin_file']."', `author` = '".$_REQUEST['author']."', `website` = '".$_REQUEST['website']."', `index_link` = '".$_REQUEST['index']."', `sc_link` = '".$_REQUEST['sclink']."', `hiddenfiles` = '".$_REQUEST['hiddenfiles']."', `version` = '".$_REQUEST['version']."', `path` = '".$_REQUEST['path']."' WHERE `pluginID` = '".intval($_REQUEST['pid'])."';");
 		echo $_language->module[ 'success_edit' ]."<br /><br />";	
 		redirect("admincenter.php?site=plugin-manager", 3); return false;
 	} CATCH (Exception $e) {
@@ -133,6 +133,12 @@ if($do=="edit") {
     <label class="col-sm-4 control-label" for="name">Name:</label>
     <div class="col-sm-8"><span class="text-muted small"><em>
     <input type="name" class="form-control" name="name" value="'.$row['name'].'"></em></span>
+  </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label" for="name">Description:</label>
+    <div class="col-sm-8"><span class="text-muted small"><em>
+    <input type="name" class="form-control" name="description" value="'.$row['description'].'"></em></span>
   </div>
   </div>
   <div class="form-group">
@@ -229,6 +235,12 @@ if($do=="new") {
   </div>
   </div>
   <div class="form-group">
+     <label class="col-sm-4 control-label" for="name">Description:</label>
+    <div class="col-sm-8"><span class="text-muted small"><em>
+    <input type="name" class="form-control" name="description"></em></span>
+  </div>
+  </div>
+  <div class="form-group">
  	<label class="col-sm-4 control-label" for="admin_file">Admin File:</label>
  	<div class="col-sm-8"><span class="text-muted small"><em>
  	 <input type="name" class="form-control" name="admin_file"></em></span>
@@ -318,10 +330,10 @@ echo'<div class="panel panel-default">
                         </div>
                         <div class="panel-body">
 <div class="row">
-  <div class="col-sm-1"><strong><?php echo $_language->module[ 'id' ]; ?></strong></div>
-  <div class="col-sm-3"><strong><?php echo $_language->module[ 'plugin' ]; ?></strong></div>
-  <div class="col-sm-5"><strong><?php echo $_language->module[ 'description' ]; ?></strong></div>
-  <div class="col-sm-3"><strong><?php echo $_language->module[ 'option' ]; ?></strong></div>
+  <div class="col-sm-1"><strong><?php echo $_language->module[ 'plugin' ]; ?> <?php echo $_language->module[ 'id' ]; ?></strong></div>
+  <div class="col-sm-3"><strong><?php echo $_language->module[ 'plugin' ]; ?> <?php echo $_language->module[ 'name' ]; ?></strong></div>
+  <div class="col-sm-5"><strong><?php echo $_language->module[ 'plugin' ]; ?> <?php echo $_language->module[ 'description' ]; ?></strong></div>
+  <div class="col-sm-3"><strong>Plugin Manager <?php echo $_language->module[ 'option' ]; ?></strong></div>
 </div>
 <hr>
 <?php 
@@ -337,8 +349,8 @@ $CAPCLASS = new \webspell\Captcha;
   <div class="row">
 
   				<div class="col-sm-1">'.$row['pluginID'].'</div>
- 				 <div class="col-sm-3"><a href="'.$row['admin_file'].'" target="_blank">'.$row['name'].'</a></div>
- 				 <div class="col-sm-5">&nbsp;</strong></div>
+ 				 <div class="col-sm-3"><b>'.$row['name'].'</b></div>
+ 				 <div class="col-sm-5">'.$row['description'].'</strong></div>
  				 <div class="col-sm-3">
 
 <a href="admincenter.php?site=plugin-manager&id='.$row['pluginID'].'&do=dea" class="hidden-xs hidden-sm btn btn-danger btn-xs" type="button">' . $_language->module[ 'deactivate' ] . '</a>
@@ -370,11 +382,10 @@ echo'</div>
 ?>
 
 <br /><br />
-<div class="row">
-  <div class="col-sm-1"><strong><?php echo $_language->module[ 'id' ]; ?></strong></div>
-  <div class="col-sm-3"><strong><?php echo $_language->module[ 'plugin' ]; ?></strong></div>
-  <div class="col-sm-5"><strong><?php echo $_language->module[ 'description' ]; ?></strong></div>
-  <div class="col-sm-3"><strong><?php echo $_language->module[ 'option' ]; ?></strong></div>
+<div class="row"><div class="col-sm-1"><strong><?php echo $_language->module[ 'plugin' ]; ?> <?php echo $_language->module[ 'id' ]; ?></strong></div>
+  <div class="col-sm-3"><strong><?php echo $_language->module[ 'plugin' ]; ?> <?php echo $_language->module[ 'name' ]; ?></strong></div>
+  <div class="col-sm-5"><strong><?php echo $_language->module[ 'plugin' ]; ?> <?php echo $_language->module[ 'description' ]; ?></strong></div>
+  <div class="col-sm-3"><strong>Plugin Manager <?php echo $_language->module[ 'option' ]; ?></strong></div>
 </div>
 <hr>
 <?php 
@@ -389,8 +400,8 @@ $CAPCLASS = new \webspell\Captcha;
 		while($row=mysqli_fetch_array($res)) {
 			echo '<div class="row">
   				<div class="col-sm-1">'.$row['pluginID'].'</div>
- 				 <div class="col-sm-3"><a href="'.$row['admin_file'].'" target="_blank">'.$row['name'].'</a></div>
- 				 <div class="col-sm-5">  </strong></div>
+ 				 <div class="col-sm-3"><b>'.$row['name'].'</b></div>
+ 				 <div class="col-sm-5">'.$row['description'].'</strong></div>
  				 <div class="col-sm-3">
  				 <a href="admincenter.php?site=plugin-manager&id='.$row['pluginID'].'&do=act" class="hidden-xs hidden-sm btn btn-success btn-xs" type="button">' . $_language->module[ 'activate' ] . '</a>
 <a href="admincenter.php?site=plugin-manager&id='.$row['pluginID'].'&do=act" class="mobile visible-xs visible-sm" type="button"><span class="fa fa-eye-slash"></span></a>
