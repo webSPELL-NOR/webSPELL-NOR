@@ -289,7 +289,11 @@ $ds =
                                 <?php } if(isnewsadmin($userID)) { ?>
                                 <li><a href="admincenter.php?site=rubrics"><?php echo $_language->module['news_rubrics']; ?></a></li>
                                 <li><a href="admincenter.php?site=newslanguages"><?php echo $_language->module['news_languages']; ?></a></li>
-                                
+                                <?php } if(isfileadmin($userID)) { ?>
+                                <li><a href="admincenter.php?site=filecategories"><?php echo $_language->module['file_categories']; ?></a></li>
+                                <?php } if(ispageadmin($userID)) { ?>
+                                <li><a href="admincenter.php?site=faqcategories"><?php echo $_language->module['faq_categories']; ?></a></li>
+                                <li><a href="admincenter.php?site=linkcategories"><?php echo $_language->module['link_categories']; ?></a></li>
                                  <?php echo admincenternav(4); ?>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -302,11 +306,11 @@ $ds =
                             <ul class="nav nav-second-level">
                                 <li><a href="admincenter.php?site=settings"><?php echo $_language->module['settings']; ?></a></li>
                                 <li><a href="admincenter.php?site=styles"><?php echo $_language->module['styles']; ?></a></li>
-                                <li><a href="admincenter.php?site=sc_plugin_page_head"><?php echo $_language->module['styles']; ?> sc_datei</a></li>
                                 <li><a href="admincenter.php?site=dashnavi"><?php echo $_language->module['dashnavi']; ?></a></li>
                                 <li><a href="admincenter.php?site=navigation"><?php echo $_language->module['web_navigation']; ?></a></li>
                                 <li><a href="admincenter.php?site=countries"><?php echo $_language->module['countries']; ?></a></li>
                                 <li><a href="admincenter.php?site=games"><?php echo $_language->module['games']; ?></a></li>
+                                <li><a href="admincenter.php?site=smileys"><?php echo $_language->module['smilies']; ?></a></li>
                                 <li><a href="admincenter.php?site=modrewrite"><?php echo $_language->module['modrewrite']; ?></a></li>
                                 <li><a href="admincenter.php?site=database"><?php echo $_language->module['database']; ?></a></li>
                                 <li><a href="admincenter.php?site=update&amp;action=update"><?php echo $_language->module['update_webspell']; ?></a></li>
@@ -319,9 +323,16 @@ $ds =
                         <li>
                             <a href="#"><i class="fa fa-font"></i> <?php echo $_language->module['content']; ?><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                
+                                <li><a href="admincenter.php?site=carousel"><?php echo $_language->module['carousel']; ?></a></li>
                                 <li><a href="admincenter.php?site=static"><?php echo $_language->module['static_pages']; ?></a></li>
-                                
+                                <li><a href="admincenter.php?site=faq"><?php echo $_language->module['faq']; ?></a></li>
+                                <li><a href="admincenter.php?site=servers"><?php echo $_language->module['servers']; ?></a></li>
+                                <li><a href="admincenter.php?site=sponsors"><?php echo $_language->module['sponsors']; ?></a></li>
+                                <li><a href="admincenter.php?site=partners"><?php echo $_language->module['partners']; ?></a></li>
+                                <li><a href="admincenter.php?site=history"><?php echo $_language->module['history']; ?></a></li>
+                                <li><a href="admincenter.php?site=about"><?php echo $_language->module['about_us']; ?></a></li>
+                                <li><a href="admincenter.php?site=imprint"><?php echo $_language->module['imprint']; ?></a></li>
+                                <li><a href="admincenter.php?site=bannerrotation"><?php echo $_language->module['bannerrotation']; ?></a></li>
                                 <?php echo admincenternav(6); ?>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -346,10 +357,15 @@ $ds =
                         <?php
                         } if (isgalleryadmin($userID)) {
                         ?>
-                        
-
-
-
+                        <li>
+                            <a href="#"><i class="fa fa-file-image-o"></i> <?php echo $_language->module['gallery']; ?><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="admincenter.php?site=gallery&amp;part=groups"><?php echo $_language->module['manage_groups']; ?></a></li>
+                                <li><a href="admincenter.php?site=gallery&amp;part=gallerys"><?php echo $_language->module['manage_galleries']; ?></a></li>
+                                <?php echo admincenternav(8); ?>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
 
                         <?php
                         } if (ispageadmin($userID)) {
@@ -358,7 +374,7 @@ $ds =
                             <a href="#"><i class="fa fa-arrow-right"></i> <?php echo $_language->module['plugin_base']; ?><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                             <li><a href="admincenter.php?site=plugin-manager"><?php echo $_language->module['plugin_manages']; ?></a></li>
-                            <li><a href="admincenter.php?site=plugin-installer"><?php echo $_language->module['plugin_installer']; ?></a></li>
+                            
                                 <?php echo admincenternav(9); ?>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -394,17 +410,17 @@ $ds =
         if (file_exists($site.'.php')) {
             include($site.'.php');
         } else {
-            // Load Plugins-Admin-File (if exists)
-            chdir("../");
-            $plugin = $load->plugin_data($site,0,true);
-            $plugin_path = $plugin['path'];
-            if(file_exists($plugin_path."admin/".$plugin['admin_file'].".php")) {       
-                include($plugin_path."admin/".$plugin['admin_file'].".php");
-            } else {
-                chdir("admin");
-            echo "<b>Modul [or] Plugin Not found</b><br /><br />";
-                include('overview.php');
-            }
+			// Load Plugins-Admin-File (if exists)
+			chdir("../");
+			$plugin = $load->plugin_data($site,0,true);
+			$plugin_path = $plugin['path'];
+			if(file_exists($plugin_path."admin/".$plugin['admin_file'].".php")) {		
+				include($plugin_path."admin/".$plugin['admin_file'].".php");
+			} else {
+				chdir("admin");
+			echo "<b>Modul [or] Plugin Not found</b><br /><br />";
+				include('overview.php');
+			}
         }
     } else {
         include('overview.php');
@@ -418,46 +434,44 @@ $ds =
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-
-
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
+ <!-- jQuery -->
     <script src="../components/jquery/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="../components/admin/css/style-nav.css">
-	<link href="../components/admin/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-	<script src="../components/admin/js/bootstrap-colorpicker.js"></script>
-	<script>  
-		jQuery(function($) { 
-			$('#cp1').colorpicker(); 
-			$('#cp2').colorpicker();
-			$('#cp3').colorpicker();
-			$('#cp4').colorpicker();
-			$('#cp5').colorpicker();
-			$('#cp6').colorpicker();
-			$('#cp7').colorpicker();
-			$('#cp8').colorpicker();
-			$('#cp9').colorpicker();
-			$('#cp10').colorpicker();
-			$('#cp11').colorpicker();
-			$('#cp12').colorpicker();
-			$('#cp13').colorpicker();
-			$('#cp14').colorpicker();
-			$('#cp15').colorpicker();
-			$('#cp16').colorpicker();
-			$('#cp17').colorpicker();
-			$('#cp18').colorpicker();
-			$('#cp19').colorpicker();
-			$('#cp20').colorpicker();
-			$('#cp21').colorpicker();
-			$('#cp22').colorpicker();
-			$('#cp23').colorpicker();
-			$('#cp24').colorpicker();
-			$(document).ready(function(){
-				$('[data-toggle="tooltip"]').tooltip(); 
-			});
-		}); 
+    <link href="../components/admin/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <script src="../components/admin/js/bootstrap-colorpicker.js"></script>
+    <script>  
+        jQuery(function($) { 
+            $('#cp1').colorpicker(); 
+            $('#cp2').colorpicker();
+            $('#cp3').colorpicker();
+            $('#cp4').colorpicker();
+            $('#cp5').colorpicker();
+            $('#cp6').colorpicker();
+            $('#cp7').colorpicker();
+            $('#cp8').colorpicker();
+            $('#cp9').colorpicker();
+            $('#cp10').colorpicker();
+            $('#cp11').colorpicker();
+            $('#cp12').colorpicker();
+            $('#cp13').colorpicker();
+            $('#cp14').colorpicker();
+            $('#cp15').colorpicker();
+            $('#cp16').colorpicker();
+            $('#cp17').colorpicker();
+            $('#cp18').colorpicker();
+            $('#cp19').colorpicker();
+            $('#cp20').colorpicker();
+            $('#cp21').colorpicker();
+            $('#cp22').colorpicker();
+            $('#cp23').colorpicker();
+            $('#cp24').colorpicker();
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip(); 
+            });
+        }); 
     </script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../components/bootstrap/bootstrap.min.js"></script>
