@@ -31,7 +31,7 @@ $language_array = Array(
 
   'about_us'=>'About us',
   'access_denied'=>'Access denied',
-  'addons'=>'Addons',
+  'dashnavi'=>'Admincenter Navigation',
   'bannerrotation'=>'Bannerrotation',
   'boards'=>'Boards',
   'clanmembers'=>'Clanmembers',
@@ -84,6 +84,10 @@ $language_array = Array(
   'multiaccounts'=>'Multi-Accounts',
   'api_log'=>'API Log',
   'blocked_content'=>'Blocked Content',
-  'modrewrite'=>'Mod-Rewrite'
+  'modrewrite'=>'Mod-Rewrite',
+  'plugin_base'=>'Plugin Basis',
+  'plugin_manages'=>'Plugin Manager',
+  'plugin_installer'=>'Plugin Installer',
+  'web_navigation'=>'Website Navigation'
 );
 
