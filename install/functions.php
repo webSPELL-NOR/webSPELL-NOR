@@ -3781,6 +3781,7 @@ function update_430a_121($_database)
   `website` varchar(200) NOT NULL DEFAULT '',
   `index_link` varchar(255) NOT NULL DEFAULT '',
   `sc_link` varchar(20) NOT NULL DEFAULT '',
+  `description` varchar(255) NOT NULL,
   `hiddenfiles` varchar(255) NOT NULL,
   `version` varchar(10) NOT NULL DEFAULT '',
   `path` varchar(255) NOT NULL DEFAULT '',
