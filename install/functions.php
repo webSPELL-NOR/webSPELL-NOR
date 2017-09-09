@@ -3571,12 +3571,6 @@ function update_420_430_2($_database)
 ) AUTO_INCREMENT=1
  DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
  
-	// NOR Template
-	$transaction->addQuery("INSERT INTO `".PREFIX."dashnavi_links` (`catID`, `name`, `url`, `accesslevel`, `sort`) VALUES
-(5, 'Navigation', 'admincenter.php?site=navigation', 'any', 2),
-(5, 'Carousel', 'admincenter.php?site=carousel', 'any', 3),
-(9, 'Plugin-Manager', 'admincenter.php?site=plugin-manager', 'any', 1);");
-
     $transaction->addQuery("ALTER TABLE `" . PREFIX . "countries` ADD `fav` int(1) NOT NULL default '0'");
     $transaction->addQuery("CREATE TABLE `" . PREFIX . "modrewrite` (
     `ruleID` int(11) NOT NULL AUTO_INCREMENT,
