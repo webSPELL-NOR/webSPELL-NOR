@@ -3537,8 +3537,8 @@ function update_420_430_2($_database)
   `tag` varchar(255) NOT NULL
 ) DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
 
-    $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "addon_categories`");
-    $transaction->addQuery("CREATE TABLE `" . PREFIX . "addon_categories` (
+    $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "dashnavi_categories`");
+    $transaction->addQuery("CREATE TABLE `" . PREFIX . "dashnavi_categories` (
   `catID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
   `default` int(1) NOT NULL DEFAULT '0',
@@ -3547,20 +3547,20 @@ function update_420_430_2($_database)
 ) AUTO_INCREMENT=9
  DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
 
-    $transaction->addQuery("INSERT INTO `" . PREFIX . "addon_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('1', 'main', '1', '1');");
-    $transaction->addQuery("INSERT INTO `" . PREFIX . "addon_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('2', 'user', '1', '2');");
-    $transaction->addQuery("INSERT INTO `" . PREFIX . "addon_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('3', 'spam', '1', '3');");
-    $transaction->addQuery("INSERT INTO `" . PREFIX . "addon_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('4', 'rubrics', '1', '4');");
-    $transaction->addQuery("INSERT INTO `" . PREFIX . "addon_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('5', 'settings', '1', '5');");
-    $transaction->addQuery("INSERT INTO `" . PREFIX . "addon_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('6', 'content', '1', '6');");
-    $transaction->addQuery("INSERT INTO `" . PREFIX . "addon_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('7', 'forum', '1', '7');");
-    $transaction->addQuery("INSERT INTO `" . PREFIX . "addon_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('8', 'gallery', '1', '8');");
+    $transaction->addQuery("INSERT INTO `" . PREFIX . "dashnavi_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('1', 'main', '1', '1');");
+    $transaction->addQuery("INSERT INTO `" . PREFIX . "dashnavi_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('2', 'user', '1', '2');");
+    $transaction->addQuery("INSERT INTO `" . PREFIX . "dashnavi_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('3', 'spam', '1', '3');");
+    $transaction->addQuery("INSERT INTO `" . PREFIX . "dashnavi_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('4', 'rubrics', '1', '4');");
+    $transaction->addQuery("INSERT INTO `" . PREFIX . "dashnavi_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('5', 'settings', '1', '5');");
+    $transaction->addQuery("INSERT INTO `" . PREFIX . "dashnavi_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('6', 'content', '1', '6');");
+    $transaction->addQuery("INSERT INTO `" . PREFIX . "dashnavi_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('7', 'forum', '1', '7');");
+    $transaction->addQuery("INSERT INTO `" . PREFIX . "dashnavi_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('8', 'gallery', '1', '8');");
 
 	// NOR Template
-	$transaction->addQuery("INSERT INTO `" . PREFIX . "addon_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('9', 'Addons', '1', '9');");
+	$transaction->addQuery("INSERT INTO `" . PREFIX . "dashnavi_categories` ( `catID` , `name`, `default`, `sort` ) VALUES ('9', 'plugins', '1', '9');");
    
-   $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "addon_links`");
-    $transaction->addQuery("CREATE TABLE `" . PREFIX . "addon_links` (
+   $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "dashnavi_links`");
+    $transaction->addQuery("CREATE TABLE `" . PREFIX . "dashnavi_links` (
   `linkID` int(11) NOT NULL AUTO_INCREMENT,
   `catID` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -3572,7 +3572,7 @@ function update_420_430_2($_database)
  DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
  
 	// NOR Template
-	$transaction->addQuery("INSERT INTO `".PREFIX."addon_links` (`catID`, `name`, `url`, `accesslevel`, `sort`) VALUES
+	$transaction->addQuery("INSERT INTO `".PREFIX."dashnavi_links` (`catID`, `name`, `url`, `accesslevel`, `sort`) VALUES
 (5, 'Navigation', 'admincenter.php?site=navigation', 'any', 2),
 (5, 'Carousel', 'admincenter.php?site=carousel', 'any', 3),
 (9, 'Plugin-Manager', 'admincenter.php?site=plugin-manager', 'any', 1);");
@@ -4846,6 +4846,14 @@ function update_124_125($_database) {
 	$transaction->addQuery("INSERT INTO `" . PREFIX . "smileys` (`name`, `alt`, `pattern`) VALUES ('zap', 'zap', ':zap:')");
 	$transaction->addQuery("INSERT INTO `" . PREFIX . "smileys` (`name`, `alt`, `pattern`) VALUES ('zero', 'zero', ':zero:')");
 	$transaction->addQuery("INSERT INTO `" . PREFIX . "smileys` (`name`, `alt`, `pattern`) VALUES ('zzz', 'zzz', ':zzz:')");
+	
+	//Update new Tablenames
+	
+	$transaction->addQuery("ALTER TABLE `" . PREFIX. "plugins` add description VARCHAR(255) NOT NULL");
+	$transaction->addQuery("ALTER TABLE `" . PREFIX. "addon_categories` RENAME TO `" . PREFIX ."dashnavi_categories`");
+	$transaction->addQuery("ALTER TABLE `" . PREFIX. "addon_links` RENAME TO `" . PREFIX ."dashnavi_links`");
+	$transaction->addQuery("ALTER TABLE `" . PREFIX. "moduls` add deactivated int(1) NOT NULL default '1'");
+	
 	
 	if ($transaction->successful()) {
         return array('status' => 'success', 'message' => 'Updated smileys');
