@@ -460,7 +460,52 @@ if (!$userID) {
             echo '<strong>ERROR: ' . $error . '</strong><br><br>
             <input type="button" onclick="javascript:history.back()" value="' . $_language->module['back'] . '">';
         }
-    } else {
+    } elseif(isset($_GET['action']) && $_GET['action'] == "deleteaccount") {
+	    
+	    $data_array = array();
+        $data_array['$userID'] = $userID;
+        $myprofile_deleteaccount = $GLOBALS["_template"]->replaceTemplate("myprofile_deleteaccount", $data_array);
+        echo $myprofile_deleteaccount;
+    	
+    } elseif(isset($_POST['deleteAccount'])) {
+	    $pwd = $_POST['pwd'];
+	    $ergebnis = safe_query("SELECT password_hash, password_pepper, password, userID FROM " . PREFIX . "user WHERE userID='" . $userID . "'");
+        $ds = mysqli_fetch_array($ergebnis);
+        
+        $valid = password_verify($pwd.$ds['password_pepper'], $ds['password_hash']);
+        if (!(mb_strlen(trim($pwd)))) {
+            $error = $_language->module['forgot_old_pw'];
+        }
+        if (!$valid) {
+            $error = $_language->module['wrong_password'];
+        }
+        
+        if(empty($error)) {
+	        safe_query("DELETE FROM ".PREFIX."forum_moderators WHERE userID='" .$ds['userID']. "'");
+			safe_query("DELETE FROM ".PREFIX."messenger WHERE touser='" .$ds['userID']. "'");
+			safe_query("DELETE FROM ".PREFIX."squads_members WHERE userID='" .$ds['userID']. "'");
+			safe_query("DELETE FROM ".PREFIX."upcoming_announce WHERE userID='" .$ds['userID']. "'");
+			safe_query("DELETE FROM ".PREFIX."user WHERE userID='" .$ds['userID']. "'");
+			safe_query("DELETE FROM ".PREFIX."user_groups WHERE userID='" .$ds['userID']. "'");
+			
+			$userfiles = array('images/avatars/' . $ds['userID'] . '.jpg', 'images/avatars/' . $ds['userID'] . '.png', 'images/avatars/' . $ds['userID'] . '.gif', 'images/userpics/' . $ds['userID'] . '.jpg', 'images/userpics/' . $ds['userID'] . '.gif', 'images/userpics/' . $ds['userID'] . '.png');
+			foreach($userfiles as $file) {
+				if(file_exists($file)) {
+					unlink($file);
+				}
+			}
+			redirect('logout.php', $_language->module['account_deleted'], 3);
+       
+			unset($_SESSION['ws_auth']);
+			unset($_SESSION['ws_lastlogin']);
+			session_destroy();	        
+        } else {
+	        echo '<strong>ERROR: ' . $error . '</strong><br><br>
+            <input type="button" onclick="javascript:history.back()" value="' . $_language->module['back'] . '">';
+        }
+	    
+		    
+	} else {
         $ergebnis = safe_query("SELECT * FROM " . PREFIX . "user WHERE userID='" . $userID . "'");
         $anz = mysqli_num_rows($ergebnis);
         if ($anz) {

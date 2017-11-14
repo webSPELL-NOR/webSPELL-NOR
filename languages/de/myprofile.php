@@ -31,6 +31,7 @@ $language_array = array(
 
     'about_myself' => 'Über mich',
     'activated' => 'aktiviert',
+    'account_deleted' => 'Dein Konto wurde erfolgreich unwiderruflich gelöscht',
     'avatar' => 'Avatar:',
     'back' => 'zurück',
     'bbcode' => '<a href="javascript:void(0);" onclick="window.open(\'code.php\',\'BBCode\',\'scrollbars=yes,width=600,height=500\')">BBCode</a> ist AN',
@@ -48,6 +49,7 @@ $language_array = array(
     'date_of_birth' => 'Geburtsdatum',
     'deactivated' => 'deaktiviert',
     'delete' => 'entfernen',
+    'delete_account' => 'Konto entfernen',
     'e-mail'=>'E-Mail',
     'edit_mail' => 'E-Mail editieren',
     'edit_password' => 'Passwort editieren',
