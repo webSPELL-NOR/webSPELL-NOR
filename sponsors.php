@@ -34,12 +34,33 @@ $ergebnis = safe_query("SELECT * FROM " . PREFIX . "sponsors WHERE displayed = '
 if (mysqli_num_rows($ergebnis)) {
     $i = 1;
     while ($ds = mysqli_fetch_array($ergebnis)) {
-        $url = str_replace('http://', '', $ds['url']);
-        $sponsor = '<a href="'.$ds['url'].'" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds['sponsorID'] . '\', 1000})" target="_blank">' . $ds['name'] . '</a>';
-        $link = '<a href="'.$ds['url'].'" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds['sponsorID'] . '\', 1000})" target="_blank">' . $url . '</a>';
+	    
+	    
+	    if ($ds[ 'url' ] != '') {
+            if (stristr($ds[ 'url' ], "http://")) { 
+                $sponsor = '<a href="' . htmlspecialchars($ds[ 'url' ]) . '" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds['sponsorID'] . '\', 1000})" target="_blank" rel="nofollow">' . $ds['name'] . '</a>';
+            } else {
+                $sponsor = '<a href="http://' . htmlspecialchars($ds[ 'url' ]) . '" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds['sponsorID'] . '\', 1000})" target="_blank" rel="nofollow">' . $ds['name'] . '</a>';
+            }
+        } else {
+            $sponsor = $_language->module[ 'n_a' ];
+        }
+        
+        if ($ds[ 'banner' ] != '') {
+            if (stristr($ds[ 'url' ], "http://")) { 
+               $banner = '<a href="'.$ds['url'].'" id="sponsor_' . $ds[ 'sponsorID' ] . '" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds[ 'sponsorID' ] . '\', 1000})" target="_blank"><img src="images/sponsors/' .
+			   $ds['banner'] . '" alt="' . htmlspecialchars($ds[ 'name' ]) . '" class="img-responsive"></a>';
+            } else {
+                $banner = '<a href="http://'. $ds[ 'url' ].'" id="sponsor_' . $ds[ 'sponsorID' ] . '" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds[ 'sponsorID' ] . '\', 1000})" target="_blank"><img src="images/sponsors/' .
+            $ds['banner'] . '" alt="' . htmlspecialchars($ds[ 'name' ]) . '" class="img-responsive"></a>';
+            }
+        } else {
+            $banner = '';
+        }
+	    
+ 
         $info = cleartext($ds['info']);
-        $banner = '<a href="'.$ds['url'].'" id="sponsor_'.$ds['sponsorID'].'" onfocus="setTimeout(function(){window.location.href=\'out.php?sponsorID=' . $ds['sponsorID'] . '\', 1000})" target="_blank"><img src="images/sponsors/' .
-            $ds['banner'] . '" alt="' . htmlspecialchars($ds['name']) . '" class="img-responsive"></a>';
+ 
 
 		$script = '<script>	
 		window.addEventListener("load", function(){
