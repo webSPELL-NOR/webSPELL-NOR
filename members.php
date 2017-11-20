@@ -158,20 +158,25 @@ if ($action == "show") {
             $pm = '';
             $buddy = '';
             if ($loggedin && $dm[ 'userID' ] != $userID) {
-                $pm = '<a href="index.php?site=messenger&amp;action=touser&amp;touser=' . $dm[ 'userID' ] .
-                    '"><img src="images/icons/pm.gif" width="12" height="13" alt="messenger"></a>';
+                $pm = '<a title="messenger" href="index.php?site=messenger&amp;action=touser&amp;touser=' . $dm[ 'userID' ] .
+                    '"><i class="fa fa-envelope"></i></a>';
 
                 if (isignored($userID, $dm[ 'userID' ])) {
-                    $buddy = '<a href="buddies.php?action=readd&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                        '"><img src="images/icons/buddy_readd.gif" width="16" height="16" alt="back to buddylist"></a>';
+                    $buddy =
+                        '<a href="buddies.php?action=readd&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
+                        '" title="back to buddylist"><i class="fa fa-user-plus"></i>
+                        </a>';
                 } elseif (isbuddy($userID, $dm[ 'userID' ])) {
-                    $buddy = '<a href="buddies.php?action=ignore&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                        '"><img src="images/icons/buddy_ignore.gif" width="16" height="16" alt="ignore user"></a>';
+                    $buddy =
+                        '<a title="ignore user" href="buddies.php?action=ignore&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
+                        '"><i class="fa fa-user-times"></i></a>';
                 } elseif ($userID == $dm[ 'userID' ]) {
                     $buddy = "";
                 } else {
-                    $buddy = '<a href="buddies.php?action=add&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                        '"><img src="images/icons/buddy_add.gif" width="16" height="16" alt="add to buddylist"></a>';
+                    $buddy =
+                        '<a title="add to buddylist" href="buddies.php?action=add&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
+                        '"><i class="fa fa-user-plus"></i>
+                        </a>';
                 }
             }
 
@@ -303,13 +308,6 @@ if ($action == "show") {
 
             $i = 1;
             while ($dm = mysqli_fetch_array($member)) {
-                if ($i % 2) {
-                    $bg1 = BG_1;
-                    $bg2 = BG_2;
-                } else {
-                    $bg1 = BG_3;
-                    $bg2 = BG_4;
-                }
 
                 $country = '[flag]' . $dm[ 'country' ] . '[/flag]';
                 $country = flags($country);
@@ -328,24 +326,24 @@ if ($action == "show") {
                 $pm = '';
                 $buddy = '';
                 if ($loggedin && $dm[ 'userID' ] != $userID) {
-                    $pm = '<a href="index.php?site=messenger&amp;action=touser&amp;touser=' . $dm[ 'userID' ] .
-                        '"><img src="images/icons/pm.gif" width="12" height="13" alt="messenger"></a>';
+                    $pm = '<a title="messenger" href="index.php?site=messenger&amp;action=touser&amp;touser=' . $dm[ 'userID' ] .
+                    '"><i class="fa fa-envelope"></i></a>';
 
                     if (isignored($userID, $dm[ 'userID' ])) {
                         $buddy =
                             '<a href="buddies.php?action=readd&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                            '"><img src="images/icons/buddy_readd.gif" width="16" height="16" alt="back to buddylist">
+                            '" title="back to buddylist"><i class="fa fa-user-plus"></i>
                             </a>';
                     } elseif (isbuddy($userID, $dm[ 'userID' ])) {
                         $buddy =
-                            '<a href="buddies.php?action=ignore&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                            '"><img src="images/icons/buddy_ignore.gif" width="16" height="16" alt="ignore user"></a>';
+                            '<a title="ignore user" href="buddies.php?action=ignore&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
+                            '"><i class="fa fa-user-times"></i></a>';
                     } elseif ($userID == $dm[ 'userID' ]) {
                         $buddy = "";
                     } else {
                         $buddy =
-                            '<a href="buddies.php?action=add&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                            '"><img src="images/icons/buddy_add.gif" width="16" height="16" alt="add to buddylist">
+                            '<a title="add to buddylist" href="buddies.php?action=add&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
+                            '"><i class="fa fa-user-plus"></i>
                             </a>';
                     }
                 }
