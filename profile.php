@@ -99,7 +99,7 @@ if (isset($id) && getnickname($id) != '') {
 
                 if (isignored($userID, $db[ 'buddy' ])) {
                     $buddy =
-                        '<a href="buddies.php?action=readd&amp;id=' . $db[ 'buddy' ] . '&amp;userID=' . $userID . '" data-toggle="tooltip" data-placement="top" title="' . $_language->module[ 'back_buddylist' ] . '"><i class="fa fa-user-plus"></i></a>';
+                        '<a class="btn btn-danger btn-xs" href="buddies.php?action=readd&amp;id=' . $db[ 'buddy' ] . '&amp;userID=' . $userID . '" data-toggle="tooltip" data-placement="top" title="' . $_language->module[ 'back_buddylist' ] . '"><i class="fa fa-user-plus"></i></a>';
                 } elseif (isbuddy($userID, $db[ 'buddy' ])) {
                     $buddy = '<a class="btn btn-danger btn-xs"
                         href="buddies.php?action=ignore&amp;id=' . $db[ 'buddy' ] . '&amp;userID=' . $userID . '" data-toggle="tooltip" data-placement="top" title="' . $_language->module[ 'ignore_user' ] . '"><i class="fa fa-user-times"></i></a>';
