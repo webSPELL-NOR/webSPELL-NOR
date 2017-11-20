@@ -172,6 +172,55 @@ if (isset($newsID)) {
         if (empty($related)) {
             $related = "n/a";
         }
+        
+         if ($ds[ 'comments' ]) {
+            if ($ds[ 'cwID' ]) {
+                // CLANWAR-NEWS
+                $anzcomments = getanzcomments($ds[ 'cwID' ], 'cw');
+                $replace = array('$anzcomments', '$url', '$lastposter', '$lastdate');
+                $vars = array(
+                    $anzcomments,
+                    'index.php?site=clanwars_details&amp;cwID=' . $ds[ 'cwID' ],
+                    clearfromtags(getlastcommentposter($ds[ 'cwID' ], 'cw')),
+                    getformatdatetime(getlastcommentdate($ds[ 'cwID' ], 'cw'))
+                );
+
+                switch ($anzcomments) {
+                    case 0:
+                        $comments = str_replace($replace, $vars, $_language->module[ 'no_comment' ]);
+                        break;
+                    case 1:
+                        $comments = str_replace($replace, $vars, $_language->module[ 'comment' ]);
+                        break;
+                    default:
+                        $comments = str_replace($replace, $vars, $_language->module[ 'comments' ]);
+                        break;
+                }
+            } else {
+                $anzcomments = getanzcomments($ds[ 'newsID' ], 'ne');
+                $replace = array('$anzcomments', '$url', '$lastposter', '$lastdate');
+                $vars = array(
+                    $anzcomments,
+                    'index.php?site=news_comments&amp;newsID=' . $ds[ 'newsID' ],
+                    clearfromtags(html_entity_decode(getlastcommentposter($ds[ 'newsID' ], 'ne'))),
+                    getformatdatetime(getlastcommentdate($ds[ 'newsID' ], 'ne'))
+                );
+
+                switch ($anzcomments) {
+                    case 0:
+                        $comments = str_replace($replace, $vars, $_language->module[ 'no_comment' ]);
+                        break;
+                    case 1:
+                        $comments = str_replace($replace, $vars, $_language->module[ 'comment' ]);
+                        break;
+                    default:
+                        $comments = str_replace($replace, $vars, $_language->module[ 'comments' ]);
+                        break;
+                }
+            }
+        } else {
+            $comments = '';
+        }
 
         if (isnewsadmin($userID) || (isnewswriter($userID) && $ds[ 'poster' ] == $userID)) {
             $adminaction =
@@ -188,7 +237,6 @@ if (isset($newsID)) {
             $adminaction = '';
         }
 
-        #$bg1 = BG_1;
 
         $tags = \webspell\Tags::getTagsLinked('news', $newsID);
 
