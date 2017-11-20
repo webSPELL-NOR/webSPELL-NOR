@@ -36,13 +36,16 @@ function getuserid($nickname)
 }
 
 function getnickname($userID)
-{
+{	
+	$_language_tmp = new \webspell\Language();
+	$_language_tmp->readModule('profile');
     $ds = mysqli_fetch_array(
         safe_query(
             "SELECT nickname FROM " . PREFIX . "user WHERE `userID` = " . (int)$userID
         )
     );
-    return $ds['nickname'];
+    
+    return !empty($ds['nickname']) ? $ds['nickname'] : $_language_tmp->module['n_a'];
 }
 
 function getuserdescription($userID)
