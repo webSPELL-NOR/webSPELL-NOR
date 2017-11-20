@@ -427,6 +427,8 @@ function imgreplace($content)
     return $content;
 }
 
+
+
 function youtubereplace($content) {
 	$content = preg_replace("/\[youtube\](?:http?:\/\/)?(?:https?:\/\/)(?:www\.)?youtu(?:\.be\/|be\.com\/watch\?v=)([A-Z0-9\-_]+)(?:&(.*?))?\[\/youtube\]/si", "<div class=\"embed-responsive embed-responsive-16by9\"><iframe class=\"youtube-player\" type=\"text/html\" width=\"640\" height=\"385\" src=\"//www.youtube.com/embed/\\1\" frameborder=\"0\" class=\"embed-responsive-item\"></iframe></div>", $content);
 	$content = preg_replace("/\[youtube\]([A-Z0-9\-_]+)(?:&(.*?))?\[\/youtube\]/si", "<div class=\"embed-responsive embed-responsive-16by9\"><iframe class=\"youtube-player\" type=\"text/html\" width=\"640\" height=\"385\" src=\"//www.youtube.com/embed/\\1\" frameborder=\"0\" class=\"embed-responsive-item\"></iframe></div>" ,$content);
@@ -641,7 +643,7 @@ function emailreplace_callback_2($match)
 
 function font_size_callback($match)
 {
-    return '<span style="font-size: ' . removeIllegalCharacerts($match[1]) . '">' . $match[2] . '</span>';
+    return '<span style="font-size: ' . $match[1] . '">' . $match[2] . '</span>';
 }
 
 function font_color_callback($match)
@@ -651,7 +653,7 @@ function font_color_callback($match)
 
 function font_face_callback($match)
 {
-    return '<span style="font-family: ' . removeIllegalCharacerts($match[1]) . '">' . $match[2] . '</span>';
+    return '<span style="font-family: ' . $match[1] . '">' . $match[2] . '</span>';
 }
 
 function align_callback($match)
@@ -700,8 +702,8 @@ function replacement($content, $bbcode = true)
                 $content
             );
         }
-        while (preg_match("#\[font=([a-z0-9]*)\](.*?)\[/font\]#si", $content)) {
-            $content = preg_replace_callback("#\[font=([a-z0-9]*)\](.*?)\[/font\]#si", "font_face_callback", $content);
+        while (preg_match("#\[font=([a-z0-9- ]*)\](.*?)\[/font\]#si", $content)) {
+            $content = preg_replace_callback("#\[font=([a-z0-9- ]*)\](.*?)\[/font\]#si", "font_face_callback", $content);
         }
         while (preg_match("#\[align=([a-z0-9]*)\](.*?)\[/align\]#si", $content)) {
             $content = preg_replace_callback("#\[align=([a-z0-9]*)\](.*?)\[/align\]#si", "align_callback", $content);
