@@ -230,16 +230,22 @@ if ($action == "add") {
 
 <div class="col-md-6">
 
-    <div class="form-group">
+    <div id="min" class="form-group">
     <label class="col-sm-4 control-label">'.$_language->module['min_posts'].':</label>
     <div class="col-sm-8"><span class="text-muted small"><em>
-		<input class="form-control" type="text" name="min" size="4" /></em></span>
+        <input class="form-control" type="text" name="min" size="4" /></em></span>
+    </div>
+  </div>
+  <div id="max" class="form-group">
+    <label class="col-sm-4 control-label">'.$_language->module['max_posts'].':</label>
+    <div class="col-sm-8"><span class="text-muted small"><em>
+        <input class="form-control" type="text" name="max" size="4" /></em></span>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-4 control-label">'.$_language->module['max_posts'].':</label>
+    <label class="col-sm-4 control-label">' . $_language->module[ 'special_rank' ] . ':</label>
     <div class="col-sm-8"><span class="text-muted small"><em>
-		<input class="form-control" type="text" name="max" size="4" /></em></span>
+        <input type="checkbox" name="special" onchange="javascript:HideFields(this.checked);" value="1" /></em></span>
     </div>
   </div>
 
