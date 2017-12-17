@@ -919,11 +919,17 @@ if ($action == "save") {
     }
     if (isfileadmin($userID)) {
         $adminactions =
-            '<div class="text-right">
-                <a href="index.php?site=files&amp;action=newfile" class="btn btn-danger">' .
-                    $_language->module[ 'new_file' ] . '</a>
-                <a href="admin/admincenter.php?site=filecategories" class="btn btn-danger">' .
-                    $_language->module[ 'new_category' ] . '</a>
+            '<div class="row">
+                <div class="col-xs-6">
+                    <a href="index.php?site=files&amp;action=newfile" class="btn btn-danger">' .
+                        $_language->module[ 'new_file' ] .'
+                    </a>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <a href="admin/admincenter.php?site=filecategories" class="btn btn-danger">' .
+                        $_language->module[ 'new_category' ] . '
+                    </a>
+                </div>
             </div><br>';
     }
 

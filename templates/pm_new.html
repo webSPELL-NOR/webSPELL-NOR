@@ -53,9 +53,13 @@
         <strong>%your_message%</strong><br>
         <textarea name="message" id="message" rows="10" class="form-control">$message</textarea>
     </div>
-
+    <div class="row">
+            <div class="col-md-6">
+$admin
+</div>
+<div class="col-md-6">
     <div class="form-group text-right">
-        <small><strong>%options%</strong> <a
+        <small><strong>%options%:</strong> <a
                 href="javascript:void(0);" onclick="window.open(
                     'code.php',
                     'BBCode',
@@ -67,9 +71,9 @@
                 'scrollbars=yes,width=340,height=500')">%smilies%</a>
         </small>
     </div>
-
+</div></div>
     <div class="form-group">
         <input type="submit" name="send" value="%send_message%" class="btn btn-danger pull-right">
     </div>
-    $admin
+    
 </form>
