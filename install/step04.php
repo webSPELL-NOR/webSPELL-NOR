@@ -38,42 +38,6 @@ if ($_POST['hp_url']) {
             <?php echo $_language->module['what_to_do']; ?>
 				<div class="radio">
 					<label>
-                        <input type="radio" name="installtype" value="update">
-                        <?php echo $_language->module['update_31']; ?>
-					</label>
-				</div>
-				<div class="radio">
-					<label>
-                        <input type="radio" name="installtype" value="update_beta">
-                        <?php echo $_language->module['update_beta4']; ?>
-					</label>
-				</div>
-				<div class="radio">
-					<label>
-                        <input type="radio" name="installtype" value="update_beta5">
-                        <?php echo $_language->module['update_beta5']; ?>
-					</label>
-				</div>
-				<div class="radio">
-					<label>
-                        <input type="radio" name="installtype" value="update_beta6">
-                        <?php echo $_language->module['update_beta6']; ?>
-					</label>
-				</div>
-				<div class="radio">
-					<label>
-                        <input type="radio" name="installtype" value="update_final">
-                        <?php echo $_language->module['update_40']; ?>
-					</label>
-				</div>
-				<div class="radio">
-					<label>
-                        <input type="radio" name="installtype" value="update_40100">
-                        <?php echo $_language->module['update_40100']; ?>
-					</label>
-				</div>
-				<div class="radio">
-					<label>
                         <input type="radio" name="installtype" value="update_40102">
                         <?php echo $_language->module['update_40102']; ?>
 					</label>
