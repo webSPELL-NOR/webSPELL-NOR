@@ -4860,6 +4860,7 @@ function update_124_125_2($_database) {
 	$transaction->addQuery("ALTER TABLE `" . PREFIX. "addon_categories` RENAME TO `" . PREFIX ."dashnavi_categories`");
 	$transaction->addQuery("ALTER TABLE `" . PREFIX. "addon_links` RENAME TO `" . PREFIX ."dashnavi_links`");
 	$transaction->addQuery("ALTER TABLE `" . PREFIX. "moduls` add deactivated int(1) NOT NULL default '1'");
+	$transaction->addQuery("DELETE FROM `" . PREFIX. "dashnavi_links` WHERE `name` = 'Plugin-Manager' AND `name` = 'Navigation' AND `name` = 'Carousel'");
 	
 	if ($transaction->successful()) {
         return array('status' => 'success', 'message' => 'Updated webSPELL NOR 1.2.5 Part 2');
