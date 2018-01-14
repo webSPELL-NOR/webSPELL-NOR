@@ -3429,7 +3429,8 @@ function update_420_430_1($_database)
     PRIMARY KEY (`commentID`)
     ) AUTO_INCREMENT=1
      DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
-
+	 
+	$transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "api_log`");
     $transaction->addQuery("CREATE TABLE `" . PREFIX . "api_log` (
     `date` int(11) NOT NULL,
     `message` varchar(255) NOT NULL,
@@ -4842,18 +4843,122 @@ function update_124_125($_database) {
 	$transaction->addQuery("INSERT INTO `" . PREFIX . "smileys` (`name`, `alt`, `pattern`) VALUES ('zzz', 'zzz', ':zzz:')");
 	
 	//Update new Tablenames
+
+	
+	
+	if ($transaction->successful()) {
+        return array('status' => 'success', 'message' => 'Updated webSPELL NOR 1.2.5 Part 1');
+    } else {
+        return array('status' => 'fail', 'message' => 'Failed to update webSPELL NOR 1.2.5 Part 1 <br/>' . $transaction->getError());
+    }
+}
+
+function update_124_125_2($_database) {
+	$transaction = new Transaction($_database);
 	
 	$transaction->addQuery("ALTER TABLE `" . PREFIX. "plugins` add description VARCHAR(255) NOT NULL");
 	$transaction->addQuery("ALTER TABLE `" . PREFIX. "addon_categories` RENAME TO `" . PREFIX ."dashnavi_categories`");
 	$transaction->addQuery("ALTER TABLE `" . PREFIX. "addon_links` RENAME TO `" . PREFIX ."dashnavi_links`");
 	$transaction->addQuery("ALTER TABLE `" . PREFIX. "moduls` add deactivated int(1) NOT NULL default '1'");
 	
+	if ($transaction->successful()) {
+        return array('status' => 'success', 'message' => 'Updated webSPELL NOR 1.2.5 Part 2');
+    } else {
+        return array('status' => 'fail', 'message' => 'Failed to update webSPELL NOR 1.2.5 Part 2 <br/>' . $transaction->getError());
+    }
+}
+
+function update_420_125($_database) {
+	$transaction = new Transaction($_database);
+	$transaction->addQuery("ALTER TABLE ".PREFIX."user CHANGE `connection` `verbindung` VARCHAR(255)");
+	$transaction->addQuery("ALTER TABLE ".PREFIX."user ADD password_hash VARCHAR(255) NOT NULL AFTER password");
+	$transaction->addQuery("ALTER TABLE ".PREFIX."user ADD password_pepper VARCHAR(255) NOT NULL AFTER password_hash");
+	
+	   //carousel
+    $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "carousel`");
+    $transaction->addQuery("CREATE TABLE `" . PREFIX . "carousel` (
+  `carouselID` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `carousel_pic` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `sort` int(11) NOT NULL DEFAULT '1',
+  `displayed` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '1',
+  PRIMARY KEY ( `carouselID` )
+  ) DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
+  
+  $transaction->addQuery("INSERT INTO `".PREFIX."carousel` (`title`, `link`, `description`, `carousel_pic`, `sort`, `displayed`) VALUES
+('Carousel Entry #1', 'http://webspell-nor.getschonnik.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '1.jpg', '1', '1'),
+('Carousel Entry #2', 'http://webspell-nor.getschonnik.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '2.jpg', '1', '1'),
+('Carousel Entry #3', 'http://webspell-nor.getschonnik.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '3.jpg', '1', '1')");
+
+	// Navigation
+	$transaction->addQuery("CREATE TABLE `" . PREFIX . "navigation_main` (
+  `mnavID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL default '',
+  `link` varchar(255) NOT NULL default '',
+  `sort` int(2) NOT NULL default '0',
+  `isdropdown` int(1) NOT NULL default '1',
+  PRIMARY KEY  (`mnavID`)
+) AUTO_INCREMENT=1
+  DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
+  
+  $transaction->addQuery("INSERT INTO `".PREFIX."navigation_main` (`mnavID`, `name`, `link`, `sort`, `isdropdown`) VALUES
+(1, 'main', '#', 1, 1),
+(2, 'Team', '#', 1, 1),
+(3, 'community', '#', 3, 1),
+(4, 'media', '#', 4, 1),
+(5, 'miscellaneous', '#', 5, 1);");
+  
+    $transaction->addQuery("CREATE TABLE `" . PREFIX . "navigation_sub` (
+  `snavID` int(11) NOT NULL AUTO_INCREMENT,
+  `mnav_ID` int(11) NOT NULL default '0', 
+  `name` varchar(255) NOT NULL default '',
+  `link` varchar(255) NOT NULL default '',
+  `sort` int(2) NOT NULL default '0',
+  `indropdown` int(1) NOT NULL default '1',
+  PRIMARY KEY  (`snavID`)
+) AUTO_INCREMENT=1
+  DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
+	
+	$transaction->addQuery("INSERT INTO `".PREFIX."navigation_sub` (`snavID`, `mnav_ID`, `name`, `link`, `sort`, `indropdown`) VALUES
+(1, 1, 'News', 'index.php?site=news', 0, 1),
+(2, 1, 'Archive', 'index.php?site=news&action=archive', 1, 1),
+(3, 1, 'Articles', 'index.php?site=articles', 1, 1),
+(4, 1, 'Calendar', 'index.php?site=calendar', 1, 1),
+(5, 1, 'FAQ', 'index.php?site=faq', 1, 1),
+(6, 1, 'Search', 'index.php?site=search', 1, 1),
+(7, 2, 'About_Us', 'index.php?site=about', 1, 1),
+(8, 2, 'Squads', 'index.php?site=squads', 1, 1),
+(9, 2, 'Members', 'index.php?site=members', 1, 1),
+(11, 2, 'Matches', 'index.php?site=clanwars', 1, 1),
+(12, 2, 'History', 'index.php?site=history', 1, 1),
+(13, 2, 'Awards', 'index.php?site=awards', 1, 1),
+(14, 3, 'Forum', 'index.php?site=forum', 1, 1),
+(15, 3, 'Guestbook', 'index.php?site=guestbook', 1, 1),
+(16, 3, 'Registered_users', 'index.php?site=registered_users', 1, 1),
+(17, 3, 'whoisonline', 'index.php?site=whoisonline', 1, 1),
+(18, 3, 'Polls', 'index.php?site=polls', 1, 1),
+(19, 3, 'Server', 'index.php?site=server', 1, 1),
+(20, 4, 'Downloads', 'index.php?site=files', 1, 1),
+(21, 4, 'Demos', 'index.php?site=demos', 1, 1),
+(22, 4, 'Links', 'index.php?site=links', 1, 1),
+(23, 4, 'Gallery', 'index.php?site=gallery', 1, 1),
+(24, 4, 'Links_us', 'index.php?site=linkus', 1, 1),
+(25, 5, 'Sponsors', 'index.php?site=sponsors', 1, 1),
+(26, 5, 'Newsletter', 'index.php?site=newsletter', 1, 1),
+(27, 5, 'Contact', 'index.php?site=contact', 1, 1),
+(28, 5, 'fight_us', 'index.php?site=challenge', 1, 1),
+(29, 5, 'join_us', 'index.php?site=joinus', 1, 1),
+(30, 5, 'Imprint', 'index.php?site=imprint', 1, 1);");
 	
 	if ($transaction->successful()) {
-        return array('status' => 'success', 'message' => 'Updated smileys');
+        return array('status' => 'success', 'message' => 'Updated webSPELL.org to webSPELL NOR');
     } else {
-        return array('status' => 'fail', 'message' => 'Failed to update smileys <br/>' . $transaction->getError());
+        return array('status' => 'fail', 'message' => 'Failed to update webSPELL.org to webSPELL NOR <br/>' . $transaction->getError());
     }
+
+	
 }
 
 function update_PasswordHash($_database)
