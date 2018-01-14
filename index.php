@@ -390,7 +390,7 @@ header('X-UA-Compatible: IE=edge,chrome=1');
         </div>
         <div id="footer">
             <div class="container">
-                Copyright&copy; by <?php echo $myclanname ?> 2016 - <small>Template by <a href="http://www.2one-designs.de" target="_blank">Argu</a> and <a href="http://www.designperformance.de" target="_blank">T-Seven</a></small>
+                Copyright&copy; by <?php echo $myclanname ?> <?php date("Y"); ?> - <small>Template by <a href="http://www.2one-designs.de" target="_blank">Argu</a> and <a href="http://www.designperformance.de" target="_blank">T-Seven</a></small>
                 <!-- if you want, you can use this network-items by your own -->
                     <div class="pull-right">
                         <a href="https://www.facebook.com/bootsnipp"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
