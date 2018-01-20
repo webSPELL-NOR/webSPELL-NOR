@@ -764,7 +764,7 @@ function update_base_12($_database)
   `serverID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL default '',
   `ip` varchar(255) NOT NULL default '',
-  `game` char(3) NOT NULL default '',
+  `game` char(10) NOT NULL default '',
   `info` text NOT NULL,
   PRIMARY KEY  (`serverID`)
 ) AUTO_INCREMENT=1
@@ -1274,7 +1274,7 @@ function update_31_4beta4($_database)
  ) AUTO_INCREMENT=1
    DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
 
-    $transaction->addQuery("ALTER TABLE `" . PREFIX . "servers` CHANGE `game` `game` CHAR( 3 ) NOT NULL");
+    $transaction->addQuery("ALTER TABLE `" . PREFIX . "servers` CHANGE `game` `game` CHAR( 10 ) NOT NULL");
     if ($transaction->successful()) {
         return array('status' => 'success', 'message' => 'Updated to webSPELL 4 Beta 4');
     } else {
@@ -4841,6 +4841,7 @@ function update_124_125($_database) {
 	$transaction->addQuery("INSERT INTO `" . PREFIX . "smileys` (`name`, `alt`, `pattern`) VALUES ('zap', 'zap', ':zap:')");
 	$transaction->addQuery("INSERT INTO `" . PREFIX . "smileys` (`name`, `alt`, `pattern`) VALUES ('zero', 'zero', ':zero:')");
 	$transaction->addQuery("INSERT INTO `" . PREFIX . "smileys` (`name`, `alt`, `pattern`) VALUES ('zzz', 'zzz', ':zzz:')");
+	$transaction->addQuery("ALTER TABLE `" . PREFIX . "servers` CHANGE `game` `game` CHAR( 10 ) NOT NULL");
 	
 	//Update new Tablenames
 
@@ -4921,6 +4922,8 @@ function update_420_125($_database) {
   PRIMARY KEY  (`snavID`)
 ) AUTO_INCREMENT=1
   DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
+  
+  $transaction->addQuery("ALTER TABLE `" . PREFIX . "servers` CHANGE `game` `game` CHAR( 10 ) NOT NULL");
 	
 	$transaction->addQuery("INSERT INTO `".PREFIX."navigation_sub` (`snavID`, `mnav_ID`, `name`, `link`, `sort`, `indropdown`) VALUES
 (1, 1, 'News', 'index.php?site=news', 0, 1),
