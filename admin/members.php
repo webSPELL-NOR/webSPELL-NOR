@@ -678,6 +678,6 @@ onmouseout="hideWMTT()" />';
         }
         echo '</tbody></table></div></div><br />';
     }
-    echo '<div align="right"><input class="btn btn-primary btn-xs" type="hidden" name="captcha_hash" value="' . $hash .
-        '" /><input type="submit" name="sortieren" value="' . $_language->module[ 'to_sort' ] . '" /></div></form>';
+    echo '<div align="right"><input type="hidden" name="captcha_hash" value="' . $hash .
+        '" /><input type="submit" name="sortieren" class="btn btn-primary btn-xs" value="' . $_language->module[ 'to_sort' ] . '" /></div></form>';
 }
