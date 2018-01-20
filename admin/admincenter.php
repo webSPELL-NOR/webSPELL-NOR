@@ -102,7 +102,7 @@ function addonnav()
 if ($userID && !isset($_GET[ 'userID' ]) && !isset($_POST[ 'userID' ])) {
 $ds =
         mysqli_fetch_array(safe_query("SELECT registerdate FROM `" . PREFIX . "user` WHERE userID='" . $userID . "'"));
-    $username = '<a href="index.php?site=profile&amp;id=' . $userID . '">' . getnickname($userID) . '</a>';
+    $username = '<a href="../index.php?site=profile&amp;id=' . $userID . '">' . getnickname($userID) . '</a>';
     $lastlogin = getformatdatetime($_SESSION[ 'ws_lastlogin' ]);
     $registerdate = getformatdatetime($ds[ 'registerdate' ]);
 
@@ -202,7 +202,7 @@ $ds =
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         
-                        <li><a href="../index.php"><i class="fa fa-undo"></i> Back to Webside</a>
+                        <li><a href="../index.php"><i class="fa fa-undo"></i> Back to Website</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="../logout.php"><i class="fa fa-sign-out"></i> Logout</a>
@@ -310,7 +310,6 @@ $ds =
                                 <li><a href="admincenter.php?site=navigation"><?php echo $_language->module['web_navigation']; ?></a></li>
                                 <li><a href="admincenter.php?site=countries"><?php echo $_language->module['countries']; ?></a></li>
                                 <li><a href="admincenter.php?site=games"><?php echo $_language->module['games']; ?></a></li>
-                                <li><a href="admincenter.php?site=smileys"><?php echo $_language->module['smilies']; ?></a></li>
                                 <li><a href="admincenter.php?site=modrewrite"><?php echo $_language->module['modrewrite']; ?></a></li>
                                 <li><a href="admincenter.php?site=database"><?php echo $_language->module['database']; ?></a></li>
                                 <li><a href="admincenter.php?site=update&amp;action=update"><?php echo $_language->module['update_webspell']; ?></a></li>
