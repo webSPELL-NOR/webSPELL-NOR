@@ -98,6 +98,7 @@ $language_array = Array(
   'profile_last_posts'=>'Profil derniers messages',
   'public_admin'=>'Zone publique administrateur',
   'registered_users'=>'membres enregistrés',
+  'register_per_ip'=>'Enregistrement avec la même adresse IP?',
   'search_min_length'=>'Recherche longueur min.',
   'settings'=>'Paramètres',
   'shoutbox'=>'Tribune libre',

@@ -98,6 +98,7 @@ $language_array = Array(
   'profile_last_posts'=>'Profile last posts',
   'public_admin'=>'Public area admin',
   'registered_users'=>'registered users',
+  'register_per_ip'=>'Registration with the same IP?',
   'search_min_length'=>'Search min. length',
   'settings'=>'Settings',
   'shoutbox'=>'Shoutbox',
