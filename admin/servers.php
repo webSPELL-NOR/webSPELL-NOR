@@ -277,8 +277,7 @@ else {
     <div class="panel-heading">
                             <i class="fa fa-gamepad"></i> '.$_language->module['servers'].'
                         </div>
-                        <div class="panel-body">
-  <h1>'.$_language->module['servers'].'</h1>';
+                        <div class="panel-body">';
   
   echo'<a href="admincenter.php?site=servers&amp;action=add" class="btn btn-primary btn-xs" type="button">' . $_language->module[ 'new_server' ] . '</a><br /><br />';
 
