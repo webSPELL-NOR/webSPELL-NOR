@@ -257,18 +257,23 @@ if (isset($_GET[ 'action' ]) && $_GET[ 'action' ] == "edit") {
                     '</option></select>';
             }
 
-            $squads .= '<div class="row bt"><div class="col-md-6">' . $_language->module[ 'squad' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . getsquadname($ds[ 'squadID' ]) . '</em></span></div></div>
+            $squads .= '<div class="col-md-12"><div class="row bt">
+            <div class="col-md-6">' . $_language->module[ 'squad' ] . ':</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . getsquadname($ds[ 'squadID' ]) . '</em></span></div>
+            </div>
 
-    </div>
-<div class="col-md-6">
+    
 
     <div class="row bt"><div class="col-md-6">' . $_language->module[ 'position' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em><input type="text" name="position[' . $ds[ 'sqmID' ] . ']" value="' . getinput($ds[ 'position' ]) . '" size="20" />' . $activity . '</em></span></div></div>
-
-    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'joinus_admin' ] . ': ' . $join . '</em></span></div></div>
-    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' .
-                $_language->module[ 'fightus_admin' ] . ': ' . $fight . '</em></span></div></div>
-
 </div>
+<div class="col-md-12">
+
+
+    <div class="row bt"><hr><div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'joinus_admin' ] . ': ' . $join . '</em></span></div></div>
+    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' .
+                $_language->module[ 'fightus_admin' ] . ': ' . $fight . '</em></span></div></div><hr style="border:solid #0095db 1px">
+
+</div></div>
 ';
         }
     }
@@ -492,8 +497,8 @@ onmouseout="hideWMTT()" />';
 
 <div class="col-md-12">
 
-    <div class="row bt"><div class="col-md-3">' . $_language->module[ 'nickname' ] . ':</div><div class="col-md-9"><span class="pull-left text-muted small"><em><a href="../index.php?site=profile&amp;id=' . $id . '" target="_blank">' .
-            strip_tags(stripslashes(getnickname($id))) . '</a></em></span></div></div>
+    <div class="row bt"><div class="col-md-3">' . $_language->module[ 'nickname' ] . ':</div><div class="col-md-9"><span class="pull-right text-muted small"><em><b><a href="../index.php?site=profile&amp;id=' . $id . '" target="_blank">' .
+            strip_tags(stripslashes(getnickname($id))) . '</a></b></em></span></div></div><hr style="border:solid #0095db 1px">
      
         ' . $squads . '
         ' . $userdes . '
@@ -502,7 +507,7 @@ onmouseout="hideWMTT()" />';
 
     <div class="row bt"><div class="col-md-3">' . $_language->module[ 'special_rank' ] . ':</div><div class="col-md-9"><span class="pull-left text-muted small"><em><select name="special_rank">' . $ranks . '</select></em></span></div></div>
 
-</div>
+
 
 <div class="col-md-12">
 <br>
@@ -681,3 +686,4 @@ onmouseout="hideWMTT()" />';
     echo '<div align="right"><input type="hidden" name="captcha_hash" value="' . $hash .
         '" /><input type="submit" name="sortieren" class="btn btn-primary btn-xs" value="' . $_language->module[ 'to_sort' ] . '" /></div></form>';
 }
+
