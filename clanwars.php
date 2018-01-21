@@ -1678,6 +1678,6 @@ if ($action == "new") {
         $clanwars_foot = $GLOBALS["_template"]->replaceTemplate("clanwars_foot", $data_array);
         echo $clanwars_foot;
     } else {
-        echo $_language->module[ 'no_entries' ];
+        echo generateAlert($_language->module['no_entries'], 'alert-info');
     }
 }
