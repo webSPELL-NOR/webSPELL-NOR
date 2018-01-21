@@ -1138,6 +1138,6 @@ if ($action == "save") {
         $files_overview = $GLOBALS["_template"]->replaceTemplate("files_overview_foot", array());
         echo $files_overview;
     } else {
-        echo $_language->module[ 'no_categories_and_files' ];
+        echo generateAlert($_language->module['no_categories_and_files'], 'alert-info');
     }
 }
