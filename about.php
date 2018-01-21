@@ -43,5 +43,5 @@ if (mysqli_num_rows($ergebnis)) {
     $about = $GLOBALS["_template"]->replaceTemplate("about", $data_array);
     echo $about;
 } else {
-    echo $_language->module[ 'no_about' ];
+    echo generateAlert($_language->module['no_about'], 'alert-info');
 }
