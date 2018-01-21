@@ -516,6 +516,6 @@ if ($action == "new") {
         $awards_foot = $GLOBALS["_template"]->replaceTemplate("awards_foot", array());
         echo $awards_foot;
     } else {
-        echo $_language->module[ 'no_entries' ];
+        echo generateAlert($_language->module['no_entries'], 'alert-info');
     }
 }
