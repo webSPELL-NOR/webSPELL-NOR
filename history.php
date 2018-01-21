@@ -43,5 +43,5 @@ if (mysqli_num_rows($ergebnis)) {
     $history = $GLOBALS["_template"]->replaceTemplate("history", $data_array);
     echo $history;
 } else {
-    echo $_language->module[ 'no_history' ];
+    echo generateAlert($_language->module['no_history'], 'alert-info');
 }
