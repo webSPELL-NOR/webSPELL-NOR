@@ -842,6 +842,6 @@ value="' . $_language->module[ 'rate' ] . '" class="btn btn-primary">
         $demos_foot = $GLOBALS["_template"]->replaceTemplate("demos_foot", array());
         echo $demos_foot;
     } else {
-        echo $_language->module[ 'no_demos' ];
+        echo generateAlert($_language->module['no_demos'], 'alert-info');
     }
 }
