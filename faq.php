@@ -205,6 +205,6 @@ if ($action == "faqcat" && is_numeric($_GET[ 'faqcatID' ])) {
             $i++;
         }
     } else {
-        echo $_language->module[ 'no_categories' ];
+        echo generateAlert($_language->module['no_categories'], 'alert-info');
     }
 }
