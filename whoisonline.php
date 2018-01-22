@@ -108,7 +108,7 @@ while ($ds = mysqli_fetch_array($ergebnis)) {
             '<a href="index.php?site=profile&amp;id=' . $ds[ 'userID' ] . '"><strong>' . $ds[ 'nickname' ] .
             '</strong></a>';
         if (isclanmember($ds[ 'userID' ])) {
-            $member = ' <img src="images/icons/member.gif" width="7" height="16" alt="Clanmember">';
+            $member = ' <i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
         } else {
             $member = '';
         }
@@ -126,30 +126,28 @@ while ($ds = mysqli_fetch_array($ergebnis)) {
         if (!validate_url(gethomepage($ds[ 'userID' ]))) {
             $homepage = '';
         } else {
-            $homepage = '<a href="' . gethomepage($ds[ 'userID' ]) . '" target="_blank">
-            <img src="images/icons/hp.gif" width="14" height="14" alt="homepage">
-        </a>';
+            $homepage = '<a href="' . gethomepage($ds[ 'userID' ]) . '" target="_blank"><i class="fa fa-home" aria-hidden="true" title="Homepage"></i></a>';
         }
 
         $pm = '';
         $buddy = '';
         if ($loggedin && $ds[ 'userID' ] != $userID) {
             $pm = '<a href="index.php?site=messenger&amp;action=touser&amp;touser=' . $ds[ 'userID' ] . '">
-                <img src="images/icons/pm.gif" width="12" height="13" alt="messenger">
+                <i class="fa fa-envelope" title="Messenger"></i>
             </a>';
             if (isignored($userID, $ds[ 'userID' ])) {
                 $buddy = '<a href="buddies.php?action=readd&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '">
-                    <img src="images/icons/buddy_readd.gif" width="16" height="16" alt="back to buddy-list">
+                    <i class="fa fa-user-plus"></i>
                 </a>';
             } elseif (isbuddy($userID, $ds[ 'userID' ])) {
                 $buddy = '<a href="buddies.php?action=ignore&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '">
-                    <img src="images/icons/buddy_ignore.gif" width="16" height="16" alt="ignore user">
+                    <i class="fa fa-user-times"></i></a>
                 </a>';
             } elseif ($userID == $ds[ 'userID' ]) {
                 $buddy = '';
             } else {
                 $buddy = '<a href="buddies.php?action=add&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '">
-                    <img src="images/icons/buddy_add.gif" width="16" height="16" alt="add to buddylist">
+                    <i class="fa fa-user-plus"></i>
                 </a>';
             }
         }
@@ -282,7 +280,7 @@ while ($ds = mysqli_fetch_array($ergebnis)) {
     $nickname = '<a href="index.php?site=profile&amp;id=' . $ds[ 'userID' ] . '"><strong>' . $ds[ 'nickname' ] .
         '</strong></a>';
     if (isclanmember($ds[ 'userID' ])) {
-        $member = ' <img src="images/icons/member.gif" width="7" height="16" alt="Clanmember">';
+        $member = ' <i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
     } else {
         $member = '';
     }
@@ -301,7 +299,7 @@ while ($ds = mysqli_fetch_array($ergebnis)) {
         $homepage = '';
     } else {
         $homepage = '<a href="' . gethomepage($ds[ 'userID' ]) . '" target="_blank">
-            <img src="images/icons/hp.gif" width="14" height="14" alt="homepage">
+            <i class="fa fa-home" aria-hidden="true" title="Homepage"></i>
         </a>';
     }
 
@@ -309,21 +307,21 @@ while ($ds = mysqli_fetch_array($ergebnis)) {
     $buddy = '';
     if ($loggedin && $ds[ 'userID' ] != $userID) {
         $pm = '<a href="index.php?site=messenger&amp;action=touser&amp;touser=' . $ds[ 'userID' ] . '">
-            <img src="images/icons/pm.gif" width="12" height="13" alt="messenger">
+            <i class="fa fa-envelope"></i>
         </a>';
         if (isignored($userID, $ds[ 'userID' ])) {
             $buddy = '<a href="buddies.php?action=readd&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '">
-                <img src="images/icons/buddy_readd.gif" width="16" height="16" alt="back to buddy-list">
+                <i class="fa fa-user-plus"></i>
             </a>';
         } elseif (isbuddy($userID, $ds[ 'userID' ])) {
             $buddy = '<a href="buddies.php?action=ignore&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '">
-                <img src="images/icons/buddy_ignore.gif" width="16" height="16" alt="ignore user">
+                <i class="fa fa-user-times"></i></a>
             </a>';
         } elseif ($userID == $ds[ 'userID' ]) {
             $buddy = '';
         } else {
             $buddy = '<a href="buddies.php?action=add&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '">
-                <img src="images/icons/buddy_add.gif" width="16" height="16" alt="add to buddylist">
+                <i class="fa fa-user-plus"></i>
             </a>';
         }
     }
