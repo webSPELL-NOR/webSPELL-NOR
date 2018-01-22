@@ -767,7 +767,7 @@ if (isset($id) && getnickname($id) != '') {
         }
         $nickname = $ds[ 'nickname' ];
         if (isclanmember($id)) {
-            $member = ' <img src="images/icons/member.gif" alt="' . $_language->module[ 'clanmember' ] . '">';
+            $member = '<i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
         } else {
             $member = '';
         }
