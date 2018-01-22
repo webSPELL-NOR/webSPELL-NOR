@@ -145,25 +145,24 @@ if ($action == "show") {
             $buddy = '';
             if ($loggedin && $dm[ 'userID' ] != $userID) {
                 $pm = '<a href="index.php?site=messenger&amp;action=touser&amp;touser=' . $dm[ 'userID' ] .
-                    '"><img src="images/icons/pm.gif" alt="' . $_language->module[ 'messenger' ] . '"></a>';
+                    '"><i class="fa fa-envelope"></i></a>';
 
                 if (isignored($userID, $dm[ 'userID' ])) {
                     $buddy = '<a href="buddies.php?action=readd&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                        '"><img src="images/icons/buddy_readd.gif" alt="' . $_language->module[ 'back_buddy' ] .
-                        '"></a>';
+                        '"><i class="fa fa-user-plus"></i></a>';
                 } elseif (isbuddy($userID, $dm[ 'userID' ])) {
                     $buddy = '<a href="buddies.php?action=ignore&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                        '"><img src="images/icons/buddy_ignore.gif" alt="' . $_language->module[ 'ignore' ] . '"></a>';
+                        '"><i class="fa fa-user-times"></i></a>';
                 } else {
                     $buddy = '<a href="buddies.php?action=add&amp;id=' . $dm[ 'userID' ] . '&amp;userID=' . $userID .
-                        '"><img src="images/icons/buddy_add.gif" alt="' . $_language->module[ 'add_buddy' ] . '"></a>';
+                        '"><i class="fa fa-user-plus"></i></a>';
                 }
             }
 
             if (isonline($dm[ 'userID' ]) == "offline") {
-                $statuspic = '<img src="images/icons/offline.gif" alt="offline">';
+                $statuspic = '<i class="fa fa-circle text-danger" aria-hidden="true"></i>';
             } else {
-                $statuspic = '<img src="images/icons/online.gif" alt="online">';
+                $statuspic = '<i class="fa fa-circle text-success" aria-hidden="true"></i>';
             }
 
             $position = $dm[ 'position' ];
@@ -171,9 +170,9 @@ if ($action == "show") {
             $lastname = strip_tags($dm[ 'lastname' ]);
             $town = strip_tags($dm[ 'town' ]);
             if ($dm[ 'activity' ]) {
-                $activity = '<font color="' . $wincolor . '">' . $_language->module[ 'active' ] . '</font>';
+                $activity = '<span class="label label-success">' . $_language->module[ 'active' ] . '</span>';
             } else {
-                $activity = '<font color="' . $loosecolor . '">' . $_language->module[ 'inactive' ] . '</font>';
+                $activity = '<span class="label label-warning">' . $_language->module[ 'inactive' ] . '</span>';
             }
 
             $data_array = array();
