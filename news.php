@@ -444,10 +444,10 @@ if ($action == "new") {
     echo $news;
 
     echo '<hr>
-    <a href="news.php?action=edit&amp;newsID=' . $newsID . '" class="btn btn-danger">' .
+    <a href="news.php?action=edit&amp;newsID=' . $newsID . '" class="btn btn-warning">' .
         $_language->module[ 'edit' ] . '</a>
     <input type="button" onclick="javascript:self.close()" value="' .
-        $_language->module[ 'save_news' ] . '" class="btn btn-danger">
+        $_language->module[ 'save_news' ] . '" class="btn btn-primary">
     <input type="button" onclick="MM_confirm(
         \'' . $_language->module[ 'really_delete' ] .
         '\', \'news.php?action=delete&amp;id=' . $newsID . '&amp;close=true\'
@@ -783,11 +783,11 @@ if ($action == "new") {
             '<input type="button" onclick="window.open(
                     \'news.php?action=new\',
                     \'News\',\'toolbar=no,status=no,scrollbars=yes,width=1024,height=768\'
-                );" value="' . $_language->module[ 'post_news' ] . '" class="btn btn-danger">';
+                );" value="' . $_language->module[ 'post_news' ] . '" class="btn btn-primary">';
     }
 
     echo $post .
-        ' <a href="index.php?site=news" class="btn btn-danger">' . $_language->module[ 'show_news' ] . '</a><hr>';
+        ' <a href="index.php?site=news" class="btn btn-default">' . $_language->module[ 'show_news' ] . '</a><hr>';
 
     $page = '';
 
@@ -857,7 +857,7 @@ if ($action == "new") {
                                 </select>
                                 <span class="input-group-btn">
                                     <input type="submit" name="quickaction" value="' . $_language->module[ 'go' ] . '"
-                                        class="btn btn-danger">
+                                        class="btn btn-default">
                                 </span>
                             </div>
                         </div>
@@ -915,18 +915,18 @@ if ($action == "new") {
                     \'News\',
                     \'toolbar=no,status=no,scrollbars=yes,width=1024,height=768\'
                 )"
-                value="' . $_language->module[ 'post_news' ] . '" class="btn btn-danger">';
+                value="' . $_language->module[ 'post_news' ] . '" class="btn btn-primary">';
         $unpublished = safe_query("SELECT newsID FROM " . PREFIX . "news WHERE published='0' AND saved='1'");
         $unpublished = mysqli_num_rows($unpublished);
         if ($unpublished) {
             $publish =
-                '<a href="index.php?site=news&amp;action=unpublished" class="btn btn-danger">' .
+                '<a href="index.php?site=news&amp;action=unpublished" class="btn btn-default">' .
                     $unpublished . ' ' . $_language->module[ 'unpublished_news' ] . '
                 </a>';
         }
     }
     echo $post . ' ' . $publish .
-        ' <a href="index.php?site=news" class="btn btn-primary">' . $_language->module[ 'show_news' ] . '</a><hr>';
+        ' <a href="index.php?site=news" class="btn btn-default">' . $_language->module[ 'show_news' ] . '</a><hr>';
 
     $all = safe_query(
         "SELECT
@@ -1089,7 +1089,7 @@ if ($action == "new") {
 
                     <span class="input-group-btn">
                     <input type="submit" name="quickaction" value="' .
-                    $_language->module[ 'go' ] . '" class="btn btn-danger">
+                    $_language->module[ 'go' ] . '" class="btn btn-default">
                     </span>
                 </div>
 
@@ -1122,19 +1122,19 @@ if ($action == "new") {
                     \'news.php?action=new\',
                     \'News\',
                     \'toolbar=no,status=no,scrollbars=yes,width=1024,height=768\'
-                );" value="' . $_language->module[ 'post_news' ] . '" class="btn btn-danger">';
+                );" value="' . $_language->module[ 'post_news' ] . '" class="btn btn-primary">';
     }
     if (isnewsadmin($userID)) {
         $unpublished = safe_query("SELECT newsID FROM " . PREFIX . "news WHERE published='0' AND saved='1'");
         $unpublished = mysqli_num_rows($unpublished);
         if ($unpublished) {
             $publish =
-                '<a href="index.php?site=news&amp;action=unpublished" class="btn btn-danger">' .
+                '<a href="index.php?site=news&amp;action=unpublished" class="btn btn-default">' .
                 $unpublished . ' ' . $_language->module[ 'unpublished_news' ] . '</a>';
         }
     }
     echo $post . ' ' . $publish .
-        '&nbsp;<a href="index.php?site=news&amp;action=archive" class="btn btn-primary">' .
+        '&nbsp;<a href="index.php?site=news&amp;action=archive" class="btn btn-default">' .
         $_language->module[ 'news_archive' ] . '</a><hr>';
 
     if (isset($_GET[ 'show' ])) {
@@ -1317,7 +1317,7 @@ if ($action == "new") {
             $adminaction .=
                 '<input type="button" onclick="window.open(\'news.php?action=edit&amp;newsID=' . $ds[ 'newsID' ] .
                 '\',\'News\',\'toolbar=no,status=no,scrollbars=yes,width=1024,height=768\');" value="' .
-                $_language->module[ 'edit' ] . '" class="btn btn-danger">
+                $_language->module[ 'edit' ] . '" class="btn btn-warning">
                 <input type="button" onclick="MM_confirm(\'' . $_language->module[ 'really_delete' ] .
                 '\', \'news.php?action=delete&amp;id=' . $ds[ 'newsID' ] . '\')" value="' .
                 $_language->module[ 'delete' ] . '" class="btn btn-danger">';
