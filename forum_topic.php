@@ -613,7 +613,7 @@ function showtopic($topic, $edit, $addreply, $quoteID, $type)
                     '</strong></a>';
 
                 if (isclanmember($userID)) {
-                    $member = ' <img src="images/icons/member.gif" alt="' . $_language->module['clanmember'] . '">';
+                    $member = ' <i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
                 } else {
                     $member = '';
                 }
@@ -835,7 +835,7 @@ function showtopic($topic, $edit, $addreply, $quoteID, $type)
             stripslashes(getnickname($dr['poster'])) . '</b></a>';
 
         if (isclanmember($dr['poster'])) {
-            $member = ' <img src="images/icons/member.gif" alt="' . $_language->module['clanmember'] . '">';
+            $member = ' <i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
         } else {
             $member = '';
         }
@@ -876,9 +876,9 @@ function showtopic($topic, $edit, $addreply, $quoteID, $type)
         }
 
         if (isonline($dr['poster']) == "offline") {
-            $statuspic = '<img src="images/icons/offline.gif" alt="offline">';
+            $statuspic = '<i class="fa fa-circle text-danger" aria-hidden="true"></i>';
         } else {
-            $statuspic = '<img src="images/icons/online.gif" alt="online">';
+            $statuspic = '<i class="fa fa-circle text-success" aria-hidden="true"></i>';
         }
 
         if (!validate_url(gethomepage($dr['poster']))) {
