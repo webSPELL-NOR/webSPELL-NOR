@@ -75,7 +75,7 @@ if ($action == "show") {
             $games = $ds[ 'games' ];
             if ($games) {
                 $games = str_replace(";", ", ", $games);
-                $games = $_language->module[ 'squad_plays' ] . ": " . $games;
+                $games = generateAlert( $_language->module[ 'squad_plays' ] . ": " . $games, 'alert-info');
             }
         }
 
