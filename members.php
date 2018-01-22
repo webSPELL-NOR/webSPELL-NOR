@@ -181,9 +181,9 @@ if ($action == "show") {
             }
 
             if (isonline($dm[ 'userID' ]) == "offline") {
-                $statuspic = '<img src="images/icons/offline.gif" width="7" height="7" alt="offline">';
+                $statuspic = '<i class="fa fa-circle text-danger" aria-hidden="true"></i>';
             } else {
-                $statuspic = '<img src="images/icons/online.gif" width="7" height="7" alt="online">';
+                $statuspic = '<i class="fa fa-circle text-success" aria-hidden="true"></i>';
             }
 
             $position = $dm[ 'position' ];
@@ -191,9 +191,9 @@ if ($action == "show") {
             $lastname = strip_tags($dm[ 'lastname' ]);
             $town = strip_tags($dm[ 'town' ]);
             if ($dm[ 'activity' ]) {
-                $activity = '<font color="' . $wincolor . '">' . $_language->module[ 'active' ] . '</font>';
+                $activity = '<span class="label label-success">' . $_language->module[ 'active' ] . '</span>';
             } else {
-                $activity = '<font color="' . $loosecolor . '">' . $_language->module[ 'inactive' ] . '</font>';
+                $activity = '<span class="label label-warning">' . $_language->module[ 'inactive' ] . '</span>';
             }
 
             $data_array = array();
@@ -349,9 +349,9 @@ if ($action == "show") {
                 }
 
                 if (isonline($dm[ 'userID' ]) == "offline") {
-                    $statuspic = '<img src="images/icons/offline.gif" width="7" height="7" alt="offline">';
+                    $statuspic = '<i class="fa fa-circle text-danger" aria-hidden="true"></i>';
                 } else {
-                    $statuspic = '<img src="images/icons/online.gif" width="7" height="7" alt="online">';
+                    $statuspic = '<i class="fa fa-circle text-success" aria-hidden="true"></i>';
                 }
 
                 $position = $dm[ 'position' ];
@@ -359,9 +359,9 @@ if ($action == "show") {
                 $lastname = strip_tags($dm[ 'lastname' ]);
                 $town = strip_tags($dm[ 'town' ]);
                 if ($dm[ 'activity' ]) {
-                    $activity = '<font color="' . $wincolor . '">' . $_language->module[ 'active' ] . '</font>';
+                    $activity = '<span class="label label-success">' . $_language->module[ 'active' ] . '</span>';
                 } else {
-                    $activity = '<font color="' . $loosecolor . '">' . $_language->module[ 'inactive' ] . '</font>';
+                    $activity = '<span class="label label-warning">' . $_language->module[ 'inactive' ] . '</span>';
                 }
 
                 $data_array = array();
