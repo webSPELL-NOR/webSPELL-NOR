@@ -257,23 +257,30 @@ if (isset($_GET[ 'action' ]) && $_GET[ 'action' ] == "edit") {
                     '</option></select>';
             }
 
-            $squads .= '<div class="col-md-12"><div class="row bt">
-            <div class="col-md-6">' . $_language->module[ 'squad' ] . ':</div>
-            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . getsquadname($ds[ 'squadID' ]) . '</em></span></div>
+            $squads .= '
+            <div class="col-md-12">
+                <div class="row bt">
+                    <div class="col-md-6">' . $_language->module[ 'squad' ] . ':</div>
+                    <div class="col-md-6"><span class="pull-right text-muted small"><em>' . getsquadname($ds[ 'squadID' ]) . '</em></span></div>
+                </div>
+            
+
+                <div class="row bt"><div class="col-md-6">' . $_language->module[ 'position' ] . ':</div>
+                    <div class="col-md-6"><span class="pull-right text-muted small"><em><input type="text" name="position[' . $ds[ 'sqmID' ] . ']" value="' . getinput($ds[ 'position' ]) . '" size="20" />' . $activity . '</em></span></div>
+                </div>
+            
+
+                <div class="row bt"><hr>
+                    <div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div>
+                    <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'joinus_admin' ] . ': ' . $join . '</em></span></div>
+                </div>
+                    
+                <div class="row bt">
+                    <div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div>
+                    <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'fightus_admin' ] . ': ' . $fight . '</em></span></div>
+                </div><hr style="border:solid #0095db 1px"> 
+
             </div>
-
-    
-
-    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'position' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em><input type="text" name="position[' . $ds[ 'sqmID' ] . ']" value="' . getinput($ds[ 'position' ]) . '" size="20" />' . $activity . '</em></span></div></div>
-</div>
-<div class="col-md-12">
-
-
-    <div class="row bt"><hr><div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'joinus_admin' ] . ': ' . $join . '</em></span></div></div>
-    <div class="row bt"><div class="col-md-6">' . $_language->module[ 'access_rights' ] . ':</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' .
-                $_language->module[ 'fightus_admin' ] . ': ' . $fight . '</em></span></div></div><hr style="border:solid #0095db 1px">
-
-</div></div>
 ';
         }
     }
@@ -423,20 +430,12 @@ onmouseout="hideWMTT()" />';
     if (isclanmember($id)) {
         $userdes = '
 
-<div class="col-md-12"><hr>' . $_language->module[ 'description' ] . ':</div>
-<div class="col-md-12">' . $addflags . '<br>' . $addbbcode . '<br></div>
+        <div class="col-md-12"><hr>' . $_language->module[ 'description' ] . ':</div>
+        <div class="col-md-12">' . $addflags . '<br>' . $addbbcode . '<br></div>
+        <div class="col-md-12"><textarea class="form-control" id="message" rows="5" cols="" name="message" style="width: 100%;">' . getuserdescription($id) . '</textarea></div>        
 
-<div class="col-md-12"><textarea class="form-control" id="message" rows="5" cols="" name="message" style="width: 100%;">' . getuserdescription($id) .
-            '</textarea>
- </div>        
+        ';
 
-        
-
-
-
-
-
-  ';
     } else {
         $userdes = '';
     }
@@ -494,67 +493,125 @@ onmouseout="hideWMTT()" />';
         
 
 <div class="row">
+    <div class="col-md-12">
 
-<div class="col-md-12">
-
-    <div class="row bt"><div class="col-md-3">' . $_language->module[ 'nickname' ] . ':</div><div class="col-md-9"><span class="pull-right text-muted small"><em><b><a href="../index.php?site=profile&amp;id=' . $id . '" target="_blank">' .
-            strip_tags(stripslashes(getnickname($id))) . '</a></b></em></span></div></div><hr style="border:solid #0095db 1px">
+        <div class="row bt">
+            <div class="col-md-3">' . $_language->module[ 'nickname' ] . ':</div>
+            <div class="col-md-9"><span class="pull-right text-muted small"><em><b><a href="../index.php?site=profile&amp;id=' . $id . '" target="_blank">' .
+            strip_tags(stripslashes(getnickname($id))) . '</a></b></em></span></div>
+        </div>
+            <hr style="border:solid #0095db 1px">
      
-        ' . $squads . '
-        ' . $userdes . '
+                        ' . $squads . '
+                        ' . $userdes . '
 
         
 
-    <div class="row bt"><div class="col-md-3">' . $_language->module[ 'special_rank' ] . ':</div><div class="col-md-9"><span class="pull-left text-muted small"><em><select name="special_rank">' . $ranks . '</select></em></span></div></div>
+        <div class="row bt">
+            <div class="col-md-3">' . $_language->module[ 'special_rank' ] . ':</div>
+            <div class="col-md-9"><span class="pull-left text-muted small"><em><select name="special_rank">' . $ranks . '</select></em></span></div>
+        </div>
 
+        <br>
 
+        <div class="row bt">
+            <div class="col-md-6"><b>' . $_language->module[ 'access_rights' ] . ':</b></div>
+            <div class="col-md-6"></div>
+        </div>
 
-<div class="col-md-12">
-<br>
-    <div class="row bt"><div class="col-md-6"><b>' . $_language->module[ 'access_rights' ] . ':</b></div><div class="col-md-6"></div></div>
+        <div class="col-md-4">
 
-<div class="col-md-4">
+        <br>
 
-    <br>
-<div class="row bt"><div class="col-md-6">' . $news . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_admin' ] . '</em></span></div></div>
+        <div class="row bt">
+            <div class="col-md-6">' . $news . '</div>
+                <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_admin' ] . '</em></span></div>
+            </div>
 
-    <div class="row bt"><div class="col-md-6">' . $newswriter . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_writer' ] . '</em></span></div></div>
-    <div class="row bt"><div class="col-md-6">' . $polls . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'polls_admin' ] . '</em></span></div></div>
-<div class="row bt"><div class="col-md-6">' . $feedback . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'feedback_admin' ] . '</em></span></div></div>';
+        <div class="row bt">
+            <div class="col-md-6">' . $newswriter . '</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'news_writer' ] . '</em></span></div>
+        </div>
+
+        <div class="row bt">
+            <div class="col-md-6">' . $polls . '</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'polls_admin' ] . '</em></span></div>
+        </div>
+
+        <div class="row bt">
+            <div class="col-md-6">' . $feedback . '</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'feedback_admin' ] . '</em></span></div>
+        </div>';
+
  if (issuperadmin($userID)) {
-        echo '<div class="row bt"><div class="col-md-6">' . $super . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'super_admin' ] . '</em></span></div></div>';
+        echo '  <div class="row bt">
+                    <div class="col-md-6">' . $super . '</div>
+                    <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'super_admin' ] . '</em></span></div>
+                </div>';
     }
 
     echo '
 
-<div></div></div>
+            <div>
+        </div>
+    </div>
 
-<div class="col-md-4">
-<br>
-    <div class="row bt"><div class="col-md-6">' . $board . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'messageboard_admin' ] . '</em></span></div></div>
+    <div class="col-md-4">
 
-    <div class="row bt"><div class="col-md-6">' . $mod . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'messageboard_moderator' ] . '</em></span></div></div>
-    <div class="row bt"><div class="col-md-6">' . $gallery . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'gallery_admin' ] . '</em></span></div></div>
-<div class="row bt"><div class="col-md-6">' . $page . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'page_admin' ] . '</em></span></div></div>
+    <br>
 
-</div>
+        <div class="row bt">
+            <div class="col-md-6">' . $board . '</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'messageboard_admin' ] . '</em></span></div>
+        </div>
 
-<div class="col-md-4">
-<br>
-    <div class="row bt"><div class="col-md-6">' . $cwadmin . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'clanwar_admin' ] . '</em></span></div></div>
+        <div class="row bt">
+            <div class="col-md-6">' . $mod . '</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'messageboard_moderator' ] . '</em></span></div>
+        </div>
+    
+        <div class="row bt">
+            <div class="col-md-6">' . $gallery . '</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'gallery_admin' ] . '</em></span></div>
+        </div>
 
-    <div class="row bt"><div class="col-md-6">' . $cash . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'cash_admin' ] . '</em></span></div></div>
-    <div class="row bt"><div class="col-md-6">' . $useradmin . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'user_admin' ] . '</em></span></div></div>
-<div class="row bt"><div class="col-md-6">' . $file . '</div><div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'file_admin' ] . '</em></span></div></div>
+        <div class="row bt">
+            <div class="col-md-6">' . $page . '</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'page_admin' ] . '</em></span></div>
+        </div>
+    </div>
 
-</div>
+    <div class="col-md-4">
 
+    <br>
 
-<table width="100%" border="0" cellspacing="1" cellpadding="3">
+        <div class="row bt">
+            <div class="col-md-6">' . $cwadmin . '</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'clanwar_admin' ] . '</em></span></div>
+        </div>
 
-<tr>
-        <td colspan="3"><br><b>' . $_language->module[ 'group_access' ] . '</b></td>
-    </tr>';
+        <div class="row bt">
+            <div class="col-md-6">' . $cash . '</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'cash_admin' ] . '</em></span></div>
+        </div>
+
+        <div class="row bt">
+            <div class="col-md-6">' . $useradmin . '</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'user_admin' ] . '</em></span></div>
+        </div>
+
+        <div class="row bt">
+            <div class="col-md-6">' . $file . '</div>
+            <div class="col-md-6"><span class="pull-right text-muted small"><em>' . $_language->module[ 'file_admin' ] . '</em></span></div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+        <tr>
+            <td colspan="3"><br><b>' . $_language->module[ 'group_access' ] . '</b></td>
+        </tr>';
 
     $sql = safe_query("SELECT * FROM " . PREFIX . "forum_groups");
     echo '<tr>';
@@ -574,14 +631,17 @@ onmouseout="hideWMTT()" />';
     }
     echo '<td></td></tr>';
 
-    echo '<tr>
-      <td><br><input type="hidden" name="id" value="' . $id . '" /><input type="hidden" name="captcha_hash" value="' .
+    echo '      <tr>
+                    <td><br><input type="hidden" name="id" value="' . $id . '" /><input type="hidden" name="captcha_hash" value="' .
         $hash . '" />
-      <input class="btn btn-success btn-xs" type="submit" name="saveedit" value="' . $_language->module[ 'edit_member' ] . '" /></td>
-    </tr>
-  </table>
-  </form>
-  </div></div>';
+                <input class="btn btn-success btn-xs" type="submit" name="saveedit" value="' . $_language->module[ 'edit_member' ] . '" /></td>
+                </tr>
+            </table>
+        </form>
+                </div>
+            </div>
+        </div>
+    </div>';
 
     unset($squads);
     unset($userdes);
@@ -595,18 +655,16 @@ onmouseout="hideWMTT()" />';
     echo '<form method="post" action="admincenter.php?site=members">';
     while ($ds = mysqli_fetch_array($squads)) {
         echo'<div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-users"></i> '.$_language->module['members'].'
-                        </div>
-        <div class="panel-body">';
+                <div class="panel-heading">
+                    <i class="fa fa-users"></i> '.$_language->module['members'].'
+                </div>
+            <div class="panel-body">';
         echo '<table class="table table-striped">
     
-<thead>
-
-
-      <tr>
-        <th colspan="5">' . $ds[ 'name' ] . ':</th>
-      </tr>';
+        <thead>
+            <tr>
+                <th colspan="5">' . $ds[ 'name' ] . ':</th>
+            </tr>';
 
         $members = safe_query(
             "SELECT * FROM " . PREFIX . "squads_members WHERE squadID='" . $ds[ 'squadID' ] . "' ORDER BY sort"
@@ -626,7 +684,7 @@ onmouseout="hideWMTT()" />';
       <th>' . $_language->module[ 'activity' ] . ':</th>
       <th>' . $_language->module[ 'actions' ] . ':</th>
       <th>' . $_language->module[ 'sort' ] . ':</th>
-    </tr></thead>
+        </tr></thead>
           <tbody>';
 
         $i = 1;
@@ -683,7 +741,6 @@ onmouseout="hideWMTT()" />';
         }
         echo '</tbody></table></div></div><br />';
     }
-    echo '<div align="right"><input type="hidden" name="captcha_hash" value="' . $hash .
-        '" /><input type="submit" name="sortieren" class="btn btn-primary btn-xs" value="' . $_language->module[ 'to_sort' ] . '" /></div></form>';
+    echo '<div class="col-md-12" align="right"><input type="hidden" name="captcha_hash" value="' . $hash .
+        '" /><input type="submit" name="sortieren" class="btn btn-primary btn-xs" value="' . $_language->module[ 'to_sort' ] . '" /></form></div><br><br>';
 }
-
