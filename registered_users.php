@@ -141,7 +141,7 @@ if ($anz) {
             '<a href="index.php?site=profile&amp;id=' . $ds[ 'userID' ] . '"><b>' . strip_tags($ds[ 'nickname' ]) .
             '</b></a>';
         if (isclanmember($ds[ 'userID' ])) {
-            $member = ' <img src="images/icons/member.gif" width="7" height="16" alt="Clanmember">';
+            $member = ' <i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
         } else {
             $member = '';
         }
@@ -156,25 +156,25 @@ if ($anz) {
             $homepage = '';
         } else {
             $homepage = '<a href="' . $ds[ 'homepage' ] .
-                '" target="_blank"><img src="images/icons/hp.gif" width="14" height="14" alt="homepage"></a>';
+                '" target="_blank"><i class="fa fa-home" aria-hidden="true" title="Homepage"></i></a>';
         }
 
         $pm = '';
         $buddy = '';
         if ($loggedin && $ds[ 'userID' ] != $userID) {
             $pm = '<a href="index.php?site=messenger&amp;action=touser&amp;touser=' . $ds[ 'userID' ] .
-                '"><img src="images/icons/pm.gif" width="12" height="13" alt="messenger"></a>';
+                '"><i class="fa fa-envelope" title="Messenger"></i></a>';
             if (isignored($userID, $ds[ 'userID' ])) {
                 $buddy = '<a href="buddies.php?action=readd&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID .
-                    '"><img src="images/icons/buddy_readd.gif" width="16" height="16" alt="back to buddy-list"></a>';
+                    '"><i class="fa fa-user-plus" title="back to buddylist"></i></a>';
             } elseif (isbuddy($userID, $ds[ 'userID' ])) {
                 $buddy = '<a href="buddies.php?action=ignore&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID .
-                    '"><img src="images/icons/buddy_ignore.gif" width="16" height="16" alt="ignore user"></a>';
+                    '"><i class="fa fa-user-times" title="ignore user"></i></a></a>';
             } elseif ($userID == $ds[ 'userID' ]) {
                 $buddy = '';
             } else {
                 $buddy = '<a href="buddies.php?action=add&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID .
-                    '"><img src="images/icons/buddy_add.gif" width="16" height="16" alt="add to buddylist"></a>';
+                    '"><i class="fa fa-user-plus" title="add to buddylist"></i></a>';
             }
         }
         $lastlogindate = getformatdate($ds[ 'lastlogin' ]);
@@ -185,7 +185,7 @@ if ($anz) {
         if ($status == "offline") {
             $login = $lastlogindate . ' - ' . $lastlogintime;
         } else {
-            $login = '<img src="images/icons/online.gif" width="7" height="7" alt="online"> ' .
+            $login = '<i class="fa fa-circle text-success" aria-hidden="true"></i>' .
                 $_language->module[ 'now_on' ];
         }
 
