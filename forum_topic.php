@@ -1025,10 +1025,10 @@ function showtopic($topic, $edit, $addreply, $quoteID, $type)
     $forum_topics_actions = $GLOBALS["_template"]->replaceTemplate("forum_topics_actions", $data_array);
     echo $forum_topics_actions;
 
-    echo '<div class="text-right">' . $adminactions . '</div></form>';
+    echo '<div class="text-right">' . $adminactions . '</div></form><br>';
 
     if ($dt['closed']) {
-        echo $_language->module['closed_image'];
+        echo generateAlert($_language->module['closed_image'], 'alert-danger');
     } else {
         if (!$loggedin && !$edit) {
             echo $_language->module['not_logged_msg'];
