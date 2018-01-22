@@ -155,11 +155,11 @@ function forum_stats()
         $n = 1;
         while ($ds = mysqli_fetch_array($ergebnis)) {
             if (isforumadmin($ds[ 'userID' ])) {
-                $nickname = '<span style="color:' . $loosecolor . '">' . $ds[ 'nickname' ] . '</span>';
+                $nickname = '<span class="label label-danger">' . $ds[ 'nickname' ] . '</span>';
             } elseif (isanymoderator($ds[ 'userID' ])) {
-                $nickname = '<span style="color:' . $drawcolor . '">' . $ds[ 'nickname' ] . '</span>';
+                $nickname = '<span class="label label-warning">' . $ds[ 'nickname' ] . '</span>';
             } elseif (isclanmember($ds[ 'userID' ])) {
-                $nickname = '<span style="color:' . $wincolor . '">' . $ds[ 'nickname' ] . '</span>';
+                $nickname = '<span class="label label-success">' . $ds[ 'nickname' ] . '</span>';
             } else {
                 $nickname = $ds[ 'nickname' ];
             }
@@ -361,7 +361,7 @@ function boardmain()
                         getnickname($lp[ 'lastposter' ]) . '</a>';
                     if (isclanmember($lp[ 'lastposter' ])) {
                         $member =
-                            ' <img src="images/icons/member.gif" alt="' . $_language->module[ 'clanmember' ] . '">';
+                            '<i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
                     } else {
                         $member = '';
                     }
@@ -504,7 +504,7 @@ function boardmain()
                 $poster = '<a href="index.php?site=profile&amp;id=' . $lp[ 'lastposter' ] . '">' .
                     getnickname($lp[ 'lastposter' ]) . '</a>';
                 if (isclanmember($lp[ 'lastposter' ])) {
-                    $member = ' <img src="images/icons/member.gif" alt="' . $_language->module[ 'clanmember' ] . '">';
+                    $member = ' <i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
                 } else {
                     $member = '';
                 }
@@ -808,7 +808,7 @@ function showboard($board)
                 '<a href="index.php?site=profile&amp;id=' . $dt[ 'userID' ] . '">' . getnickname($dt[ 'userID' ]) .
                 '</a>';
             if (isset($posterID) && isclanmember($posterID)) {
-                $member1 = ' <img src="images/icons/member.gif" alt="' . $_language->module[ 'clanmember' ] . '">';
+                $member1 = ' <i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
             } else {
                 $member1 = '';
             }
@@ -842,7 +842,7 @@ function showboard($board)
                 $lastposter = '<a href="index.php?site=profile&amp;id=' . $dm[ 'lastposter' ] . '">' .
                     getnickname($dm[ 'lastposter' ]) . '</a>';
                 if (isclanmember($dm[ 'lastposter' ])) {
-                    $member = ' <img src="images/icons/member.gif" alt="' . $_language->module[ 'clanmember' ] . '">';
+                    $member = ' <i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
                 } else {
                     $member = '';
                 }
@@ -871,7 +871,7 @@ function showboard($board)
                 $lastposter = '<a href="index.php?site=profile&amp;id=' . $dt[ 'lastposter' ] . '">' .
                     getnickname($dt[ 'lastposter' ]) . '</a>';
                 if (isclanmember($dt[ 'lastposter' ])) {
-                    $member = ' <img src="images/icons/member.gif" alt="' . $_language->module[ 'clanmember' ] . '">';
+                    $member = ' <i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
                 } else {
                     $member = '';
                 }
@@ -1385,7 +1385,7 @@ if (isset($_POST[ 'submit' ]) || isset($_POST[ 'movetopic' ]) || isset($_GET[ 'a
                 }
 
                 if (isclanmember($userID)) {
-                    $member = ' <img src="images/icons/member.gif" alt="' . $_language->module[ 'clanmember' ] . '">';
+                    $member = ' <i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
                 } else {
                     $member = '';
                 }
@@ -1401,21 +1401,21 @@ if (isset($_POST[ 'submit' ]) || isset($_POST[ 'movetopic' ]) || isset($_GET[ 'a
                 }
                 if (getemail($userID) && !getemailhide($userID)) {
                     $email = '<a href="mailto:' . mail_protect(getemail($userID)) .
-                        '"><img src="images/icons/email.gif" alt="email"></a>';
+                        '"><i class="fa fa-envelope" title="mail"></i></a>';
                 } else {
                     $email = '';
                 }
 
                 $pm = '';
                 $buddy = '';
-                $statuspic = '<img src="images/icons/online.gif" width="7" height="7" alt="online">';
+                $statuspic = '<i class="fa fa-circle text-success" aria-hidden="true"></i>';
 
                 if (!validate_url(gethomepage($userID))) {
                     $hp = '';
                 } else {
                     $hp = '<a href="' . gethomepage($userID) .
-                        '" target="_blank"><img src="images/icons/hp.gif" width="14" height="14" alt="' .
-                        $_language->module[ 'homepage' ] . '"></a>';
+                        '" target="_blank"><i class="fa fa-home" aria-hidden="true" title="' .
+                        $_language->module[ 'homepage' ] . '"></i></a>';
                 }
 
                 $registered = getregistered($userID);
