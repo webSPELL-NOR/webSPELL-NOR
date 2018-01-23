@@ -253,7 +253,8 @@ if ($action == "show") {
                 $icon = '';
             }
 
-            $info = htmloutput($ds[ 'info' ]);
+            // $info = htmloutput($ds[ 'info' ]); //
+            $info = generateAlert( htmloutput($ds[ 'info' ]), 'alert-info');
             $squadID = $ds[ 'squadID' ];
             $details = str_replace('%squadID%', $squadID, $_language->module[ 'show_details' ]);
 
