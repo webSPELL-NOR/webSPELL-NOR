@@ -46,7 +46,7 @@ if (isset($_POST[ 'add' ])) {
                 $_POST[ 'activity' ] . "', '1')"
             );
         } else {
-            echo $_language->module[ 'user_exists' ];
+            echo generateAlert($_language->module['user_exists'], 'alert-danger');
         }
     } else {
         echo $_language->module[ 'transaction_invalid' ];
