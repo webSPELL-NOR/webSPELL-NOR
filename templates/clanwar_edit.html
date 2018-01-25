@@ -52,8 +52,8 @@
                         </td>
                         <td>%squad% / %game%:</td>
                         <td>
-                            <select name="squad" id="squad">$squads</select>
-                            <select name="game">$games</select>
+                            <select class="form-control" name="squad" id="squad">$squads</select>
+                            <select class="form-control" name="game">$games</select>
                         </td>
                     </tr>
                     <tr>
@@ -63,13 +63,13 @@
                     </tr>
                     <tr>
                         <td>%league%:</td>
-                        <td><input name="league" type="text" value="$league" size="35"></td>
+                        <td><input class="form-control" name="league" type="text" value="$league" size="35"></td>
                         <td>%homepage%:</td>
-                        <td><input name="leaguehp" type="text" value="$leaguehp" size="35"></td>
+                        <td><input class="form-control" name="leaguehp" type="text" value="$leaguehp" size="35"></td>
                     </tr>
                     <tr>
                         <td>%league_match_link%:</td>
-                        <td><input name="linkpage" type="text" value="$linkpage" size="35"></td>
+                        <td><input class="form-control" name="linkpage" type="text" value="$linkpage" size="35"></td>
                         <td colspan="2"></td>
                     </tr>
                     <tr>
@@ -79,15 +79,15 @@
                     </tr>
                     <tr>
                         <td>%opponent%:</td>
-                        <td><input name="opponent" type="text" value="$opponent" size="35"></td>
+                        <td><input class="form-control" name="opponent" type="text" value="$opponent" size="35"></td>
                         <td>%clantag%:</td>
-                        <td><input name="opptag" type="text" value="$opptag" size="8"></td>
+                        <td><input class="form-control" name="opptag" type="text" value="$opptag" size="8"></td>
                     </tr>
                     <tr>
                         <td>%homepage%</td>
-                        <td><input name="opphp" type="text" value="$opphp" size="35"></td>
+                        <td><input class="form-control" name="opphp" type="text" value="$opphp" size="35"></td>
                         <td>%country%:</td>
-                        <td><select name="oppcountry">$countries</select></td>
+                        <td><select class="form-control" name="oppcountry">$countries</select></td>
                     </tr>
                     <tr>
                         <td colspan="4">
@@ -96,9 +96,9 @@
                     </tr>
                     <tr>
                         <td>%server%:</td>
-                        <td><input name="server" type="text" value="$server" size="35"></td>
+                        <td><input class="form-control" name="server" type="text" value="$server" size="35"></td>
                         <td>%hltv_server%:</td>
-                        <td><input name="hltv" value="$hltv" type="text" size="35"></td>
+                        <td><input class="form-control" name="hltv" value="$hltv" type="text" size="35"></td>
                     </tr>
                     <tr>
                         <td colspan="4">
@@ -107,10 +107,10 @@
                     </tr>
                     <tr>
                         <td valign="top">%home_team%:</td>
-                        <td valign="top"><select name="hometeam[]" size="8" multiple="multiple">$hometeam</select>
+                        <td valign="top"><select class="form-control" name="hometeam[]" size="8" multiple="multiple">$hometeam</select>
                         </td>
                         <td valign="top">%opponent_team%:</td>
-                        <td valign="top"><input name="oppteam" type="text" value="$oppteam"
+                        <td valign="top"><input class="form-control" name="oppteam" type="text" value="$oppteam"
                                                 size="35"></td>
                     </tr>
                     <tr>
@@ -121,12 +121,7 @@
                     <tr>
                         <td valign="top">%report%:</td>
                         <td colspan="3" valign="top">
-                            <textarea name="message" id="message" cols="110" rows="11">$report</textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <hr>
+                            <textarea class="form-control" name="message" id="message" cols="110" rows="11">$report</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -138,12 +133,12 @@
                                     <td>%score_home%:</td>
                                     <td>%score_opponent%:</td>
                                     <td>
-                                        <a href="javascript:" onclick="addRow('edit');" title="add map">
-                                            <img src="images/icons/expand.gif" alt="">
-                                        </a>
-                                        <a href="javascript:" onclick="removeRow();" title="remove map">
-                                            <img src="images/icons/collapse.gif" alt="">
-                                        </a>
+                                        <a href="javascript:" onclick="addRow();" title="add map">
+                            	<i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            </a>
+                            <a href="javascript:" onclick="removeRow();" title="remove map">
+                                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                            </a>
                                     </td>
                                 </tr>
                                 $maps
@@ -159,8 +154,8 @@
                         <td colspan="3"></td>
                         <td class="text-right" valign="bottom">
                             <input name="cwID" type="hidden" value="$cwID">
-                            <select name="comments">$comments</select>
-                            <input name="post" type="submit" value="%update_clanwar%">
+                            <select class="form-control" name="comments">$comments</select>
+                            <input class="btn btn-primary" name="post" type="submit" value="%update_clanwar%">
                         </td>
                     </tr>
                 </table>

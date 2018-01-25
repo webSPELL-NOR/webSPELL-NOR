@@ -94,9 +94,12 @@
                         <th>%score_home%:</th>
                         <th>%score_opponent%:</th>
                         <th><a href="javascript:" onclick="addRow();" title="add map">
-                            <img src="images/icons/expand.gif" alt="expand"></a>
+                            	<i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            </a>
                             <a href="javascript:" onclick="removeRow();" title="remove map">
-                                <img src="images/icons/collapse.gif" alt="collapse"></a></th>
+                                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                            </a>
+                        </th>
                     </tr>
                 </table>
             </td>
@@ -116,7 +119,7 @@
                     <option value="2" selected="selected">%visitor_comments%</option>
                 </select>
 
-                <input name="post" type="submit" value="%save_clanwar%" class="btn btn-danger">
+                <input name="post" type="submit" value="%save_clanwar%" class="btn btn-primary">
             </td>
         </tr>
     </table>
