@@ -405,10 +405,10 @@ if ($action == "new") {
                 \'articles.php?action=new\',
                 \'Articles\',
                 \'toolbar=no,status=no,scrollbars=yes,width=1024,height=768\'
-                );" value="' . $_language->module[ 'new_article' ] . '" class="btn btn-danger"> ';
+                );" value="' . $_language->module[ 'new_article' ] . '" class="btn btn-primary"> ';
     }
     echo
-        '<a href="index.php?site=articles" class="btn btn-primary">' .
+        '<a href="index.php?site=articles" class="btn btn-default">' .
             $_language->module[ 'all_articles' ] .
         '</a><br><br>';
 
@@ -501,7 +501,7 @@ if ($action == "new") {
                 '<br><br><input type="button" onclick="window.open(\'articles.php?action=edit&amp;articlesID=' .
                 $ds[ 'articlesID' ] .
                 '\',\'News\',\'toolbar=no,status=no,scrollbars=yes,width=1024,height=768\');" value="' .
-                $_language->module[ 'edit' ] . '" class="btn btn-danger">
+                $_language->module[ 'edit' ] . '" class="btn btn-warning">
     <input type="button" onclick="MM_confirm(\'' . $_language->module[ 'really_delete' ] .
                 '\', \'articles.php?delete=true&amp;articlesID=' . $ds[ 'articlesID' ] . '\');" value="' .
                 $_language->module[ 'delete' ] . '" class="btn btn-danger">';
@@ -546,7 +546,7 @@ if ($action == "new") {
 
                     <span class="input-group-btn">
                         <input type="submit" name="Submit" value="' .
-                        $_language->module[ 'rate' ] . '" class="btn btn-primary">
+                        $_language->module[ 'rate' ] . '" class="btn btn-default">
                     </span>
                 </div>
                 <input type="hidden" name="userID" value="' . $userID . '">
@@ -621,7 +621,7 @@ if ($action == "new") {
                 \'articles.php?action=new\',
                 \'Articles\',
                 \'toolbar=no,status=no,scrollbars=yes,width=1024,height=768\'
-            );" value="' . $_language->module[ 'new_article' ] . '" class="btn btn-danger"></p>';
+            );" value="' . $_language->module[ 'new_article' ] . '" class="btn btn-primary"></p>';
     }
 
     $alle = safe_query("SELECT `articlesID` FROM `" . PREFIX . "articles` WHERE `saved`='1'");
@@ -810,6 +810,6 @@ if ($action == "new") {
         echo $articles_foot;
         unset($ds);
     } else {
-        echo generateAlert($_language->module['no_entries'], 'alert-info');
+        echo $_language->module[ 'no_entries' ];
     }
 }

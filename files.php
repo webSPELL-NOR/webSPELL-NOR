@@ -312,13 +312,13 @@ if ($action == "save") {
 } elseif ($action == "newfile") {
     // ADMINACTIONS
     $adminactions =
-        '<div class="row"><div class="col-xs-6"><a href="index.php?site=files" class="btn btn-primary">' .
+        '<div class="row"><div class="col-xs-6"><a href="index.php?site=files" class="btn btn-default">' .
         $_language->module[ 'files' ] . '</a></div>';
 
     if (isfileadmin($userID)) {
         $adminactions .=
             '<div class="col-xs-6 text-right">
-                <a href="admin/admincenter.php?site=filecategories" class="btn btn-danger">' .
+                <a href="admin/admincenter.php?site=filecategories" class="btn btn-primary">' .
                     $_language->module[ 'new_category' ] . '</a>
             </div></div>';
 
@@ -350,7 +350,7 @@ if ($action == "save") {
         if (isfileadmin($userID)) {
             // ADMINACTIONS
             $adminactions =
-                '<a href="admin/admincenter.php?site=filecategories" class="btn btn-danger">' .
+                '<a href="admin/admincenter.php?site=filecategories" class="btn btn-primary">' .
                     $_language->module[ 'new_category' ] . '</a>';
 
             $filecats = generateFileCategoryOptions();
@@ -447,12 +447,12 @@ if ($action == "save") {
         $adminactions =
             '<div class="row">
                 <div class="col-xs-6">
-                    <a href="index.php?site=files&amp;action=newfile" class="btn btn-danger">' .
+                    <a href="index.php?site=files&amp;action=newfile" class="btn btn-primary">' .
                         $_language->module[ 'new_file' ] .'
                     </a>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <a href="admin/admincenter.php?site=filecategories" class="btn btn-danger">' .
+                    <a href="admin/admincenter.php?site=filecategories" class="btn btn-primary">' .
                         $_language->module[ 'new_category' ] . '
                     </a>
                 </div>
@@ -647,12 +647,12 @@ if ($action == "save") {
         $adminactions =
             '<div class="row">
                 <div class="col-xs-6">
-                    <a href="index.php?site=files&amp;action=newfile" class="btn btn-danger">' .
+                    <a href="index.php?site=files&amp;action=newfile" class="btn btn-primary">' .
                         $_language->module[ 'new_file' ] . '
                     </a>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <a href="admin/admincenter.php?site=filecategories" class="btn btn-danger">' .
+                    <a href="admin/admincenter.php?site=filecategories" class="btn btn-primary">' .
                         $_language->module[ 'new_category' ] . '
                     </a>
                 </div>
@@ -808,7 +808,7 @@ if ($action == "save") {
 
                 <span class="input-group-btn">
                     <input type="submit" name="Submit" value="' . $_language->module[ 'rate' ] .
-                        '" class="btn btn-primary">
+                        '" class="btn btn-default">
                 </span>
             </div></td>
             <input type="hidden" name="userID" value="' . $userID . '">
@@ -826,7 +826,7 @@ if ($action == "save") {
         $admintools = '<tr><td colspan="2" class="text-right">';
         $admintools .=
             '<a href="index.php?site=files&amp;action=edit&amp;fileID=' . $file[ 'fileID' ] .
-                '" class="btn btn-danger">' . $_language->module[ 'edit_file' ] . '</a>';
+                '" class="btn btn-warning">' . $_language->module[ 'edit_file' ] . '</a>';
         $admintools .= '<input type="button" onclick="MM_confirm(\'' . $_language->module[ 'really_delete_file' ] .
             '\', \'index.php?site=files&amp;action=delete&amp;file=' . $file[ 'fileID' ] . '\')" value="' .
             $_language->module[ 'delete_file' ] . '" class="btn btn-danger"> ';
@@ -921,12 +921,12 @@ if ($action == "save") {
         $adminactions =
             '<div class="row">
                 <div class="col-xs-6">
-                    <a href="index.php?site=files&amp;action=newfile" class="btn btn-danger">' .
+                    <a href="index.php?site=files&amp;action=newfile" class="btn btn-primary">' .
                         $_language->module[ 'new_file' ] .'
                     </a>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <a href="admin/admincenter.php?site=filecategories" class="btn btn-danger">' .
+                    <a href="admin/admincenter.php?site=filecategories" class="btn btn-primary">' .
                         $_language->module[ 'new_category' ] . '
                     </a>
                 </div>
@@ -1138,6 +1138,6 @@ if ($action == "save") {
         $files_overview = $GLOBALS["_template"]->replaceTemplate("files_overview_foot", array());
         echo $files_overview;
     } else {
-        echo generateAlert($_language->module['no_categories_and_files'], 'alert-info');
+        echo $_language->module[ 'no_categories_and_files' ];
     }
 }

@@ -405,7 +405,7 @@ if ($action == "new") {
     $pollID = intval($_GET[ 'pollID' ]);
     if (ispollsadmin($userID)) {
         echo '<div class="form-group">
-            <a href="index.php?site=polls&amp;action=new" class="btn btn-danger">
+            <a href="index.php?site=polls&amp;action=new" class="btn btn-primary">
                 ' . $_language->module[ 'new_poll' ] . '
             </a>
         </div>';
@@ -448,10 +448,10 @@ if ($action == "new") {
             $stop = ' <input type="button" onclick="MM_confirm(
                 \'' . $_language->module[ 'really_reopen' ] . '\',
                 \'polls.php?reopen=true&amp;pollID=' . $ds[ 'pollID' ] . '\'
-            )" value="' . $_language->module[ 'reopen_poll' ] . '" class="btn btn-danger"> ';
+            )" value="' . $_language->module[ 'reopen_poll' ] . '" class="btn btn-warning"> ';
         }
         $edit = ' <a href="index.php?site=polls&amp;action=edit&amp;pollID=' . $ds[ 'pollID' ] .
-            '" class="btn btn-danger">' . $_language->module[ 'edit' ] . '</a>';
+            '" class="btn btn-warning">' . $_language->module[ 'edit' ] . '</a>';
         $adminactions = $edit . '<input type="button" onclick="MM_confirm(
             \'' . $_language->module[ 'really_delete' ] . '\',
             \'polls.php?delete=true&amp;pollID=' . $ds[ 'pollID' ] . '\'
@@ -612,7 +612,7 @@ if ($action == "new") {
                 <input type="submit" value="vote"></td>
             </tr>
             <tr>
-                <td><br>&#8226; <a href="index.php?site=polls">' . $_language->module[ 'show_polls' ] . '</a></td>
+                <td><br><a class="btn btn-primary" href="index.php?site=polls">' . $_language->module[ 'show_polls' ] . '</a></td>
             </tr>
         </table>
         </form>';
@@ -623,7 +623,7 @@ if ($action == "new") {
 } else {
     if (ispollsadmin($userID)) {
         echo '<div class="form-group">
-            <a href="index.php?site=polls&amp;action=new" class="btn btn-danger">
+            <a href="index.php?site=polls&amp;action=new" class="btn btn-primary">
                 ' . $_language->module[ 'new_poll' ] . '
             </a>
         </div>';
@@ -687,10 +687,10 @@ if ($action == "new") {
                     $stop = ' <input type="button" onclick="MM_confirm(
                     \'' . $_language->module[ 'really_reopen' ] . '\',
                     \'polls.php?reopen=true&amp;pollID=' . $ds[ 'pollID' ] . '\'
-                    )" value="' . $_language->module[ 'reopen_poll' ] . '" class="btn btn-danger"> ';
+                    )" value="' . $_language->module[ 'reopen_poll' ] . '" class="btn btn-warning"> ';
                 }
                 $edit = ' <a href="index.php?site=polls&amp;action=edit&amp;pollID=' . $ds[ 'pollID' ] . '"
-                        class="btn btn-danger">
+                        class="btn btn-warning">
                     ' . $_language->module[ 'edit' ] . '
                 </a> ';
                 $adminactions = $edit . '<input type="button" onclick="MM_confirm(
@@ -760,6 +760,6 @@ if ($action == "new") {
             unset($options);
         }
     } else {
-        echo generateAlert($_language->module['no_entries'], 'alert-info');
+        echo $_language->module[ 'no_entries' ];
     }
 }

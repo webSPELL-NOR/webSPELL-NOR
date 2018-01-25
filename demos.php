@@ -313,10 +313,10 @@ if (isset($_POST[ 'save' ])) {
     $demoID = $_GET[ 'demoID' ];
     if (isfileadmin($userID)) {
         echo
-            '<a href="index.php?site=demos&amp;action=new" class="btn btn-danger">' . $_language->module[ 'new_demo' ] .
+            '<a href="index.php?site=demos&amp;action=new" class="btn btn-primary">' . $_language->module[ 'new_demo' ] .
             '</a>&nbsp;';
     }
-    echo '<a href="index.php?site=demos" class="btn btn-primary">' . $_language->module[ 'all_demos' ] . '</a><br><br>';
+    echo '<a href="index.php?site=demos" class="btn btn-default">' . $_language->module[ 'all_demos' ] . '</a><br><br>';
 
     $result = safe_query("SELECT * FROM `" . PREFIX . "demos` WHERE `demoID` = '" . (int)$demoID . "'");
     $ds = mysqli_fetch_array($result);
@@ -384,7 +384,7 @@ if (isset($_POST[ 'save' ])) {
 
                             <span class="input-group-btn">
                                 <input type="submit" name="Submit"
-value="' . $_language->module[ 'rate' ] . '" class="btn btn-primary">
+value="' . $_language->module[ 'rate' ] . '" class="btn btn-default">
                             </span>
                         </div>
                         <input type="hidden" name="userID" value="' . $userID . '">
@@ -399,7 +399,7 @@ value="' . $_language->module[ 'rate' ] . '" class="btn btn-primary">
     $adminaction = "";
     if (isfileadmin($userID)) {
         $adminaction = '<a href="index.php?site=demos&amp;action=edit&amp;demoID=' . $ds[ 'demoID' ] .
-            '" class="btn btn-danger">' . $_language->module[ 'edit' ] . '</a>
+            '" class="btn btn-warning">' . $_language->module[ 'edit' ] . '</a>
             <input type="button" onclick="MM_confirm(
                     \'really delete this demo?\',
                     \'index.php?site=demos&amp;action=delete&amp;demoID=' . $ds[ 'demoID' ] . '\'
@@ -454,7 +454,7 @@ value="' . $_language->module[ 'rate' ] . '" class="btn btn-primary">
 
     if (isfileadmin($userID)) {
         echo
-            '<a href="index.php?site=demos&amp;action=new" class="btn btn-danger">' . $_language->module[ 'new_demo' ] .
+            '<a href="index.php?site=demos&amp;action=new" class="btn btn-primary">' . $_language->module[ 'new_demo' ] .
             '</a><br><br>';
     }
 
@@ -669,7 +669,7 @@ value="' . $_language->module[ 'rate' ] . '" class="btn btn-primary">
 
     if (isfileadmin($userID)) {
         echo
-            '<a href="index.php?site=demos&amp;action=new" class="btn btn-danger">' . $_language->module[ 'new_demo' ] .
+            '<a href="index.php?site=demos&amp;action=new" class="btn btn-primary">' . $_language->module[ 'new_demo' ] .
             '</a><br><br>';
     }
     $alle = safe_query("SELECT `demoID` FROM `" . PREFIX . "demos`");
@@ -842,6 +842,6 @@ value="' . $_language->module[ 'rate' ] . '" class="btn btn-primary">
         $demos_foot = $GLOBALS["_template"]->replaceTemplate("demos_foot", array());
         echo $demos_foot;
     } else {
-        echo generateAlert($_language->module['no_demos'], 'alert-info');
+        echo $_language->module[ 'no_demos' ];
     }
 }

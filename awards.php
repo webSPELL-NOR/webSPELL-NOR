@@ -231,7 +231,7 @@ if ($action == "new") {
 
     if (isclanwaradmin($userID) || isnewsadmin($userID)) {
         echo
-            '<a href="index.php?site=awards&amp;action=new" class="btn btn-danger">' .
+            '<a href="index.php?site=awards&amp;action=new" class="btn btn-primary">' .
             $_language->module[ 'new_award' ] . '</a><br><br>';
     }
     $alle = safe_query("SELECT awardID FROM " . PREFIX . "awards WHERE squadID='$squadID'");
@@ -320,7 +320,7 @@ if ($action == "new") {
             if (isclanwaradmin($userID) || isnewsadmin($userID)) {
                 $adminaction =
                     '<a href="index.php?site=awards&amp;action=edit&amp;awardID=' .
-                    $ds[ 'awardID' ] .'" class="btn btn-danger">'. $_language->module[ 'edit' ] . '</a>
+                    $ds[ 'awardID' ] .'" class="btn btn-warning">'. $_language->module[ 'edit' ] . '</a>
             <input type="button" onclick="MM_confirm(
                 \'really delete this award?\',
                 \'awards.php?delete=true&amp;awardID=' . $ds[ 'awardID' ] . '\'
@@ -392,7 +392,7 @@ if ($action == "new") {
     if (isclanwaradmin($userID) || isnewsadmin($userID)) {
         $adminaction =
             '<br><a href="index.php?site=awards&amp;action=edit&amp;awardID=' . $ds[ 'awardID' ] .
-            '" class="btn btn-danger">' . $_language->module[ 'edit' ] . '</a>
+            '" class="btn btn-warning">' . $_language->module[ 'edit' ] . '</a>
             <input type="button" onclick="MM_confirm(
                     \'really delete this award?\',
                     \'awards.php?delete=true&amp;awardID=' . $ds[ 'awardID' ] . '\'
@@ -416,7 +416,7 @@ if ($action == "new") {
     $type = (isset($_GET[ 'type' ]) && $_GET[ 'type' ] == 'ASC') ? "ASC" : "DESC";
 
     if (isclanwaradmin($userID) || isnewsadmin($userID)) {
-        echo '<a href="index.php?site=awards&amp;action=new" class="btn btn-danger">' .
+        echo '<a href="index.php?site=awards&amp;action=new" class="btn btn-primary">' .
             $_language->module[ 'new_award' ] . '</a><br><br>';
     }
 
@@ -493,7 +493,7 @@ if ($action == "new") {
             if (isclanwaradmin($userID) || isnewsadmin($userID)) {
                 $adminaction =
                     '<a href="index.php?site=awards&amp;action=edit&amp;awardID=' . $ds[ 'awardID' ] .
-                    '" class="btn btn-danger">' . $_language->module[ 'edit' ] . '</a>
+                    '" class="btn btn-warning">' . $_language->module[ 'edit' ] . '</a>
                     <input type="button" class="btn btn-danger" onclick="MM_confirm(
                             \'really delete this award?\',
                             \'index.php?site=awards&amp;delete=true&amp;awardID=' . $ds[ 'awardID' ] . '\'
@@ -516,6 +516,6 @@ if ($action == "new") {
         $awards_foot = $GLOBALS["_template"]->replaceTemplate("awards_foot", array());
         echo $awards_foot;
     } else {
-        echo generateAlert($_language->module['no_entries'], 'alert-info');
+        echo $_language->module[ 'no_entries' ];
     }
 }

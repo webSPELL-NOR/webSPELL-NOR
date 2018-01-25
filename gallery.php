@@ -564,18 +564,18 @@ if (isset($_POST[ 'saveedit' ])) {
 	
 	# ZNT.Dev
 	$dx = safe_query("SELECT `galleryID` FROM `".PREFIX."gallery` WHERE 1");
-	$pagelink = '<span class="pagelink"><img src="images/icons/multipage.gif" width="10" height="12" alt=""> <small>';
+	$pagelink = '<ul class="pagination">';
 	$p = 1;
 	while($dy=mysqli_fetch_array($dx)) {
 		$g = $dy['galleryID'];
 		if($g==$galleryID) {
-			$pagelink .= '&nbsp;<u>'.$p.'</u>';
+			$pagelink .= '<li>'.$p.'</li>';
 		} else {
-			$pagelink .= '&nbsp;<a href="index.php?site=gallery&amp;galleryID='.$g.'">'.$p.'</a>';
+			$pagelink .= '<li><a href="index.php?site=gallery&amp;galleryID='.$g.'">'.$p.'</li>';
 		}
 		$p++;
 	}
-	$pagelink .= '</span></small>';
+	$pagelink .= '</ul>';
 	
     $data_array = array();
     $data_array['$group'] = $group;

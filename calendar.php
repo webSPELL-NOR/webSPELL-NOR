@@ -346,10 +346,10 @@ function print_termine($tag, $month, $year)
                                         \'toolbar=no,status=no,scrollbars=yes,width=800,height=490\'
                                     )"
                                     value="' . $_language->module['add_clanwars'] . '"
-                                    class="btn btn-danger">
+                                    class="btn btn-primary">
 
                                 <a href="index.php?site=calendar&amp;action=editwar&amp;upID=' . $ds['upID'] . '"
-                                    class="btn btn-danger">
+                                    class="btn btn-warning">
                                     ' . $_language->module['edit'] . '
                                 </a>
 
@@ -445,7 +445,7 @@ function print_termine($tag, $month, $year)
 
                         if (isclanwaradmin($userID)) {
                             $adminaction = '<div align="right">
-                                <a class="btn btn-danger" href="index.php?site=calendar&amp;action=editdate&amp;upID=' .
+                                <a class="btn btn-warning" href="index.php?site=calendar&amp;action=editdate&amp;upID=' .
                                 $ds['upID'] . '">' .
                                 $_language->module['edit'] . '
                                 </a>
@@ -485,7 +485,7 @@ function print_termine($tag, $month, $year)
             }
         }
     } else {
-        echo generateAlert($_language->module['no_entries'], 'alert-info');
+        echo $_language->module['no_entries'];
     }
 }
 
@@ -789,10 +789,10 @@ if ($action === "savewar") {
         $title_calendar = $GLOBALS["_template"]->replaceTemplate("title_calendar", array());
         echo $title_calendar;
 
-        echo '<a href="index.php?site=calendar&amp;action=addwar" class="btn btn-danger">' .
+        echo '<a href="index.php?site=calendar&amp;action=addwar" class="btn btn-primary">' .
             $_language->module['add_clanwar'] . '
             </a>
-            <a href="index.php?site=calendar&amp;action=adddate" class="btn btn-danger">' .
+            <a href="index.php?site=calendar&amp;action=adddate" class="btn btn-primary">' .
             $_language->module['add_event'] . '
             </a><br><br>';
 
@@ -864,10 +864,10 @@ if ($action === "savewar") {
         $title_calendar = $GLOBALS["_template"]->replaceTemplate("title_calendar", array());
         echo $title_calendar;
 
-        echo '<a href="index.php?site=calendar&amp;action=addwar" class="btn btn-danger">' .
+        echo '<a href="index.php?site=calendar&amp;action=addwar" class="btn btn-primary">' .
             $_language->module['add_clanwar'] . '
             </a>
-            <a href="index.php?site=calendar&amp;action=adddate" class="btn btn-danger">' .
+            <a href="index.php?site=calendar&amp;action=adddate" class="btn btn-primary">' .
             $_language->module['add_event'] . '
             </a><br><br>';
 
@@ -923,10 +923,10 @@ if ($action === "savewar") {
         echo $title_calendar;
 
         echo
-            '<a href="index.php?site=calendar&amp;action=addwar" class="btn btn-danger">' .
+            '<a href="index.php?site=calendar&amp;action=addwar" class="btn btn-primary">' .
             $_language->module['add_clanwar'] . '
             </a>
-            <a href="index.php?site=calendar&amp;action=adddate" class="btn btn-danger"> ' .
+            <a href="index.php?site=calendar&amp;action=adddate" class="btn btn-primary"> ' .
             $_language->module['add_event'] . '
             </a><br><br>';
 
@@ -951,10 +951,10 @@ if ($action === "savewar") {
         echo $title_calendar;
 
         echo
-            '<a href="index.php?site=calendar&amp;action=addwar" class="btn btn-danger">' .
+            '<a href="index.php?site=calendar&amp;action=addwar" class="btn btn-primary">' .
             $_language->module['add_clanwar'] . '
             </a>
-            <a href="index.php?site=calendar&amp;action=adddate" class="btn btn-danger">' .
+            <a href="index.php?site=calendar&amp;action=adddate" class="btn btn-primary">' .
             $_language->module['add_event'] . '
             </a><br><br>';
 
@@ -1017,10 +1017,10 @@ if ($action === "savewar") {
 
     if (isclanwaradmin($userID)) {
         echo
-            '<a href="index.php?site=calendar&amp;action=addwar" class="btn btn-danger">' .
+            '<a href="index.php?site=calendar&amp;action=addwar" class="btn btn-primary">' .
             $_language->module['add_clanwar'] . '
             </a>
-            <a href="index.php?site=calendar&amp;action=adddate" class="btn btn-danger">' .
+            <a href="index.php?site=calendar&amp;action=adddate" class="btn btn-primary">' .
             $_language->module['add_event'] . '
             </a><br><br>';
     }

@@ -601,20 +601,17 @@ if ($action == "new") {
         for ($i = 0; $i < $counter; $i++) {
             $maps .= '<tr>
             <td width="15%">
-                <input type="hidden" name="map_id[]" value="' . $i . '">map #' . ($i + 1) . '
+                <input class="form-control" type="hidden" name="map_id[]" value="' . $i . '">map #' . ($i + 1) . '
             </td>
             <td width="25%">
-                <input type="text" name="map_name[]" value="' . getinput($map[ $i ]) . '" size="35">
+                <input class="form-control" type="text" name="map_name[]" value="' . getinput($map[ $i ]) . '" size="35">
             </td>
             <td width="20%">
-                <input type="text" name="map_result_home[]" value="' . $theHomeScore[ $i ] . '" size="3">
+                <input class="form-control" type="text" name="map_result_home[]" value="' . $theHomeScore[ $i ] . '" size="3">
             </td>
             <td width="20%">
-                <input type="text" name="map_result_opp[]" value="' . $theOppScore[ $i ] . '" size="3">
-            </td>
-            <td width="25%">
-                <input type="checkbox" name="delete[' . $i . ']" value="1"> ' . $_language->module[ 'delete' ] . '
-            </td></tr>';
+                <input class="form-control" type="text" name="map_result_opp[]" value="' . $theOppScore[ $i ] . '" size="3">
+            </td>';
         }
 
         $gamesquads = safe_query("SELECT * FROM `" . PREFIX . "squads` WHERE `gamesquad` = '1' ORDER BY `sort`");
@@ -862,7 +859,7 @@ if ($action == "new") {
     $title_clanwars = $GLOBALS["_template"]->replaceTemplate("title_clanwars", array());
     echo $title_clanwars;
 
-    echo '<a href="index.php?site=clanwars" class="btn btn-primary">' . $_language->module[ 'show_clanwars' ] . '</a>';
+    echo '<a href="index.php?site=clanwars" class="btn btn-default">' . $_language->module[ 'show_clanwars' ] . '</a>';
 
     echo '<h2>' . $_language->module[ 'clan_stats' ] . '</h2>';
 
@@ -1219,7 +1216,7 @@ if ($action == "new") {
                     $jumpsquads .
             '</select>
             <span class="input-group-btn"><input type="button" name="Button1" value="' . $_language->module[ 'go' ] .
-                '" onclick="MM_jumpMenuGo(\'selectgame\',\'parent\',0)" class="btn btn-primary">
+                '" onclick="MM_jumpMenuGo(\'selectgame\',\'parent\',0)" class="btn btn-default">
             </span>
         </div>';
 
@@ -1280,12 +1277,12 @@ if ($action == "new") {
                     \'clanwars.php?action=new\',
                     \'Clanwars\',
                     \'toolbar=no,status=no,scrollbars=yes,width=800,height=600\'
-                )" value="' . $_language->module[ 'new_clanwar' ] . '" class="btn btn-danger">';
+                )" value="' . $_language->module[ 'new_clanwar' ] . '" class="btn btn-primary">';
     } else {
         $admin = '';
     }
     $Statistics =
-        '<a href="index.php?site=clanwars&amp;action=stats" class="btn btn-primary">' .
+        '<a href="index.php?site=clanwars&amp;action=stats" class="btn btn-default">' .
             $_language->module[ 'stat' ] . '</a>';
 
     echo '<form name="jump" action=""><div class="row">
@@ -1418,7 +1415,7 @@ if ($action == "new") {
                         </select>
                         <span class="input-group-btn">
                             <input type="submit" name="quickaction" value="' . $_language->module[ 'go' ] .
-                                '" class="btn btn-danger">
+                                '" class="btn btn-default">
                         </span>
                     </div>
                 </div>';
@@ -1468,7 +1465,7 @@ if ($action == "new") {
             '</select>
             <span class="input-group-btn">
                 <input type="button" name="Button1" value="' . $_language->module[ 'go' ] .
-                    '" onclick="MM_jumpMenuGo(\'selectgame\',\'parent\',0)" class="btn btn-primary">
+                    '" onclick="MM_jumpMenuGo(\'selectgame\',\'parent\',0)" class="btn btn-default">
             </span>
         </div>';
 
@@ -1552,13 +1549,13 @@ if ($action == "new") {
                 \'clanwars.php?action=new\',
                 \'Clanwars\',
                 \'toolbar=no,status=no,scrollbars=yes,width=800,height=600\'
-            )" value="' . $_language->module[ 'new_clanwar' ] . '" class="btn btn-danger">';
+            )" value="' . $_language->module[ 'new_clanwar' ] . '" class="btn btn-primary">';
     } else {
         $admin = '';
     }
 
     $statistics =
-        '<a href="index.php?site=clanwars&amp;action=stats" class="btn btn-primary">' .
+        '<a href="index.php?site=clanwars&amp;action=stats" class="btn btn-default">' .
             $_language->module[ 'stat' ] . '</a>';
 
     echo '<form name="jump" action="">
@@ -1669,7 +1666,7 @@ if ($action == "new") {
                 <option value="delete">' . $_language->module[ 'delete_selected' ] . '</option>
             </select>
             <span class="input-group-btn"><input type="submit" name="quickaction" value="' .
-                $_language->module[ 'go' ] . '" class="btn btn-danger"></span>
+                $_language->module[ 'go' ] . '" class="btn btn-default"></span>
         </div></div>';
         }
 
@@ -1678,6 +1675,6 @@ if ($action == "new") {
         $clanwars_foot = $GLOBALS["_template"]->replaceTemplate("clanwars_foot", $data_array);
         echo $clanwars_foot;
     } else {
-        echo generateAlert($_language->module['no_entries'], 'alert-info');
+        echo $_language->module[ 'no_entries' ];
     }
 }

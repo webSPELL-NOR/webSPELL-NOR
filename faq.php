@@ -41,7 +41,7 @@ if ($action == "faqcat" && is_numeric($_GET[ 'faqcatID' ])) {
         echo '<input type="button" onclick="window.open(
             \'admin/admincenter.php?site=faq\',
             \'News\',\'toolbar=yes,status=yes,scrollbars=yes,resizable=yes,width=800,height=600\'
-        )" value="' . $_language->module[ 'admin_button' ] . '" class="btn btn-danger"><br><br>';
+        )" value="' . $_language->module[ 'admin_button' ] . '" class="btn btn-primary"><br><br>';
     }
 
     $faqcatID = $_GET[ 'faqcatID' ];
@@ -97,7 +97,7 @@ if ($action == "faqcat" && is_numeric($_GET[ 'faqcatID' ])) {
             '<p><input type="button" onclick="window.open(
                 \'admin/admincenter.php?site=faq\',
                 \'News\',\'toolbar=yes,status=yes,scrollbars=yes,resizable=yes,width=800,height=600\'
-            )" value="' . $_language->module[ 'admin_button' ] . '" class="btn btn-danger"></p>';
+            )" value="' . $_language->module[ 'admin_button' ] . '" class="btn btn-primary"></p>';
     }
 
     $faqcatID = intval($_GET[ 'faqcatID' ]);
@@ -162,7 +162,7 @@ if ($action == "faqcat" && is_numeric($_GET[ 'faqcatID' ])) {
                 \'admin/admincenter.php?site=faq\',
                 \'News\',
                 \'toolbar=yes,status=yes,scrollbars=yes,resizable=yes,width=800,height=600\'
-            )" value="' . $_language->module[ 'admin_button' ] . '" class="btn btn-danger"></p>';
+            )" value="' . $_language->module[ 'admin_button' ] . '" class="btn btn-primary"></p>';
     }
 
     $faqcats = safe_query("SELECT * FROM `" . PREFIX . "faq_categories` ORDER BY `sort`");
@@ -205,6 +205,6 @@ if ($action == "faqcat" && is_numeric($_GET[ 'faqcatID' ])) {
             $i++;
         }
     } else {
-        echo generateAlert($_language->module['no_categories'], 'alert-info');
+        echo $_language->module[ 'no_categories' ];
     }
 }

@@ -32,7 +32,7 @@ $title_clanwars_details = $GLOBALS["_template"]->replaceTemplate("title_clanwars
 echo $title_clanwars_details;
 
 echo '<p><a href="index.php?site=clanwars" class="btn btn-primary">' . $_language->module[ 'show_clanwars' ] . '</a>
-<a href="index.php?site=clanwars&amp;action=stats" class="btn btn-primary">' . $_language->module[ 'stat' ] .
+<a href="index.php?site=clanwars&amp;action=stats" class="btn btn-default">' . $_language->module[ 'stat' ] .
 	'</a></p>';
 
 $cwID = (int)$_GET[ 'cwID' ];
@@ -92,12 +92,12 @@ if (isclanwaradmin($userID)) {
             \'upload.php?cwID=' . $cwID . '\',
             \'Clanwars\',
             \'toolbar=no,status=no,scrollbars=yes,width=800,height=600\'
-            )" value="' . $_language->module[ 'upload_screenshot' ] . '" class="btn btn-danger">
+            )" value="' . $_language->module[ 'upload_screenshot' ] . '" class="btn btn-primary">
 <input type="button" onclick="window.open(
     \'clanwars.php?action=edit&amp;cwID=' . $ds[ 'cwID' ] . '\',
     \'Clanwars\',
     \'toolbar=no,status=no,scrollbars=yes,width=800,height=600\'
-    )" value="' . $_language->module[ 'edit' ] . '" class="btn btn-danger">
+    )" value="' . $_language->module[ 'edit' ] . '" class="btn btn-warning">
 <input type="button" onclick="MM_confirm(
     \'' . $_language->module[ 'really_delete_clanwar' ] . '?\',
     \'clanwars.php?action=delete&amp;cwID=' . $ds[ 'cwID' ] . '\'

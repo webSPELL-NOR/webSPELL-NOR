@@ -82,7 +82,7 @@ function vote($poll)
                     " . (int)$start . "," . (int)($start + 1)
             );
         } else {
-            echo $_language->module[ 'no_active_poll' ] . '<br><br>&#8226; <a href="index.php?site=polls">' .
+            echo $_language->module[ 'no_active_poll' ] . '<br><br><a class="btn btn-default" href="index.php?site=polls">' .
                 $_language->module[ 'show_polls' ] . '</a>';
             return true;
         }
@@ -167,7 +167,7 @@ function vote($poll)
             }
 
             $anzcomments = getanzcomments($ds[ 'pollID' ], 'po');
-            $comments = '<a href="index.php?site=polls&amp;pollID=' . $ds[ 'pollID' ] . '">[' . $anzcomments . '] ' .
+            $comments = '<a class="btn btn-primary" href="index.php?site=polls&amp;pollID=' . $ds[ 'pollID' ] . '">[' . $anzcomments . '] ' .
                 $_language->module[ 'comments' ] . '</a>';
 
             $data_array = array();
@@ -213,7 +213,7 @@ function vote($poll)
             echo $poll_foot;
         }
     } else {
-        echo $_language->module[ 'no_active_poll' ] . '<br><br>&#8226; <a href="index.php?site=polls">' .
+        echo $_language->module[ 'no_active_poll' ] . '<br><br><a class="btn btn-default" href="index.php?site=polls">' .
             $_language->module[ 'show_polls' ] . '</a>';
     }
 }
