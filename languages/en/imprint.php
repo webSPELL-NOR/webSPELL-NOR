@@ -31,7 +31,7 @@ $language_array = array(
 
     'admins' => 'Administrator(s):',
     'coding' => 'Programming',
-    'coding_info' => 'This site is using the <a href="http://www.webspell.org" target="_blank">webSPELL Free Content Management System (version: $version)</a>. It is based on PHP4/5 and MySQL and running under the <a href="http://www.fsf.org/licensing/licenses/gpl.html" target="_blank">GNU GENERAL PUBLIC LICENSE</a>.<br>Get it for free at this location: <a href="http://www.webspell.org" target="_blank">www.webSPELL.org</a>',
+    'coding_info' => 'This site is using the <a href="http://www.webspell-NOR.de" target="_blank">webSPELL NOR Content Management System (Version: $version)</a>. It is based on PHP4/5 and MySQL and running under the <a href="http://www.fsf.org/licensing/licenses/gpl.html" target="_blank">GNU GENERAL PUBLIC LICENSE</a>.<br>Get it for free at this location: <a href="http://www.webspell-nor.de" target="_blank">www.webSPELL-NOR.de</a><br> or the org. script under <a href="http://www.webspell.org" target="_blank">www.webSPELL.org</a>',
     'disclaimer' => 'Disclaimer',
     'disclaimer_text' => '<p><strong>1. Content</strong><br>
 	The author reserves the right not to be responsible for the topicality, correctness, completeness or quality of the information provided. Liability claims regarding damage caused by the use of any information provided, including any kind of information which is incomplete or incorrect,will therefore be rejected.<br>
