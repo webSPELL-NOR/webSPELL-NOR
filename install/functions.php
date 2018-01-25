@@ -706,10 +706,8 @@ function update_base_11($_database)
 
     
     $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (1, 'WebSPELL | NOR', 'http://www.webspell-nor.de', '1.png', 1)");
-    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (2, 'ZENITH.Developments', 'http://www.ZENITH-Developments.de', '2.png', 2)");
-    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (3, 'myFarynet', 'http://www.myfarynet.eu', '3.png', 3)");
-    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (4, '2One Designs', 'http://www.2one-designs.de', '4.png', 4)");
-    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (5, 'Design Performance', 'http://www.designperformance.de', '5.jpg', 5)");
+    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (2, '2One Designs', 'http://www.2one-designs.de', '4.png', 2)");
+    $transaction->addQuery("INSERT IGNORE INTO `" . PREFIX . "partners` (`partnerID`, `name`, `url`, `banner`, `sort`) VALUES (3, 'Design Performance', 'http://www.designperformance.de', '5.jpg', 3)");
 
     $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "poll`");
     $transaction->addQuery("CREATE TABLE `" . PREFIX . "poll` (
