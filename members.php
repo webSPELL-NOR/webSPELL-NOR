@@ -57,7 +57,7 @@ if ($action == "show") {
         );
         $name = '<strong>' . $ds[ 'name' ] . '</strong>';
         if ($ds[ 'icon' ]) {
-            $icon = '<img src="images/squadicons/' . $ds[ 'icon' ] . '" alt="' . htmlspecialchars($ds[ 'name' ]) . '">';
+            $icon = '<img src="images/squadicons/' . $ds[ 'icon' ] . '" alt="' . htmlspecialchars($ds[ 'name' ]) . '" class="img-responsive">';
         } else {
             $icon = '';
         }
@@ -248,13 +248,12 @@ if ($action == "show") {
 
             if ($ds[ 'icon' ]) {
                 $icon =
-                    '<img src="images/squadicons/' . $ds[ 'icon' ] . '" alt="' . htmlspecialchars($ds[ 'name' ]) . '">';
+                    '<img src="images/squadicons/' . $ds[ 'icon' ] . '" alt="' . htmlspecialchars($ds[ 'name' ]) . '" class="img-responsive">';
             } else {
                 $icon = '';
             }
-
-            // $info = htmloutput($ds[ 'info' ]); //
-            $info = generateAlert( htmloutput($ds[ 'info' ]), 'alert-info');
+	
+            $info = !empty(htmloutput($ds[ 'info' ])) ? generateAlert( htmloutput($ds[ 'info' ]), 'alert-info') : '';
             $squadID = $ds[ 'squadID' ];
             $details = str_replace('%squadID%', $squadID, $_language->module[ 'show_details' ]);
 
