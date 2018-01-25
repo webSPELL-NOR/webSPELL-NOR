@@ -68,7 +68,6 @@ if ($action == "show") {
         $awards = '';
         $challenge = '';
 
-        $border = BORDER;
 
         if ($ds[ 'gamesquad' ]) {
             $results = '<a href="index.php?site=clanwars&amp;action=showonly&amp;id=' . $squadID .
@@ -114,13 +113,6 @@ if ($action == "show") {
 
         $i = 1;
         while ($dm = mysqli_fetch_array($member)) {
-            if ($i % 2) {
-                $bg1 = BG_1;
-                $bg2 = BG_2;
-            } else {
-                $bg1 = BG_3;
-                $bg2 = BG_4;
-            }
 
             $country = '[flag]' . $dm[ 'country' ] . '[/flag]';
             $country = flags($country);
