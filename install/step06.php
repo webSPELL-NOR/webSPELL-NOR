@@ -310,12 +310,21 @@
 	                $update_functions[] = "124_125_2";
 	                $update_functions[] = "clearfolder";
                 } elseif ($_POST['installtype'] == 'update_org') {
-	                $update_functions[] = "420_430_1";
-                    $update_functions[] = "420_430_2";
-                    $update_functions[] = "430a_121";
-                    $update_functions[] = "123_124";
-                    $update_functions[] = "124_125";
-                    $update_functions[] = "420_125";
+	                include('../version.php');
+	                if($version == '4.3.0') {
+		            	$update_functions[] = "430a_121";
+						$update_functions[] = "123_124";
+						$update_functions[] = "124_125";
+						$update_functions[] = "420_125";
+	                }
+	                else {
+		                $update_functions[] = "420_430_1";
+	                    $update_functions[] = "420_430_2";
+	                    $update_functions[] = "430a_121";
+	                    $update_functions[] = "123_124";
+	                    $update_functions[] = "124_125";
+	                    $update_functions[] = "420_125";
+                    }
                     $update_functions[] = "passwordhash";
                     $update_functions[] = "addSMTPSupport";
                     $update_functions[] = "updateLanguages";

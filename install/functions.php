@@ -4840,6 +4840,7 @@ function update_124_125($_database) {
 	$transaction->addQuery("INSERT INTO `" . PREFIX . "smileys` (`name`, `alt`, `pattern`) VALUES ('zero', 'zero', ':zero:')");
 	$transaction->addQuery("INSERT INTO `" . PREFIX . "smileys` (`name`, `alt`, `pattern`) VALUES ('zzz', 'zzz', ':zzz:')");
 	$transaction->addQuery("ALTER TABLE `" . PREFIX . "servers` CHANGE `game` `game` CHAR( 10 ) NOT NULL");
+	$transaction->addQuery("ALTER TABLE `" . PREFIX . "games` CHANGE `tag` `tag` VARCHAR( 10 ) NOT NULL");
 	
 	//Update new Tablenames
 
@@ -4870,7 +4871,11 @@ function update_124_125_2($_database) {
 
 function update_420_125($_database) {
 	$transaction = new Transaction($_database);
-	$transaction->addQuery("ALTER TABLE ".PREFIX."user CHANGE `connection` `verbindung` VARCHAR(255)");
+	include("../version.php");
+	
+	if($version != '4.3.0' ) {
+		$transaction->addQuery("ALTER TABLE ".PREFIX."user CHANGE `connection` `verbindung` VARCHAR(255)");
+	}
 	$transaction->addQuery("ALTER TABLE ".PREFIX."user ADD password_hash VARCHAR(255) NOT NULL AFTER password");
 	$transaction->addQuery("ALTER TABLE ".PREFIX."user ADD password_pepper VARCHAR(255) NOT NULL AFTER password_hash");
 	
