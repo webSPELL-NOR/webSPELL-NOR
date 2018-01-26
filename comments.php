@@ -422,16 +422,16 @@ if (isset($_POST[ 'savevisitorcomment' ])) {
                     && $gethomepage != "n/a"
                 ) {
                     $hp = '<a href="http://' . $gethomepage .
-                        '" target="_blank"><img src="images/icons/hp.gif" width="14" height="14" alt="' .
-                        $_language->module[ 'homepage' ] . '"></a>';
+                        '" target="_blank"><i class="fa fa-home" title="' .
+                        $_language->module[ 'homepage' ] . '"></i></a>';
                 } else {
                     $hp = '';
                 }
  
                 if (isonline($ds[ 'userID' ]) == "offline") {
-                    $statuspic = '<img src="images/icons/offline.gif" width="7" height="7" alt="offline">';
+                    $statuspic = '<span class="label label-danger">offline</span>';
                 } else {
-                    $statuspic = '<img src="images/icons/online.gif" width="7" height="7" alt="online">';
+                    $statuspic = '<span class="label label-success">online</span>';
                 }
  
                 $avatar = '<img src="images/avatars/' . getavatar($ds[ 'userID' ]) .
@@ -439,25 +439,25 @@ if (isset($_POST[ 'savevisitorcomment' ])) {
  
                 if ($loggedin && $ds[ 'userID' ] != $userID) {
                     $pm = '<a href="index.php?site=messenger&amp;action=touser&amp;touser=' . $ds[ 'userID' ] .
-                        '"><img src="images/icons/pm.gif" width="12" height="13" alt="' .
-                        $_language->module[ 'send_message' ] . '"></a>';
+                        '"><i class="fa fa-envelope" title="' .
+                        $_language->module[ 'send_message' ] . '"></i></a>';
                     if (isignored($userID, $ds[ 'userID' ])) {
                         $buddy =
                             '<a href="buddies.php?action=readd&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID .
-                            '"><img src="images/icons/buddy_readd.gif" width="16" height="16" alt="' .
-                            $_language->module[ 'readd_buddy' ] . '"></a>';
+                            '"><i class="fa fa-user-plus" title="' .
+                            $_language->module[ 'readd_buddy' ] . '"></i></a>';
                     } elseif (isbuddy($userID, $ds[ 'userID' ])) {
                         $buddy =
                             '<a href="buddies.php?action=ignore&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID .
-                            '"><img src="images/icons/buddy_ignore.gif" width="16" height="16" alt="' .
-                            $_language->module[ 'ignore_user' ] . '"></a>';
+                            '"><i class="fa fa-user-times" title="' .
+                            $_language->module[ 'ignore_user' ] . '"></i></a>';
                     } elseif ($userID == $ds[ 'userID' ]) {
                         $buddy = '';
                     } else {
                         $buddy =
                             '<a href="buddies.php?action=add&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID .
-                            '"><img src="images/icons/buddy_add.gif" width="16" height="16" alt="' .
-                            $_language->module[ 'add_buddy' ] . '"></a>';
+                            '"><i class="fa fa-user-plus" title="' .
+                            $_language->module[ 'add_buddy' ] . '"></i></a>';
                     }
                 } else {
                     $pm = '';
@@ -489,8 +489,8 @@ if (isset($_POST[ 'savevisitorcomment' ])) {
                 }
                 if ($ds[ 'url' ] != "http://" && $ds[ 'url' ] != "") {
                     $hp = '<a href="' . $ds[ 'url' ] .
-                        '" target="_blank"><img src="images/icons/hp.gif" width="14" height="14" alt="' .
-                        $_language->module[ 'homepage' ] . '"></a>';
+                        '" target="_blank"><i class="fa fa-home" title="' .
+                        $_language->module[ 'homepage' ] . '"></i></a>';
                 } else {
                     $hp = '';
                 }

@@ -49,10 +49,10 @@ if (isnewswriter($userID)) {
                 \'news.php?action=new\',
                 \'News\',
                 \'toolbar=no,status=no,scrollbars=yes,width=800,height=600\'
-            )" value="' . $_language->module[ 'post_news' ] . '" class="btn btn-danger">';
+            )" value="' . $_language->module[ 'post_news' ] . '" class="btn btn-primary">';
 }
 echo $post .
-    ' <a href="index.php?site=news&amp;action=archive" class="btn btn-primary">' .
+    ' <a href="index.php?site=news&amp;action=archive" class="btn btn-default">' .
     $_language->module[ 'news_archive' ] . '</a><hr>';
 
 if (isset($newsID)) {
@@ -228,7 +228,7 @@ if (isset($newsID)) {
                         \'news.php?action=edit&amp;newsID=' . $ds[ 'newsID' ] . '\',
                         \'News\',
                         \'toolbar=no,status=no,scrollbars=yes,width=800,height=600\'
-                    )" value="' . $_language->module[ 'edit' ] . '" class="btn btn-danger">
+                    )" value="' . $_language->module[ 'edit' ] . '" class="btn btn-warning">
         <input type="button" onclick="MM_confirm(
                 \'' . $_language->module[ 'really_delete' ] .
                 '\', \'news.php?action=delete&amp;id=' . $ds[ 'newsID' ] . '\'
@@ -261,7 +261,7 @@ if (isset($newsID)) {
                 echo '<form method="post" action="news.php?quickactiontype=publish">
                     <input type="hidden" name="newsID[]" value="' . $ds[ 'newsID' ] . '">
                     <input type="submit" name="submit" value="' . $_language->module[ 'publish_now' ]
-                    . '" class="btn btn-danger">
+                    . '" class="btn btn-default">
                 </form>';
             } else {
                 echo '<form method="post" action="news.php?quickactiontype=unpublish">

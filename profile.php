@@ -800,19 +800,17 @@ if (isset($id) && getnickname($id) != '') {
             $icq = '';
         }
         if ($loggedin && $ds[ 'userID' ] != $userID) {
-            $pm = '<a class="btn btn-success" href="index.php?site=messenger&amp;action=touser&amp;touser=' . $ds[ 'userID' ] . '">
-                <i class="fa fa-envelope"></i> ' . $_language->module[ 'email' ] . '
-            </a>';
+            $pm = '<a class="btn btn-success" href="index.php?site=messenger&amp;action=touser&amp;touser=' . $ds[ 'userID' ] . '" title="' . $_language->module[ 'email' ] . '">
+                <i class="fa fa-envelope"></i></a>';
             if (isignored($userID, $ds[ 'userID' ])) {
-                $buddy = '<a class="btn btn-warning" href="buddies.php?action=readd&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '"><i class="fa fa-user-plus"></i> ' . $_language->module[ 'back_buddylist' ] . '</a>';
+                $buddy = '<a class="btn btn-warning" href="buddies.php?action=readd&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '" title="' . $_language->module[ 'back_buddylist' ] . '"><i class="fa fa-user-plus"></i></a>';
             } elseif (isbuddy($userID, $ds[ 'userID' ])) {
-                $buddy = '<a class="btn btn-danger" href="buddies.php?action=ignore&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '"><i class="fa fa-user-times"></i> ' . $_language->module[ 'ignore_user' ] . '
+                $buddy = '<a class="btn btn-danger" href="buddies.php?action=ignore&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '" title="' . $_language->module[ 'ignore_user' ] . '"><i class="fa fa-user-times"></i>
                 </a>';
             } elseif ($userID == $ds[ 'userID' ]) {
                 $buddy = '';
             } else {
-                $buddy = '<a class="btn btn-primary" href="buddies.php?action=add&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '"><i class="fa fa-user-plus"></i> ' . $_language->module[ 'add_buddylist' ] . '
-                </a>';
+                $buddy = '<a class="btn btn-primary" href="buddies.php?action=add&amp;id=' . $ds[ 'userID' ] . '&amp;userID=' . $userID . '" title="' . $_language->module[ 'add_buddylist' ] . '"><i class="fa fa-user-plus"></i></a>';
             }
         } else {
             $pm = '' & $buddy = '';
