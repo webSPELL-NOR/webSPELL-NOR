@@ -229,7 +229,7 @@ if ($action == "show") {
                 $ds[ 'name' ] . '</b></a>';
             if ($ds[ 'icon' ]) {
                 $icon = '<a href="index.php?site=squads&amp;action=show&amp;squadID=' . $ds[ 'squadID' ] .
-                    '"><img src="images/squadicons/' . $ds[ 'icon' ] . '" alt="' . htmlspecialchars($ds[ 'name' ]) .
+                    '"><img class="img-responsive" src="images/squadicons/' . $ds[ 'icon' ] . '" alt="' . htmlspecialchars($ds[ 'name' ]) .
                     '"></a>';
             } else {
                 $icon = '';
