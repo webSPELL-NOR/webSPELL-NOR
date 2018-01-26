@@ -466,7 +466,7 @@ if (!isclanmember($userID) && !iscashadmin($userID)) {
                 $cash_box_foot = $GLOBALS["_template"]->replaceTemplate("cash_box_foot", $data_array);
                 echo $cash_box_foot;
             } else {
-                echo $_language->module[ 'no_entries' ];
+                echo generateAlert($_language->module[ 'no_entries' ], 'alert-info');
             }
 
             echo '</div>';
@@ -500,7 +500,7 @@ if (!isclanmember($userID) && !iscashadmin($userID)) {
 
         if (iscashadmin($userID)) {
             $cashadmin =
-                '<a href="index.php?site=cashbox&amp;action=new" class="btn btn-danger">
+                '<a href="index.php?site=cashbox&amp;action=new" class="btn btn-primary">
                     ' . $_language->module[ 'add_payment' ] . '
                 </a>';
         }

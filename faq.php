@@ -68,13 +68,6 @@ if ($action == "faqcat" && is_numeric($_GET[ 'faqcatID' ])) {
         echo $faq_question_head;
         $i = 1;
         while ($ds = mysqli_fetch_array($faqcat)) {
-            #if ($i % 2) {
-            #    $bg1 = BG_1;
-            #    $bg2 = BG_2;
-            #} else {
-            #    $bg1 = BG_3;
-            #    $bg2 = BG_4;
-            #}
             $i++;
 
             $sort = $ds[ 'sort' ];
@@ -89,7 +82,7 @@ if ($action == "faqcat" && is_numeric($_GET[ 'faqcatID' ])) {
         $faq_foot = $GLOBALS["_template"]->replaceTemplate("faq_foot", array());
         echo $faq_foot;
     } else {
-        echo $_language->module[ 'no_faq' ];
+        echo generateAlert($_language->module[ 'no_faq' ], 'alert-info');
     }
 } elseif ($action == "faq") {
     if (ispageadmin($userID)) {
@@ -153,7 +146,7 @@ if ($action == "faqcat" && is_numeric($_GET[ 'faqcatID' ])) {
         $faq_answer = $GLOBALS["_template"]->replaceTemplate("faq_answer", $data_array);
         echo $faq_answer;
     } else {
-        echo $_language->module[ 'no_faq' ];
+        echo generateAlert($_language->module[ 'no_faq' ], 'alert-info');
     }
 } else {
     if (ispageadmin($userID)) {
@@ -205,6 +198,6 @@ if ($action == "faqcat" && is_numeric($_GET[ 'faqcatID' ])) {
             $i++;
         }
     } else {
-        echo $_language->module[ 'no_categories' ];
+        echo generateAlert($_language->module[ 'no_categories' ], 'alert-info');
     }
 }

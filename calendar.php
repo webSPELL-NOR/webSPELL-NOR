@@ -485,7 +485,7 @@ function print_termine($tag, $month, $year)
             }
         }
     } else {
-        echo $_language->module['no_entries'];
+        echo generateAlert($_language->module['no_entries'], 'alert-info');
     }
 }
 

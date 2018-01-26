@@ -810,6 +810,6 @@ if ($action == "new") {
         echo $articles_foot;
         unset($ds);
     } else {
-        echo $_language->module[ 'no_entries' ];
+        echo generateAlert($_language->module[ 'no_entries' ], 'alert-info');
     }
 }
