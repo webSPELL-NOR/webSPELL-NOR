@@ -187,7 +187,7 @@ $ds =
                    <li><a href="https://webspell-nor.de/index.php?site=forum"><i class="fa fa-commenting-o"></i> Forum</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="https://join.skype.com/m2pa7MIc2T4R"><i class="fa fa-skype"></i> open Skype</a>
+                        <li><a href="https://discord.gg/KVSfXQa"><i class="fa fa fa-comments"></i> open Discord</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
