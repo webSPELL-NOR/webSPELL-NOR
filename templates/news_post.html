@@ -133,9 +133,9 @@
             var message_text = '',
                     x = 0;
 
-            if (document.getElementsByName('headline[]')[0].value == "") {
+            if (document.getElementsByName('headline[0]')[0].value == "") {
                 alert("%enter_title%");
-                document.getElementsByName('headline[]')[0].focus();
+                document.getElementsByName('headline[0]')[0].focus();
 
                 return false;
             }
