@@ -33,15 +33,18 @@ echo $title_about;
 $ergebnis = safe_query("SELECT * FROM " . PREFIX . "about");
 if (mysqli_num_rows($ergebnis)) {
     $ds = mysqli_fetch_array($ergebnis);
-
-    $about = htmloutput($ds[ 'about' ]);
-    $about = toggle($about, 1);
+    
+    if($ds[ 'about' ] != "") {
+		$about = htmloutput($ds[ 'about' ]);
+		$about = toggle($about, 1); 
+    }
+    else {
+	    $about = generateAlert($_language->module[ 'no_about' ], 'alert-info');
+    }
 
     #$bg1 = BG_1;
     $data_array = array();
     $data_array['$about'] = $about;
     $about = $GLOBALS["_template"]->replaceTemplate("about", $data_array);
     echo $about;
-} else {
-    echo generateAlert($_language->module['no_about'], 'alert-info');
 }
