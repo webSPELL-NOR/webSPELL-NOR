@@ -112,21 +112,38 @@ if (isset($_POST[ 'submit' ])) {
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Clanpage using webSPELL 4 CMS">
-    <meta name="author" content="webspell.org">
-    <meta name="copyright" content="Copyright 2005-2015 by webspell.org">
-    <meta name="generator" content="webSPELL">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description" content="Website using webSPELL-NOR CMS">
+    <meta name="author" content="webspell-nor.de">    
     <title>' . $_language->module[ 'file_upload' ] . '</title>
-    <script src="js/bbcode.js"></script>
-    <link href="_stylesheet.css" rel="stylesheet" type="text/css">
-</head>
-<body class="text-center">
-<h2>' . $_language->module[ 'file_upload' ] . ':</h2>
+    <link href="css/page.css" rel="stylesheet">';
+    foreach ($components['css'] as $component) {
+        echo '<link href="' . $component . '" rel="stylesheet">';
+	}
+	foreach ($components['js'] as $component) {
+    echo '<script src="' . $component . '"></script>';
+	}
+    echo '<script src="js/bbcode.js"></script>
+	</head>
+<body>
+<div class="panel panel-default">
+<div class="panel-heading">' . $_language->module[ 'file_upload' ] . '</div>
 <form method="post" action="upload.php?' . $tableid . '=' . $id . '" enctype="multipart/form-data">
+<div class="col-md-12">
+	<div class="row">
+		<table class="table no-border">
+		    <tr>
+			        <td><input type="file" name="screen" class="form-control"></td>
+			        <td class="pull-right"><input type="submit" name="submit" value="' . $_language->module[ 'upload' ] . '" class="btn btn-primary"></td>
+			        </tr>
+			        </table>
+			        </div>
+</div>
+<div class="col-md-12">
+<div class="row">
 <table class="table">
     <tr>
-        <td class="text-center"><input type="file" name="screen">
-        <input type="submit" name="submit" value="' . $_language->module[ 'upload' ] . '">
         <hr>
         <h2>' . $_language->module[ 'existing_files' ] . ':</h2>
         <table class="table">';
@@ -145,18 +162,17 @@ if (isset($_POST[ 'submit' ])) {
             <td><a href="' . $filepath . $screen . '" target="_blank">' . $screen . '</a></td>
             <td>
                 <input type="text" name="pic" size="70"
-                value="&lt;img src=&quot;' . $filepath . $screen . '&quot; border=&quot;0&quot; align=&quot;left&quot;
-                style=&quot;padding:4px;&quot; alt=&quot;&quot; /&gt;">
+                value="&lt;img src=&quot;' . $filepath . $screen . '&quot; border=&quot;0&quot; align=&quot;left&quot; style=&quot;padding:4px;&quot; alt=&quot;&quot; /&gt;" class="form-control">
             </td>
             <td>
                 <input type="button" onclick="AddCodeFromWindow(\'[img]' . $filepath . $screen . '[/img] \')"
-                    value="' . $_language->module[ 'add_to_message' ] . '">
+                    value="' . $_language->module[ 'add_to_message' ] . '" class="btn btn-primary">
             </td>
             <td>
                 <input type="button" onclick="MM_confirm(
                         \'' . $_language->module[ 'delete' ] . '\',
                         \'upload.php?action=delete&amp;' . $tableid . '=' . $id . '&amp;file=' . basename($screen) . '\'
-                    )" value="' . $_language->module[ 'delete' ] . '">
+                    )" value="' . $_language->module[ 'delete' ] . '" class="btn btn-danger">
             </td>
             </tr>';
             }
@@ -167,7 +183,13 @@ if (isset($_POST[ 'submit' ])) {
     </tr>
     </table>
     </form>
-    <br><br><input type="button" onclick="javascript:self.close()" value="' . $_language->module[ 'close_window' ] . '">
+    <div class="panel-footer">
+		<input type="button" onclick="javascript:self.close()" value="' . $_language->module[ 'close_window' ] . '" class="btn btn-default">
+	</div>
+	<div class="clearfix"></div>
+    </div>
+    </div>
+    </div>
     </body>
     </html>';
 }

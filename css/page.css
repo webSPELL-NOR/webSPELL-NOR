@@ -209,3 +209,7 @@ html {
     border-left: 1px solid #7d7d7d;
     padding: 25px 10px 25px 10px;
  }
+ 
+ .table.no-border tr td, .table.no-border tr th {
+  border-width: 0;
+}
