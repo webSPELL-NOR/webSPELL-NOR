@@ -1368,9 +1368,9 @@ function update_4beta6_4final_1($_database)
   ) DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
   
   $transaction->addQuery("INSERT INTO `".PREFIX."carousel` (`title`, `link`, `description`, `carousel_pic`, `sort`, `displayed`) VALUES
-('Carousel Entry #1', 'http://webspell-nor.getschonnik.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '1.jpg', '1', '1'),
-('Carousel Entry #2', 'http://webspell-nor.getschonnik.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '2.jpg', '1', '1'),
-('Carousel Entry #3', 'http://webspell-nor.getschonnik.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '3.jpg', '1', '1')");
+('Carousel Entry #1', 'https://webspell-nor.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '1.jpg', '1', '1'),
+('Carousel Entry #2', 'https://webspell-nor.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '2.jpg', '1', '1'),
+('Carousel Entry #3', 'https://webspell-nor.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '3.jpg', '1', '1')");
 
 	// Navigation
 	$transaction->addQuery("CREATE TABLE `" . PREFIX . "navigation_main` (
@@ -4893,9 +4893,9 @@ function update_420_125($_database) {
   ) DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
   
   $transaction->addQuery("INSERT INTO `".PREFIX."carousel` (`title`, `link`, `description`, `carousel_pic`, `sort`, `displayed`) VALUES
-('Carousel Entry #1', 'http://webspell-nor.getschonnik.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '1.jpg', '1', '1'),
-('Carousel Entry #2', 'http://webspell-nor.getschonnik.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '2.jpg', '1', '1'),
-('Carousel Entry #3', 'http://webspell-nor.getschonnik.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '3.jpg', '1', '1')");
+('Carousel Entry #1', 'https://webspell-nor.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '1.jpg', '1', '1'),
+('Carousel Entry #2', 'https://webspell-nor.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '2.jpg', '1', '1'),
+('Carousel Entry #3', 'https://webspell-nor.de/', 'The Bootstrap Carousel in Webspell? No way?! Yes we did it!', '3.jpg', '1', '1')");
 
 	// Navigation
 	$transaction->addQuery("CREATE TABLE `" . PREFIX . "navigation_main` (
