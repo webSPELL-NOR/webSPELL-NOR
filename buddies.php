@@ -149,25 +149,18 @@ if ($action == "add") {
     if ($anz) {
         $n = 1;
         while ($ds = mysqli_fetch_array($ergebnis)) {
-            #if ($n % 2) {
-            #    $bg1 = BG_1;
-            #    $bg2 = BG_2;
-            #} else {
-            #    $bg1 = BG_3;
-            #    $bg2 = BG_4;
-            #}
             $flag = '[flag]' . getcountry($ds[ 'buddy' ]) . '[/flag]';
             $country = flags($flag);
             $nickname = getnickname($ds[ 'buddy' ]);
             if (isclanmember($ds[ 'buddy' ])) {
-                $member = '<img src="images/icons/member.gif" width="7" height="16" alt="Clanmember">';
+                $member = '<i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
             } else {
                 $member = '';
             }
             if (isonline($ds[ 'buddy' ]) == "offline") {
-                $statuspic = '<img src="images/icons/offline.gif" width="7" height="7" alt="offline">';
+                $statuspic = '<span class="label label-danger">' . $_language->module[ 'offline' ] . '</span>';
             } else {
-                $statuspic = '<img src="images/icons/online.gif" width="7" height="7" alt="online">';
+                $statuspic = '<span class="label label-success">' . $_language->module[ 'online' ] . '</span>';
             }
 
             $data_array = array();
@@ -194,25 +187,18 @@ if ($action == "add") {
     if ($anz) {
         $n = 1;
         while ($ds = mysqli_fetch_array($ergebnis)) {
-            #if ($n % 2) {
-            #    $bg1 = BG_1;
-            #    $bg2 = BG_2;
-            #} else {
-            #    $bg1 = BG_3;
-            #    $bg2 = BG_4;
-            #}
             $flag = '[flag]' . getcountry($ds[ 'buddy' ]) . '[/flag]';
             $country = flags($flag);
             $nickname = getnickname($ds[ 'buddy' ]);
             if (isclanmember($ds[ 'buddy' ])) {
-                $member = ' <img src="images/icons/member.gif" width="7" height="16" alt="Clanmember">';
+                $member = ' <i class="fa fa-user" aria-hidden="true" title="Clanmember"></i>';
             } else {
                 $member = '';
             }
             if (isonline($ds[ 'buddy' ]) == "offline") {
-                $statuspic = '<img src="images/icons/offline.gif" width="7" height="7" alt="offline">';
+                $statuspic = '<span class="label label-danger">' . $_language->module[ 'offline' ] . '</span>';
             } else {
-                $statuspic = '<img src="images/icons/online.gif" width="7" height="7" alt="online">';
+                $statuspic = '<span class="label label-success">' . $_language->module[ 'online' ] . '</span>';
             }
             $data_array = array();
             $data_array['$country'] = $country;
