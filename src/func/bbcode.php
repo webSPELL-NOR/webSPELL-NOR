@@ -735,25 +735,13 @@ function toggle($content, $id)
 {
     global $_language;
     $_language->readModule('bbcode', true);
-    $replace1 = '<table width="100%">
-    <tr>
-        <td>
-            <a href="javascript:Toggle(\'' . $id . '_%d\')">
-                <img
-                    src="images/icons/expand.gif"
-                    id="ToggleImg_' . $id . '_%d"
-                    alt="' . $_language->module['read_more'] . '"
-                    title="' . $_language->module['read_more'] . '"
-                />
-                %s
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td style="padding-left: 16px;"><div id="ToggleRow_' . $id . '_%d" style="display:none">';
-    $replace2 = '</div></td>
-    </tr>
-    </table>';
+	
+    $replace1 = '<div style="width: 100%;">
+            		<a class="btn btn-default" role="button" data-toggle="collapse" href="#ToggleRow_' . $id . '_%d" aria-expanded="false" aria-controls="collapseRow">
+						' . $_language->module['read_more'] . '				
+            		</a>
+        			<div class="collapse" id="ToggleRow_' . $id . '_%d">';
+    $replace2 = '</div></div>';
 
     $n = 0;
     while (($pos = mb_strpos(strtolower($content), "[toggle=")) !== false) {
