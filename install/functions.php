@@ -3517,7 +3517,6 @@ function update_420_430_1($_database)
     $transaction->addQuery("DELETE FROM `" . PREFIX . "countries` WHERE `short` = 'wa'");
     $transaction->addQuery("DELETE FROM `" . PREFIX . "countries` WHERE `short` = 'yu'");
     $transaction->addQuery("DELETE FROM `" . PREFIX . "countries` WHERE `short` = 'tp'");
-    $transaction->addQuery("DELETE FROM `" . PREFIX . "countries` WHERE `short` = ''");
     if ($transaction->successful()) {
         return array('status' => 'success', 'message' => 'Updated to webSPELL 4.3 Part 1');
     } else {
