@@ -280,16 +280,16 @@ if (isset($_POST['delete'])) {
                 } elseif (isbuddy($userID, $ds['fromuser'])) {
                     $buddy =
                         '<a href="buddies.php?action=ignore&amp;id=' . $ds['fromuser'] . '&amp;userID=' . $userID .
-                        '" data-toggle="tooltip" data-placement="top" title="' . $_language->module[ 'ignore_user' ] . '"><i class="fa fa-user-times"></i></a>';
+                        '" data-toggle="tooltip" data-placement="top" title="' . $_language->module[ 'ignore' ] . '"><i class="fa fa-user-times"></i></a>';
                 } else {
                     $buddy = '<a href="buddies.php?action=add&amp;id=' . $ds['fromuser'] . '&amp;userID=' . $userID .
                         '" data-toggle="tooltip" data-placement="top" title="' . $_language->module[ 'add_buddylist' ] . '"><i class="fa fa-user-plus"></i></a>';
                 }
 
                 if (isonline($ds['fromuser']) == "offline") {
-                    $statuspic = '<span class="label label-danger">' . $_language->module[ 'offline' ] . '</span>';
+                    $statuspic = '<i class="fa fa-circle text-danger" aria-hidden="true"></i>';
                 } else {
-                    $statuspic = '<span class="label label-success">' . $_language->module[ 'online' ] . '</span>';
+                    $statuspic = '<i class="fa fa-circle text-success" aria-hidden="true"></i>';
                 }
 
                 $sender = '<a href="index.php?site=profile&amp;id=' . $ds['fromuser'] . '"><b>' .
@@ -326,6 +326,7 @@ if (isset($_POST['delete'])) {
                 $data_array['$member'] = $member;
                 $data_array['$statuspic'] = $statuspic;
                 $data_array['$date'] = $date;
+                $data_array['$buddy'] = $buddy;
                 $pm_incoming_content = $GLOBALS["_template"]->replaceTemplate("pm_incoming_content", $data_array);
                 echo $pm_incoming_content;
                 $n++;
@@ -440,7 +441,7 @@ if (isset($_POST['delete'])) {
                 #}
                 $date = getformatdatetime($ds['date']);
 
-                if ($userID == $ds['fromuser']) {
+                if ($userID == $ds['touser']) {
                     $buddy = '';
                 } elseif (isignored($userID, $ds['touser'])) {
                     $buddy = '<a href="buddies.php?action=readd&amp;id=' . $ds['fromuser'] . '&amp;userID=' . $userID .
@@ -448,7 +449,7 @@ if (isset($_POST['delete'])) {
                 } elseif (isbuddy($userID, $ds['touser'])) {
                     $buddy =
                         '<a href="buddies.php?action=ignore&amp;id=' . $ds['fromuser'] . '&amp;userID=' . $userID .
-                        '" data-toggle="tooltip" data-placement="top" title="' . $_language->module[ 'ignore_user' ] . '"><i class="fa fa-user-times"></i></a>';
+                        '" data-toggle="tooltip" data-placement="top" title="' . $_language->module[ 'ignore' ] . '"><i class="fa fa-user-times"></i></a>';
                 } else {
                      $buddy = '<a href="buddies.php?action=add&amp;id=' . $ds['fromuser'] . '&amp;userID=' . $userID .
                         '" data-toggle="tooltip" data-placement="top" title="' . $_language->module[ 'add_buddylist' ] . '"><i class="fa fa-user-plus"></i></a>';
@@ -463,10 +464,10 @@ if (isset($_POST['delete'])) {
                     $member = '';
                 }
 
-                if (isonline($ds['touser']) == "offline") {
-                    $statuspic = '<span class="label label-danger">' . $_language->module[ 'offline' ] . '</span>';
+                if(isonline($ds['touser']) == "offline") {
+                    $statuspic = '<i class="fa fa-circle text-danger" aria-hidden="true"></i>';
                 } else {
-                    $statuspic = '<span class="label label-success">' . $_language->module[ 'online' ] . '</span>';
+                    $statuspic = '<i class="fa fa-circle text-success" aria-hidden="true"></i>';
                 }
 
                 if (trim($ds['title']) != "") {
@@ -486,6 +487,7 @@ if (isset($_POST['delete'])) {
                 $data_array['$member'] = $member;
                 $data_array['$statuspic'] = $statuspic;
                 $data_array['$date'] = $date;
+                $data_array['$buddy'] = $buddy;
                 $pm_outgoing_content = $GLOBALS["_template"]->replaceTemplate("pm_outgoing_content", $data_array);
                 echo $pm_outgoing_content;
                 $n++;
