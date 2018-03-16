@@ -65,6 +65,6 @@ $language_array = array(
     'username_toolong' => 'Der Benutzername ist zu lang (max. 30 Zeichen).',
     'wrong_activationkey' => 'Dein Freischaltcode ist falsch!',
     'wrong_securitycode' => 'Der Sicherheitscode ist falsch!',
-	'enter_password2' => 'Das Kennwort muss folgende kreterien erf&uuml;llen:<br />Länge:min. 6 Zeichen, eine Zahl, ein Klein- &amp; Gro&szligbuchstaben, ein Sonderzeichen'
+	'enter_password2' => 'Das Kennwort muss folgende Kriterien erf&uuml;llen:<br />Länge:min. 6 Zeichen, eine Zahl, ein Klein- &amp; Gro&szligbuchstaben, ein Sonderzeichen'
 );
 
