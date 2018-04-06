@@ -415,23 +415,26 @@ function isforumposter($userID, $postID)
 
 function istopicpost($topicID, $postID)
 {
-    return (
-        mysqli_num_rows(
+        $ds = mysqli_fetch_array(
             safe_query(
                 "SELECT
                     postID
                 FROM
                     " . PREFIX . "forum_posts
                 WHERE
-                    `topicID` = " . (int)$topicID . " AND
-                    `postId` = " . (int)$postID . "
+                    `topicID` = " . (int)$topicID . "
                 ORDER BY
                     `date` ASC
                 LIMIT
                     0,1"
             )
-        ) > 0
-    );
+        );
+        if($ds[ 'postID' ] == $postID) {
+	        return true;
+	    }
+        else {
+	        return false;
+	    }
 }
 
 function isinusergrp($usergrp, $userID)
