@@ -28,7 +28,14 @@
 
 namespace webspell;
 
-require 'PHPMailer/PHPMailerAutoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/SMTP.php';
+require 'PHPMailer/POP3.php';
+
 class Email
 {
     public static function sendEmail($from, $module, $to, $subject, $message, $pop = true)
@@ -56,10 +63,10 @@ class Email
         }
 
         if ($smtp == 2) {
-            $pop = \POP3::popBeforeSmtp($host, 110, 30, $user, $password, $debug);
+            $pop = \PHPMailer\PHPMailer\POP3::popBeforeSmtp($host, 110, 30, $user, $password, $debug);
         }
 
-        $mail = new \PHPMailer();
+        $mail = new \PHPMailer\PHPMailer\PHPMailer;
 
         $mail->SMTPDebug = $debug;
         $mail->Debugoutput = function ($str, $level) {
@@ -103,7 +110,7 @@ class Email
             $mail->setFrom($from, $fromtitle);
             $mail->addAddress($to);
             $mail->addReplyTo($from);
-            $mail->CharSet = 'utf-8';
+            $mail->CharSet = 'UTF-8';
             $mail->WordWrap = 78;
 
             if ($html == 1) {
