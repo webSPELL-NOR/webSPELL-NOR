@@ -745,6 +745,12 @@ function update_base_11($_database)
   `o10` int(11) NOT NULL default '0',
   PRIMARY KEY  (`pollID`)
 ) DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
+
+    $transaction->addQuery("DROP TABLE IF EXISTS `" . PREFIX . "privacy_policy`");
+    $transaction->addQuery("CREATE TABLE `" . PREFIX . "privacy_policy` (
+  `privacy_policy` text NOT NULL
+) DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci");
+
     if ($transaction->successful()) {
         return array('status' => 'success', 'message' => 'Created tables starting with "p"');
     } else {
@@ -5027,5 +5033,4 @@ function update_updateLanguages($_database)
         return array('status' => 'fail', 'message' => 'Failed to update languages<br/>' . $transaction->getError());
     }
 }
-
 
