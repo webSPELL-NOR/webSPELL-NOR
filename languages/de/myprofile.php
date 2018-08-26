@@ -31,6 +31,7 @@ $language_array = array(
 
     'about_myself' => 'Über mich',
     'activated' => 'aktiviert',
+	'account' => 'Konto',
     'account_deleted' => 'Dein Konto wurde erfolgreich unwiderruflich gelöscht',
     'avatar' => 'Avatar:',
     'back' => 'zurück',
@@ -99,8 +100,8 @@ $language_array = array(
     'nickname_already_in_use' => 'Nickname wird bereits benutzt!',
     'no' => 'Nein',
     'not_logged_in' => 'Du musst angemeldet sein um dein Profil ändern zu können!<br><br>
-    &#8226; <a href="index.php?site=register">registrieren</a><br>
-    &#8226; <a href="index.php?site=login">anmelden</a>',
+    &#8226; <a href="index.php?site=register" class="alert-link">registrieren</a><br>
+    &#8226; <a href="index.php?site=login" class="alert-link">anmelden</a>',
     'old_password' => 'altes Passwort',
     'old_pw_not_valid' => 'Dein altes Passwort ist falsch!',
     'options' => 'Optionen',

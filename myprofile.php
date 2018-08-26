@@ -26,13 +26,13 @@
 */
 
 $_language->readModule('myprofile');
+$title_myprofile = $GLOBALS["_template"]->replaceTemplate("title_myprofile", array());
+echo $title_myprofile;
 
 if (!$userID) {
-    echo $_language->module['not_logged_in'];
+    echo generateAlert($_language->module['not_logged_in'], 'alert-danger');
 } else {
     $showerror = '';
-    $title_myprofile = $GLOBALS["_template"]->replaceTemplate("title_myprofile", array());
-    echo $title_myprofile;
 
     if (isset($_POST['submit'])) {
         $nickname = htmlspecialchars(mb_substr(trim($_POST['nickname']), 0, 30));
@@ -78,7 +78,7 @@ if (!$userID) {
         $mousepad = $_POST['mousepad'];
         $headset = $_POST['headset'];
         $newsletter = $_POST['newsletter'];
-        $homepage = str_replace('http://', '', $_POST['homepage']);
+        $homepage = $_POST['homepage'];
         $pm_mail = $_POST['pm_mail'];
         $language = $_POST['language'];
         $date_format = $_POST['date_format'];
@@ -229,11 +229,17 @@ if (!$userID) {
             }
         }
 
-        if (empty($usernamenew)) {
-            $error_array[] = $_language->module['you_have_to_username'];
-        }
         if (empty($nickname)) {
             $error_array[] = $_language->module['you_have_to_nickname'];
+        }
+		if (empty($usernamenew)) {
+            $error_array[] = $_language->module['you_have_to_username'];
+        }
+		if (empty($firstname)) {
+            $error_array[] = $_language->module['you_have_to_firstname'];
+        }
+		if (empty($birthday)) {
+            $error_array[] = $_language->module['you_have_to_bday'];
         }
 
         $qry =
@@ -295,7 +301,7 @@ if (!$userID) {
                         userID='" . $id . "'"
             );
 
-            redirect("index.php?site=profile&amp;id=$id", $_language->module['profile_updated'], 3);
+            redirect("index.php?site=profile&amp;id=$id", generateAlert($_language->module['profile_updated'], 'alert-success'), 3);
         }
     }
 
@@ -358,10 +364,10 @@ if (!$userID) {
             unset($_SESSION['ws_lastlogin']);
             session_destroy();
 
-            redirect('logout.php', $_language->module['pw_changed'], 3);
+            redirect('logout.php', generateAlert($_language->module['pw_changed'], 'alert-success'), 3);
         } else {
-            echo '<strong>ERROR: ' . $error . '</strong><br><br>
-                <input type="button" onclick="javascript:history.back()" value="' . $_language->module['back'] . '">';
+            echo generateAlert('<strong>ERROR: ' . $error . '</strong><br>
+			<a href="index.php?site=myprofile&action=editpwd" class="alert-link">' . $_language->module['back'] . '</a>', 'alert-danger');
         }
     } elseif (isset($_GET['action']) && $_GET['action'] == "editmail") {
         #$bg1 = BG_1;
@@ -457,8 +463,8 @@ if (!$userID) {
                 }
             }
         } else {
-            echo '<strong>ERROR: ' . $error . '</strong><br><br>
-            <input type="button" onclick="javascript:history.back()" value="' . $_language->module['back'] . '">';
+			echo generateAlert('<strong>ERROR: ' . $error . '</strong><br>
+			<a href="index.php?site=myprofile&action=editmail" class="alert-link">' . $_language->module['back'] . '</a>', 'alert-danger');
         }
     } elseif(isset($_GET['action']) && $_GET['action'] == "deleteaccount") {
 	    
@@ -500,8 +506,8 @@ if (!$userID) {
 			unset($_SESSION['ws_lastlogin']);
 			session_destroy();	        
         } else {
-	        echo '<strong>ERROR: ' . $error . '</strong><br><br>
-            <input type="button" onclick="javascript:history.back()" value="' . $_language->module['back'] . '">';
+			echo generateAlert('<strong>ERROR: ' . $error . '</strong><br>
+			<a href="index.php?site=myprofile&action=deleteaccount" class="alert-link">' . $_language->module['back'] . '</a>', 'alert-danger');
         }
 	    
 		    
@@ -735,7 +741,7 @@ if (!$userID) {
             $myprofile = $GLOBALS["_template"]->replaceTemplate("myprofile", $data_array);
             echo $myprofile;
         } else {
-            echo $_language->module['not_logged_in'];
+            echo generateAlert($_language->module['not_logged_in'], 'alert-danger');
         }
     }
 }
