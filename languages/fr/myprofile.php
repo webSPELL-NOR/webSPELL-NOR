@@ -31,6 +31,7 @@ $language_array = array(
 
     'about_myself' => 'À propos de moi',
     'activated' => 'activé',
+	'account' => 'Compte',
     'account_deleted' => 'Votre compte a été supprimé avec succès irrévocablement',
     'avatar' => 'Avatar:',
     'back' => 'Retour',
@@ -103,8 +104,8 @@ Merci pour votre intérêt
     'nickname_already_in_use' => 'Pseudo déjà utilisé !',
     'no' => 'Non',
     'not_logged_in' => 'Vous devez être connecté pour pouvoir éditer votre profil !<br><br>
-    &#8226; <a href="index.php?site=register">S\'enregistrer</a><br>
-    &#8226; <a href="index.php?site=login">Connexion</a>',
+    &#8226; <a href="index.php?site=register" class="alert-link">S\'enregistrer</a><br>
+    &#8226; <a href="index.php?site=login" class="alert-link">Connexion</a>',
     'old_password' => 'Ancien mot de passe',
     'old_pw_not_valid' => 'Votre ancien mot de passe n\\`est pas valide !',
     'options' => 'Options',
