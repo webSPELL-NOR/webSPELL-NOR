@@ -815,17 +815,17 @@ if (isset($id) && getnickname($id) != '') {
         } else {
             $pm = '' & $buddy = '';
         }
-
+		
         if ($ds[ 'homepage' ] != '') {
-            if (stristr($ds[ 'homepage' ], "http://")) {
-                $homepage = '<a href="' . htmlspecialchars($ds[ 'homepage' ]) . '" target="_blank" rel="nofollow">' .
-                    htmlspecialchars($ds[ 'homepage' ]) . '</a>';
-            } else {
-                $homepage = '<a href="http://' . htmlspecialchars($ds[ 'homepage' ]) . '" target="_blank"
-                    rel="nofollow">
-                    http://' . htmlspecialchars($ds[ 'homepage' ]) . '
-                </a>';
-            }
+			if (preg_match('%^https?://[^\s]+$%', $ds[ 'homepage' ])) {
+				$homepage = '<a href="' . htmlspecialchars($ds[ 'homepage' ]) . '" target="_blank" rel="nofollow">' .
+						htmlspecialchars($ds[ 'homepage' ]) . '</a>';
+			} else {
+				$homepage = '<a href="http://' . htmlspecialchars($ds[ 'homepage' ]) . '" target="_blank"
+						rel="nofollow">
+						http://' . htmlspecialchars($ds[ 'homepage' ]) . '
+					</a>';
+			}
         } else {
             $homepage = $_language->module[ 'n_a' ];
         }
@@ -845,13 +845,13 @@ if (isset($id) && getnickname($id) != '') {
         if ($ds[ 'clanhp' ] == '') {
             $clanhp = $_language->module[ 'n_a' ];
         } else {
-            if (stristr($ds[ 'clanhp' ], "http://")) {
-                $clanhp = '<a href="' . htmlspecialchars($ds[ 'clanhp' ]) . '" target="_blank" rel="nofollow">' .
+			if (preg_match('%^https?://[^\s]+$%', $ds[ 'clanhp' ])) {
+				$clanhp = '<a href="' . htmlspecialchars($ds[ 'clanhp' ]) . '" target="_blank" rel="nofollow">' .
                     htmlspecialchars($ds[ 'clanhp' ]) . '</a>';
-            } else {
-                $clanhp = '<a href="http://' . htmlspecialchars($ds[ 'clanhp' ]) . '" target="_blank" rel="nofollow">' .
+			} else {
+				$clanhp = '<a href="http://' . htmlspecialchars($ds[ 'clanhp' ]) . '" target="_blank" rel="nofollow">' .
                     htmlspecialchars($ds[ 'clanhp' ]) . '</a>';
-            }
+			}
         }
         $clantag = clearfromtags($ds[ 'clantag' ]);
         if ($clantag == '') {
